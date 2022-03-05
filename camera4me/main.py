@@ -8,7 +8,7 @@ from datetime import datetime
 from time import sleep
 import cv2
 import os
-from google_client_upload_frames import main_google_drive_client
+#from google_client_upload_frames import main_google_drive_client
 
 MONITORING_DURATION_MINS = 10
 
