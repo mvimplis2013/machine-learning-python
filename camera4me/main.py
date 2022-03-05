@@ -7,7 +7,7 @@ from configparser import ConfigParser
 from datetime import datetime
 from time import sleep
 import cv2
-import os
+import os, sys
 #from google_client_upload_frames import main_google_drive_client
 
 MONITORING_DURATION_MINS = 10
