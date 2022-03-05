@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name="capture_frames",
@@ -10,7 +10,7 @@ setup(
     py_modules=["cv2"],
     entry_points={
       "console_scripts": [
-        "smart-grab=camera4me.main:__main__",
+        "smart-grab=camera4me.main:main_grab",
       ]
     }
 )

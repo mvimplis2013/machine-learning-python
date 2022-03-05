@@ -81,7 +81,7 @@ def read_config():
 # ***************************
 #      MAIN Function
 # ***************************
-if __name__ == '__main__':
+def main_grab():
     camera_all = read_config()
     open_rtsp_stream(camera_all[0], camera_all[1], camera_all[2])
 
