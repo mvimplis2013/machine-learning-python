@@ -65,7 +65,7 @@ def open_rtsp_stream(ip, username, password):
 # Read Camera Configuration Data
 def read_config():
     config = ConfigParser()
-    config.read("config\camera.cfg")
+    config.read("camera_config")
     config.sections()
 
     camera_ip = config['CAMERA-A5-BACK']['camera-ip']
