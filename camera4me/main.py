@@ -68,7 +68,7 @@ def read_config():
     config.read( os.path.join( sys.prefix, "cfg", "camera.cfg" ) )
     config.sections()
 
-    print( f"Camera-Configuration --> {camera_config}" )
+    #print( f"Camera-Configuration --> {camera_config}" )
 
     camera_ip = config['CAMERA-A5-BACK']['camera-ip']
     username = config['CAMERA-A5-BACK']['username']
