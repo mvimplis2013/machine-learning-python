@@ -17,7 +17,9 @@ def open_rtsp_stream(ip, username, password):
     # Make folder to store frames
     # Date_Minute
     my_datetime = datetime.today().strftime('%Y-%m-%d-%H_%M_%S')
-    new_path = f'video/frames/%s' % my_datetime
+    
+    # !!!!!!! Where to store frames !!!!!!
+    new_path = f'%svideo/frames/%s' % (OUTPUT_DIR , my_datetime)
 
     if not os.path.exists(new_path):
         os.makedirs(new_path)
@@ -77,6 +79,9 @@ def read_config():
     global MONITORING_DURATION_MINS
     MONITORING_DURATION_MINS = int( config['CAMERA-A5-BACK']['monitoring-duration-mins'] )
 
+    global OUTPUT_DIR
+    OUTPUT_DIR = config['VIDEO-FRAMES-STORE']['output-dir']
+    
     return [camera_ip, username, password]
 
 
