@@ -43,7 +43,7 @@ def open_rtsp_stream(ip, username, password):
         if time_passed > monitoring_minutes:
             break
 
-        cv2.imshow('VIDEO', frame)
+        #cv2.imshow('VIDEO', frame)
 
         # Between Frames Secs
         previous_dt = current_dt
