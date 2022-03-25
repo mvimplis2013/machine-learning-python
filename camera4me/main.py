@@ -67,7 +67,7 @@ def open_rtsp_stream(ip, username, password):
 # Read Camera Configuration Data
 def read_config():
     config = ConfigParser()
-    config.read( os.path.join( "/var/tandem/camera4Me", "config/camera.cfg" ) )
+    config.read( os.path.join( os.path.realpath(__file__), "config/camera.cfg" ) )
     config.sections()
 
     #print( f"Camera-Configuration --> {camera_config}" )
