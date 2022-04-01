@@ -11,6 +11,7 @@ setup(
     entry_points={
       "console_scripts": [
         "smart-grab=camera4me.main:main_grab",
+        "file-watchdog=camera4me.space_protector:run_watchdog"
       ]
     }
 )
