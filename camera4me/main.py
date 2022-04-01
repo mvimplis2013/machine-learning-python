@@ -95,7 +95,7 @@ def main_grab():
     MONITORING_DURATION_MINS = 5
 
     global OUTPUT_DIR
-    OUTPUT_DIR = "./"
+    OUTPUT_DIR = "/data/"
 
     camera_all = ["10.124.144.118", "admin", "!ntrAcom"]
     open_rtsp_stream(camera_all[0], camera_all[1], camera_all[2])
