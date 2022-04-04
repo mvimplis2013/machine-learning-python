@@ -1,11 +1,11 @@
 from os import listdir
 from time import sleep
 
-SLEEP_SECS = 10
+SLEEP_SECS = 3
 
 def count_frames(folder):
 	files_dirs = listdir(folder)
-	print(f"Number of Frames .... {files_dir}")
+	print(f"Number of Frames .... {files_dir[0]}")
 
 def run_watchdog():
 	data_dir = "/dt2"
