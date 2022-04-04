@@ -5,7 +5,7 @@ SLEEP_SECS = 3
 
 def count_frames(folder):
 	files_dirs = listdir(folder)
-	print(f"Number of Frames .... {len(files_dirs)}")
+	print(f"Number of Frames .... {files_dirs}")
 
 def run_watchdog():
 	data_dir = "/dt2"
