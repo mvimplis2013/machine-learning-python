@@ -8,7 +8,7 @@ def count_frames(folder):
 	print(f"Number of Frames .... {files_dirs}")
 
 def run_watchdog():
-	data_dir = "/dt2/video/"
+	data_dir = "/dt2/video/frames/"
 
 	while True:
 		count_frames(data_dir)
