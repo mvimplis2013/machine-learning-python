@@ -1,5 +1,5 @@
 from os import listdir
-from time import sleep
+import time
 
 SLEEP_SECS = 10
 
@@ -12,5 +12,5 @@ def run_watchdog():
 
 	while True:
 		count_frames(data_dir)
-		sleep( SLEEP_SECS )
+		time.sleep(3)
 
