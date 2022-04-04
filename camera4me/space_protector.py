@@ -12,5 +12,5 @@ def run_watchdog():
 
 	while True:
 		count_frames(data_dir)
-		//sleep( SLEEP_SECS )
+		#sleep( SLEEP_SECS )
 
