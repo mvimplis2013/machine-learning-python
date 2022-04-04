@@ -3,7 +3,8 @@ from os import listdir
 def count_frames(folder):
 	files_dirs = listdir(folder)
 
-	print("Size of ....")
+
+	print(f"Number of Frames .... {len(files_dirs)}")
 
 def run_watchdog():
 	data_dir = "/dt2"
