@@ -38,7 +38,7 @@ def inside_date_folder(folder):
 
 		return
 
-	if now.minute % 10 == 0:
+	if now.minute % 10 == 0 and now.second == 0:
 		# Every 10 minutes
 		print(f"Number of Frames inside Folder .... {now.strftime('%Y-%m-%d %H:%M:%S')} : {folder} --> {len(files)} / ")
 
