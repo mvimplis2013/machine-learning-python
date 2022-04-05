@@ -24,6 +24,14 @@ def inside_date_folder(folder):
 	chdir(folder)
 	files = listdir('.')
 	
+	if len(files) == 0:
+		# Empty Directory
+		chdir("..")
+		print("Ready to Remove an Empty Folder ... {folder}")
+		remove(folder)
+
+		return
+
 	now = datetime.now()
 	
 	if now.minute % 10 == 0:
