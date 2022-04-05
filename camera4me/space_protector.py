@@ -1,4 +1,4 @@
-from os import listdir, chdir, remove
+from os import listdir, chdir, remove, rmdir
 from os.path import isfile, isdir, getmtime
 import time
 from datetime import datetime
@@ -28,7 +28,7 @@ def inside_date_folder(folder):
 		# Empty Directory
 		chdir("..")
 		print("Ready to Remove an Empty Folder ... {folder}")
-		remove(folder)
+		rmdir(folder)
 
 		return
 
