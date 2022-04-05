@@ -31,7 +31,7 @@ def inside_date_folder(folder):
 	then = datetime.fromtimestamp( getmtime(folder) )
 	tdelta = now - then
 
-	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_MINS) && (len(files) == 0):
+	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_MINS) & (len(files) == 0):
 		# Empty + Old Directory
 		chdir("..")
 		print(f"Ready to Remove an Empty Folder ... {folder}")
