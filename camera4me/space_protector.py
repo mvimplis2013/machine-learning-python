@@ -18,8 +18,11 @@ def inside_date_folder(folder):
 			tdelta = now - then
 
 			seconds = tdelta.total_seconds()
+			minutes = seconds / 60.0
+			hours   = ninutes / 60.0
 
-			print(f"Total Seconds Since File Modification Time .... {f} / {seconds}secs")
+			print(f"Total Seconds Since File Modification Time .... {f} / {seconds}secs / {minutes}mins / {hours}hrs")
+			print(f"Time Delta Analysis of Total Seconds .... {f} / {tdelta.days}")
 
 def count_frames(folder):
 	try:
