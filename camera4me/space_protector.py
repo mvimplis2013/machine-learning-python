@@ -17,10 +17,11 @@ def inside_date_folder(folder):
 			then = datetime.fromtimestamp( getmtime(f) )
 			tdelta = now - then
 
-			days    = tdelta.days
+			#days    = tdelta.days
 			seconds = tdelta.total_seconds()
 			minutes = seconds / 60.0
 			hours   = minutes / 60.0
+			days    = hours / 24
 
 			print(f"Total Seconds Since File Modification Time .... {f} / {seconds}secs / {minutes}mins / {hours}hrs / {days}days")
 			
