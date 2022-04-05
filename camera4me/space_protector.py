@@ -22,7 +22,7 @@ def older_than_hours(hours):
 		return False
 
 def inside_date_folder(folder):
-	files = listdir('folder')
+	files = listdir(folder)
 	
 	# Current Time
 	now = datetime.now()
