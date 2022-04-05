@@ -23,10 +23,13 @@ def older_than_hours(hours):
 def inside_date_folder(folder):
 	chdir(folder)
 	files = listdir('.')
-	#print(f"Number of Frames inside Folder .... {len(files)} / {folder}")
-
+	
 	now = datetime.now()
 	
+	if now.minute % 10 == 0:
+		# Every 10 minutes
+		print(f"Number of Frames inside Folder .... {len(files)} / {folder}")
+
 	for f in files:
 		if isfile(f):
 			then = datetime.fromtimestamp( getmtime(f) )
