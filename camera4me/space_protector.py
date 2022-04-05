@@ -1,13 +1,25 @@
 from os import listdir, chdir
-from os.path import isfile, isdir
+from os.path import isfile, isdir, getmtime
 import time
+from datetime import datetime
 
 SLEEP_SECS = 10
 
 def inside_date_folder(folder):
 	chdir(folder)
-	files_dirs = listdir('.')
-	print(f"Number of Frames .... {len(files_dirs)}")
+	files = listdir('.')
+	print(f"Number of Frames inside Folder .... {len(files)} / {folder}")
+
+	now = datetime.now()
+	
+	for f in files:
+		if isfile(f):
+			then = datetime.fromtimestamp( getmtime(f) )
+			tdelta = now - then
+
+			seconds = tdelta.total_seconds()
+
+			print(f"Total Seconds Since File Modification Time .... {f} / {seconds}secs")
 
 def count_frames(folder):
 	try:
