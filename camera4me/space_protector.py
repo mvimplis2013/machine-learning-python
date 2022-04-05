@@ -31,7 +31,7 @@ def inside_date_folder(folder):
 	tdelta = now - then
 
 	# Check existing folders 
-	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_MINS) & (len(files) == 0):
+	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_SECS) & (len(files) == 0):
 		# Empty + Old Directory
 		print(f"Ready to Remove an Empty Folder ... {folder}")
 		rmdir(folder)
