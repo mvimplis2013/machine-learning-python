@@ -22,8 +22,7 @@ def older_than_hours(hours):
 		return False
 
 def inside_date_folder(folder):
-	chdir(folder)
-	files = listdir('.')
+	files = listdir('folder')
 	
 	# Current Time
 	now = datetime.now()
@@ -31,6 +30,7 @@ def inside_date_folder(folder):
 	then = datetime.fromtimestamp( getmtime(folder) )
 	tdelta = now - then
 
+	# Is 
 	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_MINS) & (len(files) == 0):
 		# Empty + Old Directory
 		chdir("..")
@@ -43,6 +43,7 @@ def inside_date_folder(folder):
 		# Every 10 minutes
 		print(f"Number of Frames inside Folder .... {len(files)} / {folder}")
 
+	chdir(folder)
 	for f in files:
 		if isfile(f):
 			then = datetime.fromtimestamp( getmtime(f) )
