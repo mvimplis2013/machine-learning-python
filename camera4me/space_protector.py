@@ -1,4 +1,5 @@
-from os import listdir, chdir, isfile, isdir
+from os import listdir, chdir
+from os.path import isfile, isdir
 import time
 
 SLEEP_SECS = 10
