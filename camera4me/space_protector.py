@@ -5,8 +5,8 @@ from datetime import datetime
 
 SLEEP_SECS = 10
 
-DAYS_OLD = 1    # One Day
-HOURS_OLD = 6   # Six Hours
+DAYS_OLD  = 1    # One Day
+HOURS_OLD = 2    # Two Hours
 
 def older_than_days(days):
 	if days >= DAYS_OLD:
