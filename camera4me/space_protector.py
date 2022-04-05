@@ -1,16 +1,28 @@
-from os import listdir
+from os import listdir, chdir
 import time
 
 SLEEP_SECS = 10
 
 def count_frames(folder):
-	files_dirs = listdir(folder)
-	print(f"Number of Frames .... {files_dirs}")
+	try:
+		files_dirs = listdir(folder)
+	except OSError as x:
+		print(f"Cannot change into FRAMES folder ... {x}")
+		exit(1)
+
+	try:
+		chdir(files_dirs)
+	except OSError as x:
+		print(f"Cannot change into DATE folder ... {x}")
+		exit(1)
+	
+	files_dirs = listdir('.')
+	print(f"Number of Frames .... {len(files_dirs)}")
 
 def run_watchdog():
 	data_dir = "/dt2/video/frames/"
 
 	while True:
 		count_frames(data_dir)
-		time.sleep(3)
+		#time.sleep(3)
 
