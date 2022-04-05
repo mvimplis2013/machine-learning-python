@@ -17,13 +17,13 @@ def inside_date_folder(folder):
 			then = datetime.fromtimestamp( getmtime(f) )
 			tdelta = now - then
 
+			days    = tdelta.days
 			seconds = tdelta.total_seconds()
 			minutes = seconds / 60.0
 			hours   = minutes / 60.0
 
-			print(f"Total Seconds Since File Modification Time .... {f} / {seconds}secs / {minutes}mins / {hours}hrs")
-			print(f"Time Delta Analysis of Total Seconds .... {f} / {tdelta.days} / {tdelta.hour}")
-
+			print(f"Total Seconds Since File Modification Time .... {f} / {seconds}secs / {minutes}mins / {hours}hrs / {days}days")
+			
 def count_frames(folder):
 	try:
 		chdir(folder)
