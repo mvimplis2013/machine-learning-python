@@ -7,6 +7,7 @@ SLEEP_SECS = 10
 
 DAYS_OLD  = 1    # One Day
 HOURS_OLD = 2    # Two Hours
+DELETE_EMPTY_FOLDERS_AFTER_SECS = 10*60  # Minutes
 
 def older_than_days(days):
 	if days >= DAYS_OLD:
@@ -24,16 +25,20 @@ def inside_date_folder(folder):
 	chdir(folder)
 	files = listdir('.')
 	
-	if len(files) == 0:
-		# Empty Directory
+	# Current Time
+	now = datetime.now()
+
+	then = datetime.fromtimestamp( getmtime(folder) )
+	tdelta = now - then
+
+	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_MINS) && (len(files) == 0):
+		# Empty + Old Directory
 		chdir("..")
-		print("Ready to Remove an Empty Folder ... {folder}")
+		print(f"Ready to Remove an Empty Folder ... {folder}")
 		rmdir(folder)
 
 		return
 
-	now = datetime.now()
-	
 	if now.minute % 10 == 0:
 		# Every 10 minutes
 		print(f"Number of Frames inside Folder .... {len(files)} / {folder}")
