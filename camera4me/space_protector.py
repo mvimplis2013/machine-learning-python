@@ -30,10 +30,9 @@ def inside_date_folder(folder):
 	then = datetime.fromtimestamp( getmtime(folder) )
 	tdelta = now - then
 
-	# Is 
+	# Check existing folders 
 	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_MINS) & (len(files) == 0):
 		# Empty + Old Directory
-		chdir("..")
 		print(f"Ready to Remove an Empty Folder ... {folder}")
 		rmdir(folder)
 
@@ -43,7 +42,6 @@ def inside_date_folder(folder):
 		# Every 10 minutes
 		print(f"Number of Frames inside Folder .... {len(files)} / {folder}")
 
-	chdir(folder)
 	for f in files:
 		if isfile(f):
 			then = datetime.fromtimestamp( getmtime(f) )
