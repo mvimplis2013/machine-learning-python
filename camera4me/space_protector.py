@@ -63,6 +63,8 @@ def inside_date_folder(folder):
 			hours   = minutes / 60.0
 			days    = hours / 24
 
+			print(f"File Modification Time .... {f} --> {days}-(days) , {hours}-(hrs) , {minutes}-(mins)")
+
 			if now.minute % 10 == 0:
 				print(f"File Modification Time .... {f} --> {hours}-(hrs) , {minutes}-(mins)")
 
