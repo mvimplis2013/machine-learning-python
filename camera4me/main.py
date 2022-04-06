@@ -12,7 +12,7 @@ import os, sys
 
 MONITORING_DURATION_MINS = 10
 
-SLEEP_BETWEEN_SNAPSHOTS = 3
+SLEEP_BETWEEN_SNAPSHOTS = 1
 
 # Read the Camera Video Output
 def open_rtsp_stream(ip, username, password):
@@ -40,8 +40,6 @@ def open_rtsp_stream(ip, username, password):
 
     counter = 0
     while ret:
-        sleep( SLEEP_BETWEEN_SNAPSHOTS )
-
         # Start frames capturing at ...
         time_passed = datetime.now().timestamp() - start_time
         print( f"Time Passed = %f" % time_passed)
@@ -63,6 +61,8 @@ def open_rtsp_stream(ip, username, password):
 
         counter += 1
 
+        # Wait for few seconds ... Next Frame-Capture
+        sleep( SLEEP_BETWEEN_SNAPSHOTS )
         ret, frame = vcap.read()
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
