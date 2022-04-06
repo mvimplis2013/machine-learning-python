@@ -5,8 +5,10 @@ from datetime import datetime
 
 SLEEP_SECS = 10
 
-DAYS_OLD  = 1    # One Day
-HOURS_OLD = 2    # Two Hours
+DAYS_OLD    = 1    # One Day
+HOURS_OLD   = 2    # Two Hours
+MINUTES_OLD = 10   # Ten Minutes
+
 DELETE_EMPTY_FOLDERS_AFTER_SECS = 10*60  # Minutes
 
 def older_than_days(days):
@@ -17,6 +19,12 @@ def older_than_days(days):
 
 def older_than_hours(hours):
 	if hours >= HOURS_OLD:
+		return True
+	else:
+		return False
+
+def older_than_minutes(minutes):
+	if minutes >= MINUTES_OLD:
 		return True
 	else:
 		return False
@@ -47,17 +55,22 @@ def inside_date_folder(folder):
 			then = datetime.fromtimestamp( getmtime(f) )
 			tdelta = now - then
 
-			days    = tdelta.days
-			seconds = tdelta.seconds
+			#days    = tdelta.days
+
+			seconds = tdelta.total_seconds()
+
 			minutes = seconds / 60.0
 			hours   = minutes / 60.0
-			#days    = hours / 24
+			days    = hours / 24
 
 			if older_than_days(days):
-				print(f"Ready to Delete Frame More Than Day(s) Old .... {f} / {days}-(days)")
+				print(f"Ready to Delete Frame More than Day(s) Old .... {f} / {days}-(days)")
 				remove(f)
 			elif older_than_hours(hours):
-				print(f"Ready to Delete Frame More Than Hours(s) Old .... {f} / {hours}-(hrs)")
+				print(f"Ready to Delete Frame More than Hours(s) Old .... {f} / {hours}-(hrs)")
+				remove(f)
+			elif older_than_minutes(minutes):
+				print(f"Ready to Delete Frame More than Minute(s) Old ... {f} / {minutes}-(mins)")
 				remove(f)
 			
 def count_frames(folder):
