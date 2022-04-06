@@ -51,7 +51,7 @@ def inside_date_folder(folder):
 		print(f"Number of Frames inside Folder .... {now.strftime('%Y-%m-%d %H:%M:%S')} : {folder} --> {len(files)}")
 
 	for f in files:
-		print(f"Current Frame .... {f}")
+		print(f"Current Frame .... {f} / isFile = {isfile(f)}")
 
 		if isfile(f):
 			print(f"Current Frame After File Test .... {f}")
