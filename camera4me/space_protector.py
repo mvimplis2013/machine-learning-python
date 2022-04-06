@@ -3,7 +3,7 @@ from os.path import isfile, isdir, getmtime
 import time
 from datetime import datetime
 
-SLEEP_SECS = 10
+SLEEP_SECS = 3
 
 DAYS_OLD    = 1    # One Day
 HOURS_OLD   = 2    # Two Hours
@@ -51,13 +51,12 @@ def inside_date_folder(folder):
 		print(f"Number of Frames inside Folder .... {now.strftime('%Y-%m-%d %H:%M:%S')} : {folder} --> {len(files)}")
 
 	for f in files:
-		print(f"Current Frame .... {f} / isFile = {isfile(f)}")
+		#print(f"Current Frame .... {f} / isFile = {isfile(f)}")
 
 		if f.startswith( "frame_" ) & f.endswith( ".jpg" ):
 			# A video-snapshot
 			f = folder + '/' + f
-
-			print(f"Current Frame After File Test .... {f}")
+			#print(f"Current Frame Path Name .... {f}")
 
 			then = datetime.fromtimestamp( getmtime(f) )
 			tdelta = now - then
@@ -70,10 +69,10 @@ def inside_date_folder(folder):
 			hours   = minutes / 60.0
 			days    = hours / 24
 
-			print(f"File Modification Time .... {f} --> {days}-(days) , {hours}-(hrs) , {minutes}-(mins)")
+			#print(f"File Modification Time .... {f} --> {days}-(days) , {hours}-(hrs) , {minutes}-(mins)")
 
 			if now.minute % 10 == 0:
-				print(f"File Modification Time .... {f} --> {hours}-(hrs) , {minutes}-(mins)")
+				print(f"Frame Creation Time .... {f} --> {hours}-(hrs) , {minutes}-(mins)")
 
 			if older_than_days(days):
 				print(f"Ready to Delete Frame More than Day(s) Old .... {f} / {days}-(days)")
@@ -104,5 +103,7 @@ def run_watchdog():
 
 	while True:
 		count_frames(data_dir)
-		#time.sleep(3)
+
+		# No Sleep = 1500 frames / Minute
+		time.sleep( SLEEP_SECS )
 
