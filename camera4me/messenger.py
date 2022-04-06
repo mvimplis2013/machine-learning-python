@@ -6,7 +6,7 @@ def __main_mq_client__():
 	parser = argparse.ArgumentParser( description='Handle Messages Between MicroServices' )
 
 	parser.add_argument(
-        'action', choices=['sent', 'receive', 'delete'], help='action for backend message-queue service')
+        '-a', '--action', choices=['sent', 'receive', 'delete'], help='action for backend message-queue service')
 
 	parser.add_argument(
         '-n', '--name', required=True, type=str, help='message-queue name')
