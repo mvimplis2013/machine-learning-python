@@ -12,6 +12,8 @@ import os, sys
 
 MONITORING_DURATION_MINS = 10
 
+SLEEP_BETWEEN_SNAPSHOTS = 3
+
 # Read the Camera Video Output
 def open_rtsp_stream(ip, username, password):
     # Make folder to store frames
@@ -38,6 +40,8 @@ def open_rtsp_stream(ip, username, password):
 
     counter = 0
     while ret:
+        sleep( SLEEP_BETWEEN_SNAPSHOTS )
+
         # Start frames capturing at ...
         time_passed = datetime.now().timestamp() - start_time
         print( f"Time Passed = %f" % time_passed)
