@@ -3,6 +3,8 @@ from os.path import isfile, isdir, getmtime
 import time
 from datetime import datetime
 
+import subprocess
+
 SLEEP_SECS = 3
 
 DAYS_OLD    = 1    # One Day
@@ -97,6 +99,8 @@ def count_frames(folder):
 			inside_date_folder(f)
 
 def run_watchdog():
+	subprocess.call( [ "polite-messenger"] )
+
 	data_dir = "/dt2/video/frames/"
 
 	while True:
