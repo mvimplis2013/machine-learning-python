@@ -53,7 +53,7 @@ def inside_date_folder(folder):
 	for f in files:
 		print(f"Current Frame .... {f} / isFile = {isfile(f)}")
 
-		if isfile(f):
+		if f.endswith(".jpg"):
 			print(f"Current Frame After File Test .... {f}")
 
 			then = datetime.fromtimestamp( getmtime(f) )
