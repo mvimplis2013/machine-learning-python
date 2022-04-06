@@ -31,14 +31,14 @@ def inside_date_folder(folder):
 	tdelta = now - then
 
 	# Check existing folders 
-	if (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_SECS) & (len(files) == 0):
+	if isdir(folder) & (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_SECS) & (len(files) == 0):
 		# Empty + Old Directory
 		print(f"Ready to Remove an Empty Folder ... {folder}")
 		rmdir(folder)
 
 		return
 
-	if now.minute % 10 == 0 and now.second < 10:
+	if (now.minute % 10 == 0) & (now.second < 10):
 		# Every 10 minutes
 		print(f"Number of Frames inside Folder .... {now.strftime('%Y-%m-%d %H:%M:%S')} : {folder} --> {len(files)} / ")
 
