@@ -6,7 +6,9 @@ def call_mq_server():
 	print(f"Ready to Start Sending Messages with RabbitMQ")
 
 	try:
-		connection = pika.BlockingConnection( pika.ConnectionParameters('localhost') )
+		conn_params = pika.ConnectionParameters('amqp://www-data:rabbit_pwd@rabbit1/web_messages')
+		
+		connection = pika.BlockingConnection( conn_params )
 	except pika.exceptions.AMQPConnectionError as pika_e:
 		print(f"Failed to Connect to RabbitMQ ... {pika_e}")
 		return
