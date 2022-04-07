@@ -16,7 +16,7 @@ def __main_mq_client__():
 	if args.action == "sent":
 		print( f"SEND-Action {args.name}, {args.port}" )
 	elif args.action == "receive":
-		print( f"{args.name}, {args.port}, "RECEIVE" )
+		print( f"{args.name}, {args.port}, "RECEIVE"" )
 	elif args.action == "delete":
 		print( f"{args.action} , {args.name}" )
 
