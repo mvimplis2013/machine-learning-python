@@ -99,7 +99,7 @@ def count_frames(folder):
 			inside_date_folder(f)
 
 def run_watchdog():
-	subprocess.call([ "polite-messenger", "-n", "vibm-mq", "-p", 20000, "sent" ])
+	subprocess.call([ "polite-messenger sent", "-n", "vibm-mq", "-p", 20000 ])
 
 	data_dir = "/dt2/video/frames/"
 
