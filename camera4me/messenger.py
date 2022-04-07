@@ -9,7 +9,7 @@ def call_mq_server():
 		#conn_params = pika.ConnectionParameters('amqp://www-data:rabbit_pwd@rabbit1/web_messages')
 		#conn_params = pika.ConnectionParameters('amqp://user:@10.109.109.116:5672/%2F')
 
-		conn_params = pika.ConnectionParameters( host='10.109.109.116' )
+		conn_params = pika.ConnectionParameters( "amqp://my-rabbitmq.default.svc:5672/" )
 
 		print(f"Connection String ... {conn_params}")
 
