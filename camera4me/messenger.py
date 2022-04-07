@@ -1,4 +1,5 @@
 import argparse
+import os
 
 def __main_mq_client__():
 	print(f"Ready to Post a Message")
@@ -13,13 +14,16 @@ def __main_mq_client__():
 	args = parser.parse_args()
 
 	if args.action == "sent":
-	  print( f"SEND-Action {args.name}, {args.port}" )
-
-	'''
+		print( f"SEND-Action {args.name}, {args.port}" )
 	elif args.action == "receive":
-        print args.name, args.port, "RECEIVE"
-    elif args.action == "delete":
-        print args.name
-    '''
+		print args.name, args.port, "RECEIVE"
+	elif args.action == "delete":
+		print args.name
+
+	# Read Environment Variables Associated with Message-Queue Service
+	try:
+		os.environ['MESSAGE_QUEUE']
+	except E:
+		print(f"Problem Reading Environment Variables for Message-Queue")
 
 	return
