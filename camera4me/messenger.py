@@ -28,6 +28,6 @@ def __main_mq_client__():
 		return
 
 	if mq_type.casefold() == "rabbitmq".casefold():
-		printf(f"Ready to Start Sending Messages with RabbitMQ")
+		print(f"Ready to Start Sending Messages with RabbitMQ")
 
 	return
