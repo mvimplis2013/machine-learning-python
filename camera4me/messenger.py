@@ -15,6 +15,19 @@ def call_mq_server():
 		print(f"Connection String ... {conn_params}")
 
 		connection = pika.BlockingConnection( conn_params )
+
+		channel = connection.channel()
+
+		channel.queue_declare(queue='hello')
+
+		channel.basic_publish(exchange='',
+                      routing_key='hello',
+                      body='Hello World!')
+		
+		print(" [x] Sent 'Hello World!'")
+
+		connection.close()
+
 	except pika.exceptions.AMQPConnectionError as pika_e:
 		print(f"Failed to Connect to RabbitMQ ... {pika_e}")
 		return
