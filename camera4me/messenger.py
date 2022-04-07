@@ -1,5 +1,11 @@
 import argparse
 import os
+import pika
+
+def call_mq_server():
+	print(f"Ready to Start Sending Messages with RabbitMQ")
+
+	return
 
 def __main_mq_client__():
 	print(f"Ready to Post a Message")
@@ -27,7 +33,7 @@ def __main_mq_client__():
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
 
-	if mq_type.casefold() == "rabbitmq".casefold():
-		print(f"Ready to Start Sending Messages with RabbitMQ")
+	if mq_type.casefold() == "rabbitmq".casefold():	
+		call_mq_server()
 
 	return
