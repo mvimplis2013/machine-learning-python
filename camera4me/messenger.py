@@ -5,6 +5,8 @@ import pika
 def call_mq_server():
 	print(f"Ready to Start Sending Messages with RabbitMQ")
 
+	connection = pika.BlockingConnection( pika.ConnectionParameters('localhost') )
+
 	return
 
 def __main_mq_client__():
