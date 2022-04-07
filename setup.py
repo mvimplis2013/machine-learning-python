@@ -6,7 +6,7 @@ setup(
     name="capture_frames",
     version="0.0.1",
     packages=["camera4me"],
-    install_requires=["opencv-python"],
+    install_requires=["opencv-python", "pika>=1.2.0"],
     data_files=[("cfg", ["config/camera.cfg"])],
     entry_points={
       "console_scripts": [
