@@ -23,7 +23,7 @@ def __main_mq_client__():
 	# Read Environment Variables Associated with Message-Queue Service
 	try:
 		os.environ['MESSAGE_QUEUE_TYPE']
-	except OSError as e:
+	except KeyError as e:
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 
 	return
