@@ -27,7 +27,7 @@ def __main_mq_client__():
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
 
-    if mq_type.casefold() == "rabbitmq".casefold():
-    	printf(f"Ready to Start Sending Messages with RabbitMQ")
+	if mq_type.casefold() == "rabbitmq".casefold():
+		printf(f"Ready to Start Sending Messages with RabbitMQ")
 
 	return
