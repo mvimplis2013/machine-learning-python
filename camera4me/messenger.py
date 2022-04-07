@@ -22,8 +22,12 @@ def __main_mq_client__():
 
 	# Read Environment Variables Associated with Message-Queue Service
 	try:
-		os.environ['MESSAGE_QUEUE_TYPE']
+		mq_type = os.environ['MESSAGE_QUEUE_TYPE']
 	except KeyError as e:
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
+		return
+
+    if mq_type.casefold() == "rabbitmq".casefold():
+    	printf(f"Ready to Start Sending Messages with RabbitMQ")
 
 	return
