@@ -16,13 +16,13 @@ def __main_mq_client__():
 	if args.action == "sent":
 		print( f"SEND-Action {args.name}, {args.port}" )
 	elif args.action == "receive":
-		print args.name, args.port, "RECEIVE"
+		print( f"{args.name}, {args.port}, "RECEIVE" )
 	elif args.action == "delete":
-		print args.name
+		print( f"{args.action} , {args.name}" )
 
 	# Read Environment Variables Associated with Message-Queue Service
 	try:
-		os.environ['MESSAGE_QUEUE']
+		os.environ['MESSAGE_QUEUE_TYPE']
 	except E:
 		print(f"Problem Reading Environment Variables for Message-Queue")
 
