@@ -13,7 +13,7 @@ def __main_mq_client__():
 	args = parser.parse_args()
 
 	if args.action == "sent":
-	  print "SEND" #args.name, args.port, "SEND"
+	  print( f"SEND-Action args.name, args.port" )
 
 	'''
 	elif args.action == "receive":
