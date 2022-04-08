@@ -2,6 +2,8 @@ import argparse
 import os
 import pika
 
+USER = "user"
+
 def call_mq_server( host, password ):
 	print(f"Ready to Start Sending Messages with RabbitMQ")
 
@@ -9,7 +11,7 @@ def call_mq_server( host, password ):
 		#conn_params = pika.ConnectionParameters('amqp://www-data:rabbit_pwd@rabbit1/web_messages')
 		#conn_params = pika.ConnectionParameters('amqp://user:@10.109.109.116:5672/%2F')
 
-		credentials = pika.PlainCredentials( "user", password )
+		credentials = pika.PlainCredentials( USER, password )
 		conn_params = pika.ConnectionParameters( host, credentials=credentials )
 
 		print(f"Connection String ... {conn_params}")
@@ -34,9 +36,9 @@ def call_mq_server( host, password ):
 
 	return
 
-def follow_mq_server():
-	credentials = pika.PlainCredentials( "user", "voMjPY74Ui" )
-	conn_params = pika.ConnectionParameters( "my-rabbitmq.default.svc", credentials=credentials )
+def follow_mq_server( host, password ):
+	credentials = pika.PlainCredentials( USER, password )
+	conn_params = pika.ConnectionParameters( host, credentials=credentials )
 
 	print(f"Connection String ... {conn_params}")
 
