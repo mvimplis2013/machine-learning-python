@@ -2,14 +2,14 @@ import argparse
 import os
 import pika
 
-def call_mq_server(host):
+def call_mq_server( host, password ):
 	print(f"Ready to Start Sending Messages with RabbitMQ")
 
 	try:
 		#conn_params = pika.ConnectionParameters('amqp://www-data:rabbit_pwd@rabbit1/web_messages')
 		#conn_params = pika.ConnectionParameters('amqp://user:@10.109.109.116:5672/%2F')
 
-		credentials = pika.PlainCredentials( "user", "voMjPY74Ui" )
+		credentials = pika.PlainCredentials( "user", password )
 		conn_params = pika.ConnectionParameters( host, credentials=credentials )
 
 		print(f"Connection String ... {conn_params}")
@@ -86,11 +86,11 @@ def __main_mq_client__():
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
 
-	print(f"Host --> {host} && Password --> {password}")
-	return
+	#print(f"Host --> {host} && Password --> {password}")
+	#return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
-		call_mq_server( host )
+		call_mq_server( host , password )
 	elif mq_type.casefold() == "receive".casefold():
 		try:
 			follow_mq_server()
