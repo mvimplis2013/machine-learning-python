@@ -8,7 +8,7 @@ def __influx_main__():
 	host = os.environ[ "INFLUXDB_SERVICE" ]
 	password = os.environ[ "INFLUXDB_PASSWORD" ]
 
-	client = InfluxDBClient( host, user="admin", password )
+	client = InfluxDBClient( host=host, username="admin", password=password )
 
 	client.close()
 
