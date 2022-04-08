@@ -2,7 +2,7 @@ import argparse
 import os
 import pika
 
-def call_mq_server():
+def call_mq_server(host):
 	print(f"Ready to Start Sending Messages with RabbitMQ")
 
 	try:
@@ -10,7 +10,7 @@ def call_mq_server():
 		#conn_params = pika.ConnectionParameters('amqp://user:@10.109.109.116:5672/%2F')
 
 		credentials = pika.PlainCredentials( "user", "voMjPY74Ui" )
-		conn_params = pika.ConnectionParameters( "my-rabbitmq.default.svc", credentials=credentials )
+		conn_params = pika.ConnectionParameters( host, credentials=credentials )
 
 		print(f"Connection String ... {conn_params}")
 
@@ -31,6 +31,28 @@ def call_mq_server():
 	except pika.exceptions.AMQPConnectionError as pika_e:
 		print(f"Failed to Connect to RabbitMQ ... {pika_e}")
 		return
+
+	return
+
+def follow_mq_server():
+	credentials = pika.PlainCredentials( "user", "voMjPY74Ui" )
+	conn_params = pika.ConnectionParameters( "my-rabbitmq.default.svc", credentials=credentials )
+
+	print(f"Connection String ... {conn_params}")
+
+	connection = pika.BlockingConnection( conn_params )
+
+	channel = connection.channel()
+	channel.queue_declare(queue='hello')
+
+	def callback( ch, method, properties, body ):
+		print(f"Recieved ... {body}")
+
+	channel.basic_consume( queue='hello', on_message_callback=callback, auto_ack=True)
+
+	print( f"Waiting for Messages" )
+
+	channel.start_consuming()
 
 	return
 
@@ -56,11 +78,18 @@ def __main_mq_client__():
 	# Read Environment Variables Associated with Message-Queue Service
 	try:
 		mq_type = os.environ['MESSAGE_QUEUE_TYPE']
+
+		host = os.environ[ "RABBITMQ_SERVICE" ]
 	except KeyError as e:
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
-		call_mq_server()
+		call_mq_server( host )
+	elif mq_type.casefold() == "receive".casefold():
+		try:
+			follow_mq_server()
+		except KeyboardInterrupt:
+			return
 
 	return
