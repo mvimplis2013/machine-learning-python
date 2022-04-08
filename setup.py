@@ -13,6 +13,7 @@ setup(
         "smart-grab=camera4me.main:main_grab",
         "file-watchdog=camera4me.space_protector:run_watchdog",
         "polite-messenger=camera4me.messenger:__main_mq_client__",
+        "influxdb-caller=camera4me.influxdb_main:__influx_main__",
       ]
     }
 )
