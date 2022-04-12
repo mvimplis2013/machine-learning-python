@@ -15,7 +15,7 @@ def __influx_main__():
 	
 	database = os.environ[ "INFLUXDB_NAME" ]
 
-	client = InfluxDBClient( host=host, port=8086)
+	client = InfluxDBClient( host=host, port=8086 )
 
 	try:
 		version = client.ping()
@@ -24,7 +24,7 @@ def __influx_main__():
 		users = client.get_list_users()
 		print(f"Users = {users}")
 	except Exception as e:
-		print("Exception is Raised ... {e}")
+		print(f"Exception is Raised ... {e}")
 
 	#client.get_list_database()
 
