@@ -15,6 +15,8 @@ def __influx_main__():
 	
 	database = os.environ[ "INFLUXDB_NAME" ]
 
+	client = InfluxDBClient( host=host, port=8086, username="admin", password="" )
+
 	client.create_database( database )
 
 	client.close()
