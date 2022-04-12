@@ -4,7 +4,7 @@ import os
 
 def write_events():
 	return
-	
+
 def __influx_main__():
 	print(f"Ready to Connect to InfluxDB")
 
@@ -15,7 +15,7 @@ def __influx_main__():
 	
 	database = os.environ[ "INFLUXDB_NAME" ]
 
-	client = InfluxDBClient( host=host, username=username, password=password )
+	client = InfluxDBClient( host=host, port=8086, username=username, password=password )
 
 	client.create_database( database )
 
