@@ -15,13 +15,13 @@ def __influx_main__():
 	
 	database = os.environ[ "INFLUXDB_NAME" ]
 
-	client = InfluxDBClient( host=host, port=8086 )
+	client = InfluxDBClient( host, 8086, "admin", "" )
 
 	try:
 		version = client.ping()
 		print(f"Database Version = {version}")
 
-		client.switch_user("admin", "admin123")
+		#client.switch_user("admin", "")
 
 		users = client.get_list_users()
 		print(f"Users = {users}")
