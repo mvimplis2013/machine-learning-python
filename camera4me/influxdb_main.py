@@ -17,8 +17,9 @@ def __influx_main__():
 
 	client = InfluxDBClient( host=host, port=8086, username="tandem", password="tandem" )
 
-	client.get_list_database()
+	version = client.ping()
+	#client.get_list_database()
 
-	client.close()
+	#client.close()
 
 	return
