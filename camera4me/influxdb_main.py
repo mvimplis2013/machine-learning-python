@@ -21,7 +21,7 @@ def __influx_main__():
 		version = client.ping()
 		print(f"Database Version = {version}")
 
-		client.switch_user("tandem", "tandem")
+		client.switch_user("admin", "admin123")
 
 		users = client.get_list_users()
 		print(f"Users = {users}")
