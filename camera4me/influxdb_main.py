@@ -9,6 +9,7 @@ def __influx_main__():
 	print(f"Ready to Connect to InfluxDB")
 
 	host = os.environ[ "INFLUXDB_SERVICE" ]
+	print(f"Host = {host}")
 
 	username = os.environ[ "INFLUXDB_USER" ]
 	password = os.environ[ "INFLUXDB_PASSWORD" ]
