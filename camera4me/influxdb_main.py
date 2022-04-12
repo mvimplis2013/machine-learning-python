@@ -15,10 +15,10 @@ def __influx_main__():
 	password = os.environ[ "INFLUXDB_PASSWORD" ]
 	
 	database = os.environ[ "INFLUXDB_NAME" ]
-
-	client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="veIg2FxwU3ueJmEGRIuJuJNmA0HYKaae" )
-
+	
 	try:
+		client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+
 		version = client.ping()
 		print(f"Database Version = {version}")
 
