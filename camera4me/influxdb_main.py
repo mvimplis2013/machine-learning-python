@@ -17,7 +17,12 @@ def __influx_main__():
 
 	client = InfluxDBClient( host=host, port=8086, username="tandem2", password="tandem" )
 
-	version = client.ping()
+	try:
+		version = client.ping()
+		print(f"Database Version = {version}")
+	except Exception as e:
+		print("Exception is Raised ... {e}")
+		
 	#client.get_list_database()
 
 	#client.close()
