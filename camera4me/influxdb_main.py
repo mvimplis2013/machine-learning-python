@@ -16,7 +16,7 @@ def __influx_main__():
 	
 	database = os.environ[ "INFLUXDB_NAME" ]
 
-	client = InfluxDBClient( host=host, port=8086, username="admin", password="" )
+	client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="veIg2FxwU3ueJmEGRIuJuJNmA0HYKaae" )
 
 	try:
 		version = client.ping()
