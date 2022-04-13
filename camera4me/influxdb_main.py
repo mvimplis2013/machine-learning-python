@@ -42,7 +42,7 @@ def __influx_main__():
 		|> filter(fn:(r) => r.location == "coyote_creek")\
 		|> ilter(fn:(r) => r._field == "water_level" )'
 
-		result = client.query_api.query( org= “influxdata”, query=query )
+		result = client.query_api.query( org="influxdata", query=query )
 
 		results = []
 
