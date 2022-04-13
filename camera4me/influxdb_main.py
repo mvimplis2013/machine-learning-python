@@ -26,8 +26,8 @@ def __influx_main__():
         
 		#client.switch_user("admin", "")
 
-		#users = client.get_list_users()
-		#print(f"Users = {users}")
+		users = client.get_list_users()
+		print(f"Users = {users}")
 	except Exception as e:
 		print(f"Exception is Raised ... {e}")
 
