@@ -17,15 +17,15 @@ def __influx_main__():
 	#database = os.environ[ "INFLUXDB_NAME" ]
 	
 	try:
-		client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+		#client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
-		version = client.ping()
-		print(f"Database Version = {version}")
+		#version = client.ping()
+		#print(f"Database Version = {version}")
 
 		#client.switch_user("admin", "")
 
-		users = client.get_list_users()
-		print(f"Users = {users}")
+		#users = client.get_list_users()
+		#print(f"Users = {users}")
 	except Exception as e:
 		print(f"Exception is Raised ... {e}")
 
