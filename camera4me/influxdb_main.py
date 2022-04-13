@@ -17,13 +17,13 @@ def __influx_main__():
 	#database = os.environ[ "INFLUXDB_NAME" ]
 	
 	try:
+		print("Inside Try-Catch")
+		
 		#client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
 		#version = client.ping()
 		#print(f"Database Version = {version}")
         
-      print("Inside Try-Catch")
-		
 		#client.switch_user("admin", "")
 
 		#users = client.get_list_users()
