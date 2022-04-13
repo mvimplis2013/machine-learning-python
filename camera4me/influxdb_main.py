@@ -21,6 +21,8 @@ def __influx_main__():
 		
 		client = InfluxDBClient( host="vibm-influxdb-influxdb2.tandem.svc", port=80, username="admin", password="admin" )#password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
+		client.create_database( "tandem" )
+
 		#version = client.ping()
 		#print(f"Database Version = {version}")
         
@@ -33,6 +35,6 @@ def __influx_main__():
 
 	#client.get_list_database()
 
-	#client.close()
+	client.close()
 
 	return
