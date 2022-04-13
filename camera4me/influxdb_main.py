@@ -36,11 +36,11 @@ def __influx_main__():
 
 		query_api = client.query_api()
 
-		query = ‘from(bucket:"tandem")\
+		query = 'from(bucket:"tandem")\
 		|> range(start: -10m)\
 		|> filter(fn:(r) => r._measurement == “h2o_level”)\
 		|> filter(fn:(r) => r.location == "coyote_creek")\
-		|> ilter(fn:(r) => r._field == "water_level" )‘
+		|> ilter(fn:(r) => r._field == "water_level" )'
 
 		result = client.query_api.query( org= “influxdata”, query=query )
 
