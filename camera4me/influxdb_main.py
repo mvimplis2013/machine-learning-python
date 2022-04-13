@@ -19,7 +19,10 @@ def __influx_main__():
 	try:
 		print("Inside Try-Catch")
 		
-		client = InfluxDBClient( host="10.244.84.184", port=8086, username="admin", password="admin123XYZ" )#password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+		client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, 
+		  username="admin", password="admin123XYZ", 
+		  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
+		  org="influxdata" ) #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
 		client.create_database( "tandem" )
 
