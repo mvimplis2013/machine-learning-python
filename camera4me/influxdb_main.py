@@ -21,7 +21,7 @@ def __influx_main__():
 		
 		client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
-		#version = client.ping()
+		version = client.ping()
 		#print(f"Database Version = {version}")
         
 		#client.switch_user("admin", "")
