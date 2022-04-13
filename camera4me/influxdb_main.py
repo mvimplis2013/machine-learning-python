@@ -21,7 +21,9 @@ def __influx_main__():
 
 		#version = client.ping()
 		#print(f"Database Version = {version}")
-
+        
+        print("Inside Try-Catch")
+		
 		#client.switch_user("admin", "")
 
 		#users = client.get_list_users()
