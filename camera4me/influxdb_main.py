@@ -19,7 +19,7 @@ def __influx_main__():
 	try:
 		print("Inside Try-Catch")
 		
-		#client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+		client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=8086, username="admin", password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
 		#version = client.ping()
 		#print(f"Database Version = {version}")
