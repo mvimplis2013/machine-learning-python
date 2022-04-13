@@ -1,4 +1,4 @@
-from influxdb import InfluxDBClient
+from influxdb_client import InfluxDBClient
 
 import os
 
@@ -19,24 +19,26 @@ def __influx_main__():
 	try:
 		print("Inside Try-Catch")
 		
-		client = InfluxDBClient( host="vibm-influxdb-influxdb2", port=80, 
+		client = InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", 
 		  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
 		  org="influxdata" ) #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
-		client.create_database( "tandem" )
+		#client.create_database( "tandem" )
 
 		#version = client.ping()
 		#print(f"Database Version = {version}")
         
 		#client.switch_user("admin", "")
 
-		users = client.get_list_users()
-		print(f"Users = {users}")
+		#users = client.get_list_users()
+		#print(f"Users = {users}")
+
+		client.close()
 	except Exception as e:
 		print(f"Exception is Raised ... {e}")
 
 	#client.get_list_database()
 
-	client.close()
+	#client.close()
 
 	return
