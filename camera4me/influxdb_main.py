@@ -28,7 +28,7 @@ def __influx_main__():
 
 		#bucket_api.create_bucket( bucket_name="tandem" )
 
-		#write_api = client.write_api()
+		write_api = client.write_api()
 
 		p = Point("h2o_level").tag("location", "coyote_creek").field("water_level", 1)
 		write_api.write(bucket="tandem", org="influxdata", record=p)
