@@ -25,7 +25,11 @@ def __influx_main__():
 
 		bucket_api = client.buckets_api()
 
-		bucket_api.create_bucket( bucket_name="tandem" )
+		#bucket_api.create_bucket( bucket_name="tandem" )
+
+		write_api = client.write_api()
+
+		write_api.write( "tandem", "influxdata", ["h2o_feet,location=coyote_creek water_level=1"])
 
 		#client.create_database( "tandem" )
 
