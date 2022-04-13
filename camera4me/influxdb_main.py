@@ -23,6 +23,10 @@ def __influx_main__():
 		  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
 		  org="influxdata" ) #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
+		bucket_api = client.buckets_api()
+
+		bucket_api.create_bucket( bucket_name="tandem" )
+
 		#client.create_database( "tandem" )
 
 		#version = client.ping()
