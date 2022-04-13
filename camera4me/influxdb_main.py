@@ -1,4 +1,5 @@
 from influxdb_client import InfluxDBClient
+from influxdb_client import Point
 
 import os
 
@@ -27,11 +28,32 @@ def __influx_main__():
 
 		#bucket_api.create_bucket( bucket_name="tandem" )
 
-		write_api = client.write_api()
+		#write_api = client.write_api()
 
-		write_api.write( "tandem", "influxdata", ["h2o_feet,location=coyote_creek water_level=1"])
+		p = Point("h2o_level").tag("location", "coyote_creek").field("water_level", 1)
+		write_api.write(bucket="tandem", org="influxdata", record=p)
+		#write_api.write( "tandem", "influxdata", ["h2o_feet,location=coyote_creek water_level=1"])
 
+		query_api = client.query_api()
+
+		query = ‘from(bucket:"tandem")\
+		|> range(start: -10m)\
+		|> filter(fn:(r) => r._measurement == “h2o_level”)\
+		|> filter(fn:(r) => r.location == "coyote_creek")\
+		|> ilter(fn:(r) => r._field == "water_level" )‘
+
+		result = client.query_api.query( org= “influxdata”, query=query )
+
+		results = []
+
+		for table in result:
+			for record in table.records:
+				results.append((record.get_value(), record.get_field()))
+
+		print(results)
+		
 		#client.create_database( "tandem" )
+
 
 		#version = client.ping()
 		#print(f"Database Version = {version}")
