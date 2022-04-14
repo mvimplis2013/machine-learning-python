@@ -35,14 +35,13 @@ def __influx_main__():
 		  version = client.ping()
 		  print( f"Database Ping = {version}" )
 
-		  with client.buckets_api() as buckets_api:
-		  	print(f"---------- Create Bucket for Tandem Data ----------")
+		  buckets_api = client.buckets_api() as buckets_api:
 
-		  	retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
+		  print(f"---------- Create Bucket for Tandem Data ----------")
+		  retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
 
-		  	created_bucket = buckets_api.create_bucket( bucket_name=MY_BUCKET, retention_rules=retention_rules, org=ORG)
-
-		  	print(f"Bucket Created ... {created_bucket}")
+		  #created_bucket = buckets_api.create_bucket( bucket_name=MY_BUCKET, retention_rules=retention_rules, org=ORG)
+		  print(f"Bucket Created ... {created_bucket}")
 
 		# Only for v1.0
 		#client = db.InfluxDBClient(
