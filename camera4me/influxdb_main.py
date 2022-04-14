@@ -34,15 +34,15 @@ def __influx_main__():
 		write_api.write(bucket="tandem", org="influxdata", record=p)
 		#write_api.write( "tandem", "influxdata", ["h2o_feet,location=coyote_creek water_level=1"])
 
-		query_api = client.query_api()
+		#query_api = client.query_api()
 
-		query = 'from(bucket:"tandem")\
-		|> range(start: -10m)\
-		|> filter(fn:(r) => r._measurement == “h2o_level”)\
-		|> filter(fn:(r) => r.location == "coyote_creek")\
-		|> ilter(fn:(r) => r._field == "water_level" )'
+		#query = 'from(bucket:"tandem")\
+		#|> range(start: -10m)\
+		#|> filter(fn:(r) => r._measurement == “h2o_level”)\
+		#|> filter(fn:(r) => r.location == "coyote_creek")\
+		#|> ilter(fn:(r) => r._field == "water_level" )'
 
-		result = query_api.query( org="influxdata", query=query )
+		#result = query_api.query( org="influxdata", query=query )
 
 		results = []
 
@@ -50,7 +50,7 @@ def __influx_main__():
 			for record in table.records:
 				results.append((record.get_value(), record.get_field()))
 
-		print(results)
+		print(f"My Results = {results}")
 		
 		#client.create_database( "tandem" )
 
