@@ -3,13 +3,14 @@ from datetime import datetime
 from influxdb_client import InfluxDBClient
 from influxdb_client import Point
 from influxdb_client import BucketRetentionRules
+from influxdb_client import WritePrecision
 
 import influxdb as db 
 
 import os
 
 MY_TOKEN = "PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q=="
-MY_BUCKET = "tandem_2"
+MY_BUCKET = "tandem"
 
 ORG = "influxdata"
 
