@@ -35,7 +35,7 @@ def __influx_main__():
 		  version = client.ping()
 		  print( f"Database Ping = {version}" )
 
-		  buckets_api = client.buckets_api() as buckets_api:
+		  buckets_api = client.buckets_api()
 
 		  print(f"---------- Create Bucket for Tandem Data ----------")
 		  retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
