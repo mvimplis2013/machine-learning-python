@@ -25,17 +25,23 @@ def __influx_main__():
 	try:
 		print("Inside Try-Catch for InfluxDB")
 		
-		#client = InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", 
-		#  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
-		#  org="influxdata" ) #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+		# *************
+		# Version 2.1.1
+		# *************
+		client = InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", 
+		  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
+		  org="influxdata",
+		  debug=True ) 
+		  #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
-		client = db.InfluxDBClient(
-			host="vibm-influxdb-influxdb2",
-			port=80,
-			username="admin",
-			password=None,
-			database=MY_DBNAME,
-			headers={"Authorization": MY_TOKEN})
+		# Only for v1.0
+		#client = db.InfluxDBClient(
+		#	host="vibm-influxdb-influxdb2",
+		#	port=80,
+		#	username="admin",
+		#	password=None,
+		#	database=MY_DBNAME,
+		#	headers={"Authorization": MY_TOKEN})
 
 		version = client.ping()
 		print( f"Database Version = {version}" )
