@@ -1,9 +1,11 @@
 from influxdb_client import InfluxDBClient
 from influxdb_client import Point
 
-import influxdb 
+import influxdb as db 
 
 import os
+
+MY_TOKEN = "PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q=="
 
 def write_events():
 	return
@@ -20,11 +22,16 @@ def __influx_main__():
 	#database = os.environ[ "INFLUXDB_NAME" ]
 	
 	try:
-		print("Inside Try-Catch")
+		print("Inside Try-Catch for InfluxDB")
 		
-		client = InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", 
-		  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
-		  org="influxdata" ) #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+		#client = InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", 
+		#  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
+		#  org="influxdata" ) #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+
+		client = db.InfluxDBClient(
+			username=None,
+			password=None,
+			headers={"Authorization": MY_TOKEN})
 
 		bucket_api = client.buckets_api()
 
