@@ -28,11 +28,12 @@ def __influx_main__():
 		# *************
 		# Version 2.1.1
 		# *************
-		client = InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", 
-		  token="PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q==",  
-		  org="influxdata",
-		  debug=True ) 
-		  #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
+		with InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", token=MY_TOKEN, org="influxdata", debug=True ) as client: 
+		  version = client.ping()
+		  print( f"Database Ping = {version}" )
+
+		  with client.buckets_api() as buckets_api:
+		  	print(f"Ready to Create Bucket for Tandem Data ... {buckets_api}")
 
 		# Only for v1.0
 		#client = db.InfluxDBClient(
@@ -43,11 +44,6 @@ def __influx_main__():
 		#	database=MY_DBNAME,
 		#	headers={"Authorization": MY_TOKEN})
 
-		version = client.ping()
-		print( f"Database Version = {version}" )
-
-		client.create_database( MY_DBNAME )
-        
 		#bucket_api = client.buckets_api()
 
 		#bucket_api.create_bucket( bucket_name="tandem" )
