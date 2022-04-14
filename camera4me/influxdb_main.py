@@ -1,6 +1,8 @@
 from influxdb_client import InfluxDBClient
 from influxdb_client import Point
 
+import influxdb 
+
 import os
 
 def write_events():
