@@ -38,12 +38,14 @@ def __influx_main__():
 		  buckets_api = client.buckets_api()
 
 		  buckets = buckets_api.find_buckets( org=ORG ).buckets
+		  print(f"------------- List All Buckets -------------")
 		  for bucket in buckets:
-		  	print(f"Existing Bucket ... {bucket}")
+		  	print(f"Existing Bucket --> {bucket}")
 
 		  bucket_id = buckets_api.find_bucket_by_name( MY_BUCKET ) 
 		  if bucket_id is not None:
-		  	buckets_api.delete_bucket( bucket_id ) 
+		  	print(f"------------- Delete Tandem Bucket -------------")
+		    buckets_api.delete_bucket( bucket_id ) 
 		  	print(f"Bucket Deleted ... {MY_BUCKET}")
 
 		  print(f"---------- Create Bucket for Tandem Data ----------")
