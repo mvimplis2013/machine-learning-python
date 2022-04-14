@@ -44,7 +44,8 @@ def __influx_main__():
 		  #print(f"Bucket Created ... {created_bucket}")
 
 		  buckets = buckets_api.find_buckets( org=ORG )
-		  print(f"Existing Buckets ... {buckets}")
+		  for bucket in buckets:
+		  	print(f"Existing Bucket ... {bucket}")
 
 		# Only for v1.0
 		#client = db.InfluxDBClient(
