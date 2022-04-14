@@ -46,9 +46,9 @@ def __influx_main__():
 
 		results = []
 
-		for table in result:
-			for record in table.records:
-				results.append((record.get_value(), record.get_field()))
+		#for table in result:
+		#	for record in table.records:
+		#		results.append((record.get_value(), record.get_field()))
 
 		print(f"My Results = {results}")
 		
