@@ -61,10 +61,54 @@ def __influx_main__():
 		  """
 		  print(f"---------- Write Data to Bucket ----------")
 
-		  write_api = client.write_api()
+		  write_api = client.write_api(write_options=SYNCHRONOUS)
 
-		  _point1 = Point("eu_capitals_oC").tag("location", "Prague").field("temperature", 25.3).time(
+		  _point1 = Point("eu_capitals_oC").tag("location", "Amsterdam").field("temperature", 18).time(
 		  	datetime.utcnow(), WritePrecision.MS)
+		  _point2 = Point("eu_capitals_oC").tag("location", "Athens").field("temperature", 19).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point3 = Point("eu_capitals_oC").tag("location", "Belgrade").field("temperature", 16).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point4 = Point("eu_capitals_oC").tag("location", "Berlin").field("temperature", 16).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point5 = Point("eu_capitals_oC").tag("location", "Bern").field("temperature", 20).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point6 = Point("eu_capitals_oC").tag("location", "Bratislava").field("temperature", 20).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point7 = Point("eu_capitals_oC").tag("location", "Brussels").field("temperature", 18).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point8 = Point("eu_capitals_oC").tag("location", "Bucharest").field("temperature", 20).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point9 = Point("eu_capitals_oC").tag("location", "Copenhagen").field("temperature", 12).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point10 = Point("eu_capitals_oC").tag("location", "Dublin").field("temperature", 14).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point11 = Point("eu_capitals_oC").tag("location", "Helsinki").field("temperature", 3).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point12 = Point("eu_capitals_oC").tag("location", "Kyiv").field("temperature", 8).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point13 = Point("eu_capitals_oC").tag("location", "Lisbon").field("temperature", 19).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point14 = Point("eu_capitals_oC").tag("location", "London").field("temperature", 19).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+		  _point15 = Point("eu_capitals_oC").tag("location", "Madrid").field("temperature", 17).time(
+		  	datetime.utcnow(), WritePrecision.MS)
+
+		  write_api.write( bucket=MY_BUCKET, record=_point1 )
+		  write_api.write( bucket=MY_BUCKET, record=_point2 )
+		  write_api.write( bucket=MY_BUCKET, record=_point3 )
+		  write_api.write( bucket=MY_BUCKET, record=_point4 )
+		  write_api.write( bucket=MY_BUCKET, record=_point5 )
+		  write_api.write( bucket=MY_BUCKET, record=_point6 )
+		  write_api.write( bucket=MY_BUCKET, record=_point7 )
+		  write_api.write( bucket=MY_BUCKET, record=_point8 )
+		  write_api.write( bucket=MY_BUCKET, record=_point9 )
+		  write_api.write( bucket=MY_BUCKET, record=_point10 )
+		  write_api.write( bucket=MY_BUCKET, record=_point11 )
+		  write_api.write( bucket=MY_BUCKET, record=_point12 )
+		  write_api.write( bucket=MY_BUCKET, record=_point13 )
+		  write_api.write( bucket=MY_BUCKET, record=_point14 )
+		  write_api.write( bucket=MY_BUCKET, record=_point15 )
 
 		# Only for v1.0
 		#client = db.InfluxDBClient(
