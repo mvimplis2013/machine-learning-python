@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from influxdb_client import InfluxDBClient
 from influxdb_client import Point
 from influxdb_client import BucketRetentionRules
@@ -52,6 +54,16 @@ def __influx_main__():
 		  retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
 		  created_bucket = buckets_api.create_bucket( bucket_name=MY_BUCKET, retention_rules=retention_rules, org=ORG)
 		  print(f"Bucket Created ... {created_bucket}")
+
+		  """
+		  Prepare Data
+		  """
+		  print(f"---------- Write Data to Bucket ----------")
+
+		  write_api = client.write_api()
+
+		  _point1 = Point("eu_capitals_oC").tag("location", "Prague").field("temperature", 25.3).time(
+		  	datetime.utcnow(), WritePrecision.MS)
 
 		# Only for v1.0
 		#client = db.InfluxDBClient(
