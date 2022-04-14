@@ -43,7 +43,7 @@ def __influx_main__():
 		  #created_bucket = buckets_api.create_bucket( bucket_name=MY_BUCKET, retention_rules=retention_rules, org=ORG)
 		  #print(f"Bucket Created ... {created_bucket}")
 
-		  buckets = buckets_api.find_buckets()
+		  buckets = buckets_api.find_buckets( org=ORG )
 		  print(f"Existing Buckets ... {buckets}")
 
 		# Only for v1.0
