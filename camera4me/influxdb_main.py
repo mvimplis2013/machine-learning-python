@@ -43,9 +43,11 @@ def __influx_main__():
 		  #created_bucket = buckets_api.create_bucket( bucket_name=MY_BUCKET, retention_rules=retention_rules, org=ORG)
 		  #print(f"Bucket Created ... {created_bucket}")
 
-		  buckets = buckets_api.find_buckets( org=ORG )
-		  for bucket in buckets:
-		  	print(f"Existing Bucket ... {bucket}")
+		  #buckets = buckets_api.find_buckets( org=ORG )
+		  #print(f"Existing Buckets ... {buckets}")
+
+		  buckets_api.delete_bucket(MY_BUCKET)
+		  print(f"Bucket Deleted ... {MY_BUCKET}")
 
 		# Only for v1.0
 		#client = db.InfluxDBClient(
