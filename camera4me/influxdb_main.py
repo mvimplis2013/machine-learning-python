@@ -38,7 +38,7 @@ def __influx_main__():
 		  buckets_api = client.buckets_api()
 
 		  print(f"---------- Create Bucket for Tandem Data ----------")
-		  retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
+		  #retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
 
 		  #created_bucket = buckets_api.create_bucket( bucket_name=MY_BUCKET, retention_rules=retention_rules, org=ORG)
 		  #print(f"Bucket Created ... {created_bucket}")
