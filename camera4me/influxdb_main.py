@@ -41,9 +41,10 @@ def __influx_main__():
 		  for bucket in buckets:
 		  	print(f"Existing Bucket ... {bucket}")
 
-		  buckets_api.delete_bucket(
-		  	buckets_api.find_bucket_by_name( MY_BUCKET)) 
-		  print(f"Bucket Deleted ... {MY_BUCKET}")
+		  bucket_id = buckets_api.find_bucket_by_name( MY_BUCKET ) 
+		  if bucket_id is not None:
+		  	buckets_api.delete_bucket( bucket_id ) 
+		  	print(f"Bucket Deleted ... {MY_BUCKET}")
 
 		  print(f"---------- Create Bucket for Tandem Data ----------")
 		  retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
