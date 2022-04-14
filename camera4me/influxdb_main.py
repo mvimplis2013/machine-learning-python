@@ -37,8 +37,9 @@ def __influx_main__():
 
 		  buckets_api = client.buckets_api()
 
-		  buckets = buckets_api.find_buckets( org=ORG )
-		  print(f"Existing Buckets ... {buckets}")
+		  buckets = buckets_api.find_buckets( org=ORG ).buckets
+		  for bucket in buckets:
+		  	print(f"Existing Bucket ... {bucket}")
 
 		  buckets_api.delete_bucket(
 		  	buckets_api.find_bucket_by_name( MY_BUCKET)) 
