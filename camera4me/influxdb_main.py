@@ -1,12 +1,15 @@
 from influxdb_client import InfluxDBClient
 from influxdb_client import Point
+from influxdb_client import BucketRetentionRules
 
 import influxdb as db 
 
 import os
 
 MY_TOKEN = "PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q=="
-MY_DBNAME = "tandem_2"
+MY_BUCKET = "tandem_2"
+
+ORG = "influxdata"
 
 def write_events():
 	return
@@ -28,12 +31,18 @@ def __influx_main__():
 		# *************
 		# Version 2.1.1
 		# *************
-		with InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", token=MY_TOKEN, org="influxdata", debug=True ) as client: 
+		with InfluxDBClient( url="http://vibm-influxdb-influxdb2:80", token=MY_TOKEN, org=ORG, debug=True ) as client: 
 		  version = client.ping()
 		  print( f"Database Ping = {version}" )
 
 		  with client.buckets_api() as buckets_api:
-		  	print(f"Ready to Create Bucket for Tandem Data ... {buckets_api}")
+		  	print(f"---------- Create Bucket for Tandem Data ----------")
+
+		  	retention_rules = BucketRetentionRules( type="expire", every_seconds=3600 )
+
+		  	created_bucket = buckets_api.create_bucket( bucket_name=MY_BUCKET, retention_rules=retention_rules, org=ORG)
+
+		  	print(f"Bucket Created ... {created_bucket}")
 
 		# Only for v1.0
 		#client = db.InfluxDBClient(
