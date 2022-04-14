@@ -29,6 +29,8 @@ def __influx_main__():
 		#  org="influxdata" ) #password="mnzLrGbCpH89okUbSzpLHuPKC8iFXbXJ" )
 
 		client = db.InfluxDBClient(
+			host="vibm-influxdb-influxdb2",
+			port=80,
 			username=None,
 			password=None,
 			headers={"Authorization": MY_TOKEN})
