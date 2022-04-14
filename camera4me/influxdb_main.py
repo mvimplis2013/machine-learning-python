@@ -33,14 +33,17 @@ def __influx_main__():
 			password=None,
 			headers={"Authorization": MY_TOKEN})
 
-		bucket_api = client.buckets_api()
+		version = client.ping()
+		print( f"Database Version = {version}" )
+
+		#bucket_api = client.buckets_api()
 
 		#bucket_api.create_bucket( bucket_name="tandem" )
 
-		write_api = client.write_api()
+		#write_api = client.write_api()
 
-		p = Point("h2o_level").tag("location", "coyote_creek").field("water_level", 1)
-		write_api.write(bucket="tandem", org="influxdata", record=p)
+		#p = Point("h2o_level").tag("location", "coyote_creek").field("water_level", 1)
+		#write_api.write(bucket="tandem", org="influxdata", record=p)
 		#write_api.write( "tandem", "influxdata", ["h2o_feet,location=coyote_creek water_level=1"])
 
 		#query_api = client.query_api()
@@ -62,10 +65,6 @@ def __influx_main__():
 		print(f"My Results = {results}")
 		
 		#client.create_database( "tandem" )
-
-
-		#version = client.ping()
-		#print(f"Database Version = {version}")
         
 		#client.switch_user("admin", "")
 
