@@ -6,6 +6,7 @@ import influxdb as db
 import os
 
 MY_TOKEN = "PFDhKbmqL3M7wAMS-YotkAS-6zF3mTABoeliBMATeSWNOyJuHXs_gwi35fAx6BKSSRujlqAj6FmTZKpQAMgj6Q=="
+MY_DBNAME = "tandem_2"
 
 def write_events():
 	return
@@ -33,11 +34,14 @@ def __influx_main__():
 			port=80,
 			username=None,
 			password=None,
+			database=MY_DBNAME,
 			headers={"Authorization": MY_TOKEN})
 
 		version = client.ping()
 		print( f"Database Version = {version}" )
 
+		client.create_database( MY_DBNAME )
+        
 		#bucket_api = client.buckets_api()
 
 		#bucket_api.create_bucket( bucket_name="tandem" )
@@ -66,8 +70,6 @@ def __influx_main__():
 
 		print(f"My Results = {results}")
 		
-		#client.create_database( "tandem" )
-        
 		#client.switch_user("admin", "")
 
 		#users = client.get_list_users()
