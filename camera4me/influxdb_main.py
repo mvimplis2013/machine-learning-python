@@ -32,7 +32,7 @@ def __influx_main__():
 		client = db.InfluxDBClient(
 			host="vibm-influxdb-influxdb2",
 			port=80,
-			username=None,
+			username="influxdata",
 			password=None,
 			database=MY_DBNAME,
 			headers={"Authorization": MY_TOKEN})
