@@ -45,7 +45,7 @@ def __influx_main__():
 		  bucket_id = buckets_api.find_bucket_by_name( MY_BUCKET ) 
 		  if bucket_id is not None:
 		  	print(f"------------- Delete Tandem Bucket -------------")
-		    buckets_api.delete_bucket( bucket_id ) 
+		  	buckets_api.delete_bucket( bucket_id ) 
 		  	print(f"Bucket Deleted ... {MY_BUCKET}")
 
 		  print(f"---------- Create Bucket for Tandem Data ----------")
