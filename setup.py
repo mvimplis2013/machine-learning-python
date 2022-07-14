@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name="capture_frames",
     version="0.0.1",
-    packages=["camera4me"],
+    packages=["camera4me", "datadrill"],
     install_requires=["opencv-python", "pika>=1.2.0", "influxdb>=5.3.1", "influxdb-client>=1.27.0"],
     data_files=[("cfg", ["config/camera.cfg"])],
     entry_points={
