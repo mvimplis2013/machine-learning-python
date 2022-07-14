@@ -99,9 +99,9 @@ def count_frames(folder):
 			inside_date_folder(f)
 
 def run_watchdog():
-	subprocess.call([ "polite-messenger", "-n", "vibm-mq" ])
+	#subprocess.call([ "polite-messenger", "-n", "vibm-mq" ])
 
-	subprocess.call( [ "influxdb-caller" ])
+	#subprocess.call( [ "influxdb-caller" ])
 
 	data_dir = "/dt2/video/frames/"
 
