@@ -57,6 +57,8 @@ def follow_mq_server( host, password ):
 	channel.start_consuming()
 
 	return
+def call_redis_to_communicate():
+	print(f"Using Redis to Send Messages")
 
 def __main_mq_client__():
 	print(f"Ready to Post a Message")
@@ -93,6 +95,8 @@ def __main_mq_client__():
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
 		call_mq_server( host , password )
+	elif mq_type.casefold() == "REDIS".casefold():
+		call_redis_to_communicate()
 	elif mq_type.casefold() == "receive".casefold():
 		try:
 			follow_mq_server()
