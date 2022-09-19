@@ -99,6 +99,8 @@ def count_frames(folder):
 			inside_date_folder(f)
 
 def run_watchdog():
+	print(f"Ready to start hard-disk watchdogs")
+	
 	#subprocess.call([ "polite-messenger", "-n", "vibm-mq" ])
 
 	#subprocess.call( [ "influxdb-caller" ])
