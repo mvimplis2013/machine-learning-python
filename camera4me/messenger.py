@@ -1,6 +1,7 @@
 import argparse
 import os
 import pika
+import redis
 
 USER = "user"
 
@@ -61,7 +62,7 @@ def call_redis_to_communicate():
 	print(f"Using Redis to Send Messages")
 
 def __main_mq_client__():
-	print(f"Ready to Post a Message")
+	print(f"Ready to Handle a Message ... {redis.__version__}")
 
 	parser = argparse.ArgumentParser( description='Handle Messages Between MicroServices' )
 
