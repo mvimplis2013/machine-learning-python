@@ -88,12 +88,14 @@ def __main_mq_client__():
 		host = host_port[0]
 		port = host_port[1]
 
-		userpass = os.environ[ "USERNAME_PASSWORD" ]
+		userpass = os.environ[ "USERNAME_PASSWORD" ].split("/")
+		user = userpass[0]
+		password = userpass[1] 
 	except KeyError as e:
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
 
-	print( f"Listening Service = {host} && Credentials = {userpass}" )
+	print( f"Listening Service = {host} && Credentials = {pass}" )
 	#return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
