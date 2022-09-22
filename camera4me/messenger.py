@@ -85,7 +85,7 @@ def __main_mq_client__():
 		mq_type = os.environ['MESSAGE_QUEUE_TYPE']
 
 		host_port = os.environ[ "LISTENING_SERVICE" ].split(":")
-		host = host_port[0]
+		#host = host_port[0]
         #port = host_port[1]
 
 		userpass = os.environ[ "USERNAME_PASSWORD" ]
@@ -93,7 +93,7 @@ def __main_mq_client__():
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
 
-	print( f"Listening Service = {host}/{port} && Credentials = {userpass}" )
+	print( f"Listening Service = {host_port} && Credentials = {userpass}" )
 	#return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
