@@ -65,6 +65,8 @@ def call_redis_to_communicate( host, port ):
 	#r = redis.Redis(host=host, port=port)
 	#r.ping()
 
+	return
+
 
 def __main_mq_client__():
 	print(f"Ready to Handle a Message !!!")
