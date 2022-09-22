@@ -95,7 +95,7 @@ def __main_mq_client__():
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
 
-	print( f"Listening Service = {host} && Credentials = {pass}" )
+	print( f"Listening Service = {host} && Credentials = {password}" )
 	#return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
