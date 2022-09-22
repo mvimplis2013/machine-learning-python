@@ -109,10 +109,10 @@ def __main_mq_client__():
 		call_mq_server( host , password )
 	elif mq_type.casefold() == "REDIS".casefold():
 		call_redis_to_communicate(host, port)
-	elif mq_type.casefold() == "receive".casefold():
-		try:
-			follow_mq_server()
-		except KeyboardInterrupt:
-			return
+	#elif mq_type.casefold() == "receive".casefold():
+	#	try:
+	#		follow_mq_server()
+	#	except KeyboardInterrupt:
+	#		return
 
 	return
