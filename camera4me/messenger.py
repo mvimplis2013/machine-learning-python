@@ -84,9 +84,9 @@ def __main_mq_client__():
 	try:
 		mq_type = os.environ['MESSAGE_QUEUE_TYPE']
 
-		host = os.environ[ "RABBITMQ_SERVICE" ]
+		host = os.environ[ "LISTENING_SERVICE" ]
 
-		password = os.environ[ "RABBITMQ_PASSWORD" ]
+		password = os.environ[ "USERNAME_PASSWORD" ]
 	except KeyError as e:
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
 		return
