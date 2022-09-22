@@ -6,8 +6,9 @@ RUN apt install -y \
   build-essential \
   libpq-dev \
   libssl-dev \
+  libffi-dev \
   openssl \
-  zliblg-dev
+  zlib1g-dev
 
 RUN apt install -y \
   emacs \
