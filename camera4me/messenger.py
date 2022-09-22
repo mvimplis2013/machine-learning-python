@@ -62,7 +62,7 @@ def call_redis_to_communicate( host, port ):
 	print( f"Using Redis to Send Messages ... Python-Client ver. {redis.__version__}" )
 
 	r = redis.Redis(host=host, port=port)
-	r.ping()
+	assert r.ping()
 
 
 def __main_mq_client__():
