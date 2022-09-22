@@ -58,11 +58,15 @@ def follow_mq_server( host, password ):
 	channel.start_consuming()
 
 	return
-def call_redis_to_communicate():
-	print(f"Using Redis to Send Messages")
+def call_redis_to_communicate( host, port ):
+	print( f"Using Redis to Send Messages ... Python-Client ver. {redis.__version__}" )
+
+	r = redis.Redis(host=host, port=port)
+	r.ping()
+
 
 def __main_mq_client__():
-	print(f"Ready to Handle a Message ... {redis.__version__}")
+	print(f"Ready to Handle a Message !!!")
 
 	parser = argparse.ArgumentParser( description='Handle Messages Between MicroServices' )
 
@@ -101,7 +105,7 @@ def __main_mq_client__():
 	if mq_type.casefold() == "rabbitmq".casefold():	
 		call_mq_server( host , password )
 	elif mq_type.casefold() == "REDIS".casefold():
-		call_redis_to_communicate()
+		call_redis_to_communicate(host, port)
 	elif mq_type.casefold() == "receive".casefold():
 		try:
 			follow_mq_server()
