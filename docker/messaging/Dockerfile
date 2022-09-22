@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM python:buster
 
 RUN apt update
 
@@ -14,15 +14,15 @@ RUN apt install -y \
   emacs \
   git
 
-RUN apt install -y \
-  python3-pip \
-  python3.7-dev \
+#RUN apt install -y \
+#  python3-pip \
+#  python3.7-dev \
 
-RUN apt install -y \
-  python3.7
+#RUN apt install -y \
+#  python3.7
 
 RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
 WORKDIR machine-learning-python
 
-RUN python3.7 setup.py install
+RUN python setup.py install
