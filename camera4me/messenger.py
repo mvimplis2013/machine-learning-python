@@ -43,21 +43,26 @@ def call_rabbit_broker( host, port, username, password ):
 	credentials = pika.PlainCredentials( username, password )
 	conn_params = pika.ConnectionParameters( host=host, port=port, credentials=credentials )
 
-	print(f"Connection String ... {conn_params}")
+	print(f"Connection String ... {conn_params} && {credentials}")
 
 	connection = pika.BlockingConnection( conn_params )
 
-	channel = connection.channel()
-	channel.queue_declare(queue='hello')
+    channel = connection.channel()
+	#channel.queue_declare(queue='hello')
 
-	def callback( ch, method, properties, body ):
-		print(f"Recieved ... {body}")
+	#def callback( ch, method, properties, body ):
+		#print(f"Recieved ... {body}")
 
-	channel.basic_consume( queue='hello', on_message_callback=callback, auto_ack=True)
+	#channel.basic_consume( queue='hello', on_message_callback=callback, auto_ack=True)
 
-	print( f"Waiting for Messages" )
+	#print( f"Waiting for Messages" )
 
-	channel.start_consuming()
+	channel.basic_publish(exchange='test', routing_key='test', body=b'Test Message')
+	connection.close()
+
+	#channel.start_consuming()
+
+
 
 	return
 
