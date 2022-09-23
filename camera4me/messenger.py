@@ -37,7 +37,9 @@ def call_mq_server( host, password ):
 
 	return
 
-def follow_rabbit_broker( host, password ):
+def call_rabbit_broker( host, password ):
+	print( f"Inside RabbitMQ Client .. using pika vers {pika.__version__}" )
+
 	credentials = pika.PlainCredentials( USER, password )
 	conn_params = pika.ConnectionParameters( host, credentials=credentials )
 
