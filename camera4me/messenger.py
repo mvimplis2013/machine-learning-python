@@ -64,7 +64,7 @@ def call_redis_to_communicate( host, port, username, password ):
 
 	#r = redis.Redis(host=host, port=port, username=username, password=password)
 	#r = redis.Redis(host=host, port=port, username="redis", password=password)
-	r = redis.Redis(host=host, port=port, username="redis")
+	r = redis.Redis(host=host, port=port, username="redis", password="")
 
 	r.ping()
 
