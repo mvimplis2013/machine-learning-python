@@ -37,7 +37,7 @@ def call_mq_server( host, password ):
 
 	return
 
-def follow_mq_server( host, password ):
+def follow_rabbit_broker( host, password ):
 	credentials = pika.PlainCredentials( USER, password )
 	conn_params = pika.ConnectionParameters( host, credentials=credentials )
 
@@ -65,6 +65,8 @@ def call_redis_to_communicate( host, port, username, password ):
 	#r = redis.Redis(host=host, port=port, username=username, password=password)
 	#r = redis.Redis(host=host, port=port, username="redis", password=password)
 	#r = redis.Redis(host=host, port=port, username="redis", password="")
+
+    # It works with user.auth=FALSE 
 	r = redis.Redis(host=host, port=port)
 
 	r.ping()
@@ -110,7 +112,7 @@ def __main_mq_client__():
 	#return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
-		call_mq_server( host , password )
+		call_rabbit_broker( host , port, username, password )
 	elif mq_type.casefold() == "REDIS".casefold():
 		call_redis_to_communicate(host, port, username, password)
 	#elif mq_type.casefold() == "receive".casefold():
