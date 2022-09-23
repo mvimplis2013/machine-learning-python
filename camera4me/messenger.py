@@ -59,10 +59,10 @@ def follow_mq_server( host, password ):
 
 	return
 
-def call_redis_to_communicate( host, port ):
+def call_redis_to_communicate( host, port, username, password ):
 	print( f"Using Redis to Send Messages ... Python-Client ver. {redis.__version__}" )
 
-	r = redis.Redis(host=host, port=port)
+	r = redis.Redis(host=host, port=port, username=username, password=password)
 	r.ping()
 
 	return
@@ -96,7 +96,7 @@ def __main_mq_client__():
 		port = host_port[1]
 
 		userpass = os.environ[ "USERNAME_PASSWORD" ].split("/")
-		user = userpass[0]
+		username = userpass[0]
 		password = userpass[1] 
 	except KeyError as e:
 		print( f"Problem Reading Environment Variables for Message-Queue ... {e}" )
@@ -108,7 +108,7 @@ def __main_mq_client__():
 	if mq_type.casefold() == "rabbitmq".casefold():	
 		call_mq_server( host , password )
 	elif mq_type.casefold() == "REDIS".casefold():
-		call_redis_to_communicate(host, port)
+		call_redis_to_communicate(host, port, username, password)
 	#elif mq_type.casefold() == "receive".casefold():
 	#	try:
 	#		follow_mq_server()
