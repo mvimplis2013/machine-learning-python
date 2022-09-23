@@ -37,11 +37,11 @@ def call_mq_server( host, password ):
 
 	return
 
-def call_rabbit_broker( host, password ):
+def call_rabbit_broker( host, port, username, password ):
 	print( f"Inside RabbitMQ Client .. using pika vers {pika.__version__}" )
 
-	credentials = pika.PlainCredentials( USER, password )
-	conn_params = pika.ConnectionParameters( host, credentials=credentials )
+	credentials = pika.PlainCredentials( username, password )
+	conn_params = pika.ConnectionParameters( host=host, port=port, credentials=credentials )
 
 	print(f"Connection String ... {conn_params}")
 
