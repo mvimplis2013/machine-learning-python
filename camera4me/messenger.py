@@ -62,7 +62,8 @@ def follow_mq_server( host, password ):
 def call_redis_to_communicate( host, port, username, password ):
 	print( f"Using Redis to Send Messages ... Python-Client ver. {redis.__version__}" )
 
-	r = redis.Redis(host=host, port=port, username=username, password=password)
+	#r = redis.Redis(host=host, port=port, username=username, password=password)
+	r = redis.Redis(host=host, port=port, "redis", password=password)
 	r.ping()
 
 	return
