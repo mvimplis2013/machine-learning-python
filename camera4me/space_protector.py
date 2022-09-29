@@ -92,7 +92,7 @@ def count_frames(folder):
 		print(f"Cannot change into FRAMES folder ... {x}")
 		exit(1)
 
-	#print(f"Folders inside Frames = {files_dirs}")
+	print(f"Folders inside Frames = {files_dirs}")
 	
 	for f in files_dirs:
 		if isdir(f):
@@ -100,7 +100,7 @@ def count_frames(folder):
 
 def run_watchdog():
 	print(f"Ready to start hard-disk watchdogs")
-	
+
 	#subprocess.call([ "polite-messenger", "-n", "vibm-mq" ])
 
 	#subprocess.call( [ "influxdb-caller" ])
