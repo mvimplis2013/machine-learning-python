@@ -5,6 +5,15 @@ from datetime import datetime
 
 import subprocess
 
+import http.server
+from prometheus-client import start_http_server
+
+class ServerHandler(http.server.BaseHTTPRequestHandler):
+  def do_GET(self):
+    self.send_response(200)
+    self.end_headers()
+    self.wfile.write(b"Hello World!") 
+
 SLEEP_SECS = 3
 
 DAYS_OLD    = 1    # One Day
@@ -99,6 +108,12 @@ def count_frames(folder):
 			inside_date_folder(f)
 
 def run_watchdog():
+	start_http_server(9090)
+	server = http.server.HTTPServer(('', 9091), ServerHandler)
+	print('Prometheus Metrics Available on Port 9090 / metrics')
+	print('HTTP Server available on port 9091')
+	server.serve_forever()
+	
 	print(f"Ready to start hard-disk watchdogs")
 
 	#subprocess.call([ "polite-messenger", "-n", "vibm-mq" ])
