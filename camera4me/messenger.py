@@ -47,7 +47,7 @@ def call_rabbit_broker( host, port, username, password ):
 
 	connection = pika.BlockingConnection( conn_params )
 
-    channel = connection.channel()
+	channel = connection.channel()
 	#channel.queue_declare(queue='hello')
 
 	#def callback( ch, method, properties, body ):
