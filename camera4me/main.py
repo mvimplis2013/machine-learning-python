@@ -12,7 +12,8 @@ import os, sys
 
 MONITORING_DURATION_MINS = 10
 
-SLEEP_BETWEEN_SNAPSHOTS = 1
+# Wait SECs for Next Snapshot
+SLEEP_BETWEEN_SNAPSHOTS = 6
 
 # Read the Camera Video Output
 def open_rtsp_stream(ip, username, password):
@@ -57,7 +58,10 @@ def open_rtsp_stream(ip, username, password):
         previous_dt_secs = previous_dt.timestamp()
         elapsed_secs = current_dt_secs - previous_dt_secs
 
-        cv2.imwrite( f"{new_path}/frame_%d_%f.jpg" % (counter, elapsed_secs), frame)
+        #cv2.imwrite( f"{new_path}/frame_%d_%f.jpg" % (counter, elapsed_secs), frame)
+
+        str_today = datetime.today().strftime( "%Y-%m-%d_%H-%M-%S" )
+        cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, elapsed_secs), frame)
 
         counter += 1
 
