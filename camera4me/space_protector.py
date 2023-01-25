@@ -6,7 +6,7 @@ from datetime import datetime
 import subprocess
 
 import http.server
-from prometheus-client import start_http_server
+from prometheus_client import start_http_server
 
 class ServerHandler(http.server.BaseHTTPRequestHandler):
   def do_GET(self):
