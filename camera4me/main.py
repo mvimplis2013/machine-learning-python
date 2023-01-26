@@ -65,7 +65,8 @@ def open_rtsp_stream(ip, username, password):
             print(f"Everything Happens Today ... {str_today}")
 
             #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, elapsed_secs), frame)
-            cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, str_today), frame )
+            #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, str_today), frame )
+            cv2.imwrite( f"{new_path}/frame_%s.jpg" % (str_today), frame )
         except Exception as e:
             print( e )
 
