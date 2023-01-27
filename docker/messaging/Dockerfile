@@ -22,7 +22,7 @@ RUN apt install -y \
 #  python3.7
 
 python -m pip install --upgrade pip
-python -m pip install urllib3==1.27.1
+python -m pip install urllib3==1.26.14
 
 RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
