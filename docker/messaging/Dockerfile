@@ -12,8 +12,7 @@ RUN apt install -y \
 
 RUN apt install -y \
   emacs \
-  git \
-  urllib3==1.27.1
+  git
 
 #RUN apt install -y \
 #  python3-pip \
@@ -22,6 +21,8 @@ RUN apt install -y \
 #RUN apt install -y \
 #  python3.7
 
+python3 -m pip install --upgrade pip
+python3 -m pip install urllib3==1.27.1
 RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
 WORKDIR machine-learning-python
