@@ -12,7 +12,8 @@ RUN apt install -y \
 
 RUN apt install -y \
   emacs \
-  git
+  git \
+  urllib3==1.27.1
 
 #RUN apt install -y \
 #  python3-pip \
