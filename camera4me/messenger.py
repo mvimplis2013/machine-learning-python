@@ -100,11 +100,11 @@ def __main_mq_client__():
 	elif args.action == "delete":
 		print( f"{args.action} , {args.name}" )
 
-	return
-
 	# Read Environment Variables Associated with Message-Queue Service
 	try:
 		mq_type = os.environ['MESSAGE_QUEUE_TYPE']
+
+		print(f"Message Queue Type ... {mq_type}")
 
 		host_port = os.environ[ "LISTENING_SERVICE" ].split(":")
 		host = host_port[0]
