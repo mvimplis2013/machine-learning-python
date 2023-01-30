@@ -111,7 +111,10 @@ def __main_mq_client__():
 
 		host_port = os.environ[ "LISTENING_SERVICE" ].split(":")
 		host = host_port[0]
-		port = host_port[1]
+		if len(host_port == 1):
+			port = 6379
+		else:
+			port = host_port[1]
 
 		userpass = os.environ[ "USERNAME_PASSWORD" ].split("/")
 		username = userpass[0]
