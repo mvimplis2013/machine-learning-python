@@ -62,8 +62,6 @@ def call_rabbit_broker( host, port, username, password ):
 
 	#channel.start_consuming()
 
-
-
 	return
 
 def call_redis_to_communicate( host, port, username, password ):
@@ -118,11 +116,14 @@ def __main_mq_client__():
 		return
 
 	print( f"Listening Service = {host} && Credentials = {password}" )
-	return
+	#return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
 		call_rabbit_broker( host , port, username, password )
 	elif mq_type.casefold() == "REDIS".casefold():
+		print(f"Need to Contact REDIS message queue")
+		return
+		
 		call_redis_to_communicate(host, port, username, password)
 	#elif mq_type.casefold() == "receive".casefold():
 	#	try:
