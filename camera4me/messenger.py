@@ -39,6 +39,7 @@ def call_mq_server( host, password ):
 
 def call_rabbit_broker( host, port, username, password ):
 	print( f"Inside RabbitMQ Client .. using pika vers {pika.__version__}" )
+	return
 
 	credentials = pika.PlainCredentials( username, password )
 	conn_params = pika.ConnectionParameters( host=host, port=port, credentials=credentials )
@@ -129,9 +130,11 @@ def __main_mq_client__():
 	#return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
+		print(f"Need to Contact a RABBITMQ message queue @ Backend")
+
 		call_rabbit_broker( host , port, username, password )
 	elif mq_type.casefold() == "REDIS".casefold():
-		print(f"Need to Contact REDIS message queue")
+		print(f"Need to Contact REDIS message queue @ Backend")
 		#return
 
 		call_redis_to_communicate(host, port, username, password)
