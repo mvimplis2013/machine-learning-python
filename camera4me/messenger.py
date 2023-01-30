@@ -66,7 +66,7 @@ def call_rabbit_broker( host, port, username, password ):
 
 def call_redis_to_communicate( host, port, username, password ):
 	print( f"Using Redis to Send Messages ... Python-Client ver. {redis.__version__}" )
-	return
+	#return
 
 	#r = redis.Redis(host=host, port=port, username=username, password=password)
 	#r = redis.Redis(host=host, port=port, username="redis", password=password)
@@ -74,6 +74,7 @@ def call_redis_to_communicate( host, port, username, password ):
 
     # It works with user.auth=FALSE 
 	r = redis.Redis(host=host, port=port)
+	return
 
 	r.ping()
 
