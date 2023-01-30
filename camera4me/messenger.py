@@ -118,7 +118,7 @@ def __main_mq_client__():
 		return
 
 	print( f"Listening Service = {host} && Credentials = {password}" )
-	#return
+	return
 
 	if mq_type.casefold() == "rabbitmq".casefold():	
 		call_rabbit_broker( host , port, username, password )
