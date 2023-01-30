@@ -78,6 +78,8 @@ def call_redis_to_communicate( host, port, username, password ):
 
 	try:
 		r.ping()
+
+		print(f"Successful Connection to Redis ... {host}:{port}")
 	except Exception as ex:
 		print(f"{ex}")
 
