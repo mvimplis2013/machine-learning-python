@@ -126,6 +126,7 @@ def __main_mq_client__():
 		#return
 
 		call_redis_to_communicate(host, port, username, password)
+		return
 	#elif mq_type.casefold() == "receive".casefold():
 	#	try:
 	#		follow_mq_server()
