@@ -39,7 +39,7 @@ def call_mq_server( host, password ):
 
 def call_rabbit_broker( host, port, username, password ):
 	print( f"Inside RabbitMQ Client .. using pika vers {pika.__version__}" )
-	return
+	#return
 
 	credentials = pika.PlainCredentials( username, password )
 	conn_params = pika.ConnectionParameters( host=host, port=port, credentials=credentials )
@@ -60,6 +60,8 @@ def call_rabbit_broker( host, port, username, password ):
 
 	channel.basic_publish(exchange='test', routing_key='test', body=b'Test Message')
 	connection.close()
+
+	print("Succesfully Published a Basic Message !")
 
 	#channel.start_consuming()
 
