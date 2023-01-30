@@ -74,9 +74,12 @@ def call_redis_to_communicate( host, port, username, password ):
 
     # It works with user.auth=FALSE 
 	r = redis.Redis(host=host, port=port)
-	return
+	#return
 
-	r.ping()
+	try:
+		r.ping()
+	except Exception as ex:
+		print(f"{ex}")
 
 	return
 
