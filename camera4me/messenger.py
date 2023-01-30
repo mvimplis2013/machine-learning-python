@@ -73,7 +73,7 @@ def call_redis_to_communicate( host, port, username, password ):
 	#r = redis.Redis(host=host, port=port, username="redis", password="")
 
     # It works with user.auth=FALSE 
-	r = redis.Redis(host=host, port=port, socket_connect_timeout=4)
+	r = redis.Redis(host=host, port=port, socket_timeout=4, socket_connect_timeout=4)
 	#return
 
 	try:
