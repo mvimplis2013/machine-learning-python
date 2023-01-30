@@ -84,8 +84,6 @@ def call_redis_to_communicate( host, port, username, password ):
 def __main_mq_client__():
 	print(f"Ready to Handle a Message !!!")
 
-	return
-
 	parser = argparse.ArgumentParser( description='Handle Messages Between MicroServices' )
 
 	parser.add_argument( '-a', '--action', choices=['sent', 'receive', 'delete'], help='action for backend message-queue service', default='sent' )
@@ -101,6 +99,8 @@ def __main_mq_client__():
 		print( f"{args.name}, {args.port}, {args.action}" )
 	elif args.action == "delete":
 		print( f"{args.action} , {args.name}" )
+
+	return
 
 	# Read Environment Variables Associated with Message-Queue Service
 	try:
