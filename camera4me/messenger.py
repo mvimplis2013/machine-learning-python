@@ -94,7 +94,7 @@ def __main_mq_client__():
 
 	parser = argparse.ArgumentParser( description='Handle Messages Between MicroServices' )
 
-	parser.add_argument( '-a', '--action', choices=['sent', 'receive', 'delete'], help='action for backend message-queue service', default='sent' )
+	parser.add_argument( '-a', '--action', choices=['sent', 'subscribe', 'delete'], help='action for backend message-queue service', default='sent' )
 
 	parser.add_argument( '-n', '--name', required=False, type=str, help='message-queue name', default="Message-Queue-VIBM" )
 	parser.add_argument( '-p', '--port', required=False, type=int, help='listen-port', default=5672 )
@@ -103,8 +103,8 @@ def __main_mq_client__():
 
 	if args.action == "sent":
 		print( f"SEND-Action {args.name}, {args.port}" )
-	elif args.action == "receive":
-		print( f"{args.name}, {args.port}, {args.action}" )
+	elif args.action == "subscribe":
+		print( f"SUBSCRIBE-Action to Topic ... {args.name}, {args.port}, {args.action}" )
 	elif args.action == "delete":
 		print( f"{args.action} , {args.name}" )
 
