@@ -3,7 +3,9 @@ import os
 import pika
 import redis
 
-USER = "user"
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 def call_mq_server( host, password ):
 	print(f"Ready to Start Sending Messages with RabbitMQ")
@@ -37,13 +39,10 @@ def call_mq_server( host, password ):
 
 	return
 
-def basic_msg_publisher():
+def basic_msg_publisher(topic="parking-slots", channel):
 	"""
 	Basic Message Publisher
 	"""
-	connection = pika.BlockingConnection( conn_params )
-
-	channel = connection.channel("parking_slots")
 	#channel.queue_declare(queue='hello')
 
 	#def callback( ch, method, properties, body ):
@@ -62,7 +61,7 @@ def basic_msg_publisher():
 
 	return
 
-def basic_msg_consumer(topic="parking-slots"):
+def basic_msg_consumer(topic="parking-slots", channel):
 	"""
 	Basic Message Consumer
 	"""
@@ -71,7 +70,7 @@ def basic_msg_consumer(topic="parking-slots"):
 
 	return
 
-def call_rabbit_broker( action, host, port, username, password ):
+def call_rabbit_broker( action, host, port, username, password, topic="parking-slots" ):
 	"""
 	RabbitMQ Broker
 	"""
@@ -83,10 +82,13 @@ def call_rabbit_broker( action, host, port, username, password ):
 
 	print( f"Connection String '{action}' ... {conn_params} && {credentials}" )
 
+	connection = pika.BlockingConnection(conn_params)
+	channel = connection.channel()
+
 	if action == "subscribe":
-		basic_msg_consumer()
+		basic_msg_consumer( topic, channel )
 	elif action == "publish":
-		basic_msg_publish()
+		basic_msg_publish( topic, channel )
 	else:
 		print("Hello")
 
