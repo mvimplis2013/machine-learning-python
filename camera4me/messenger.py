@@ -1,6 +1,10 @@
 import argparse
 import os
+
 import pika
+from pika import DeliveryMode
+from pika.exchange_type import ExchangeType 
+
 import redis
 
 import logging
@@ -83,7 +87,9 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 	print( f"Connection String '{action}' ... {conn_params} && {credentials}" )
 
 	connection = pika.BlockingConnection(conn_params)
+	
 	channel = connection.channel()
+	channel.exchange_declare(exchange=topic, exchange_type=ExchangeType.direct)
 
 	if action == "subscribe":
 		basic_msg_consumer( topic, channel )
