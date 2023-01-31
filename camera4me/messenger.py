@@ -37,22 +37,17 @@ def call_mq_server( host, password ):
 
 	return
 
-def call_rabbit_broker( action, host, port, username, password ):
-	print( f"Inside RabbitMQ Client .. using pika vers {pika.__version__}" )
-	#return
-
-	credentials = pika.PlainCredentials( username, password )
-	conn_params = pika.ConnectionParameters( host=host, port=port, credentials=credentials )
-
-	print( f"Connection String '{action}' ... {conn_params} && {credentials}" )
-
+def basic_msg_publisher():
+	"""
+	Basic Message Publisher
+	"""
 	connection = pika.BlockingConnection( conn_params )
 
 	channel = connection.channel("parking_slots")
 	#channel.queue_declare(queue='hello')
 
 	#def callback( ch, method, properties, body ):
-		#print(f"Recieved ... {body}")
+	#print(f"Recieved ... {body}")
 
 	#channel.basic_consume( queue='hello', on_message_callback=callback, auto_ack=True)
 
@@ -64,6 +59,34 @@ def call_rabbit_broker( action, host, port, username, password ):
 	print("Succesfully Published a Basic Message !")
 
 	#channel.start_consuming()
+
+	return
+
+def basic_msg_consumer():
+	"""
+	Basic Message Consumer
+	"""
+
+	return
+
+def call_rabbit_broker( action, host, port, username, password ):
+	"""
+	RabbitMQ Broker
+	"""
+	print( f"Inside RabbitMQ Client .. using pika vers {pika.__version__}" )
+	#return
+
+	credentials = pika.PlainCredentials( username, password )
+	conn_params = pika.ConnectionParameters( host=host, port=port, credentials=credentials )
+
+	print( f"Connection String '{action}' ... {conn_params} && {credentials}" )
+
+	if action == "subscribe":
+		basic_msg_consumer()
+	elif action == "publish":
+		basic_msg_publish()
+	else:
+		print("Hello")
 
 	return
 
