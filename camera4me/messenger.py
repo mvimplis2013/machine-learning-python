@@ -62,10 +62,12 @@ def basic_msg_publisher():
 
 	return
 
-def basic_msg_consumer():
+def basic_msg_consumer(topic="parking-slots"):
 	"""
 	Basic Message Consumer
 	"""
+
+	print(f"Ready to start consuming messages on Topic ... {topic}")
 
 	return
 
