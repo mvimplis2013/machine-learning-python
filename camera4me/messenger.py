@@ -39,7 +39,7 @@ def call_mq_server( host, password ):
 
 	return
 
-def basic_msg_publisher(topic="parking-slots", channel):
+def basic_msg_publisher(topic, channel):
 	"""
 	Basic Message Publisher
 	"""
@@ -61,7 +61,7 @@ def basic_msg_publisher(topic="parking-slots", channel):
 
 	return
 
-def basic_msg_consumer(topic="parking-slots", channel):
+def basic_msg_consumer(topic, channel):
 	"""
 	Basic Message Consumer
 	"""
