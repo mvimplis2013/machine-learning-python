@@ -47,9 +47,11 @@ def basic_msg_publisher(topic, channel):
 	"""
 	Basic Message Publisher
 	"""
-	print( "RabbitMQ is a message broker ... It accepts messages from publishers, routes them and ..." )
-	print( "  [x] IF THERE WERE QUEUES to route to ==> stores them for consumption" )
-	print( "  [x] Otherwise ==> Immediately delivers to consumers if any" ) 
+	print( "***********************************************************************************************" )
+	print( "** RabbitMQ is a message broker ... It accepts messages from publishers, routes them and ... **" )
+	print( "**  [x] IF THERE WERE QUEUES to route to ==> stores them for consumption                     **" )
+	print( "**  [x] Otherwise ==> Immediately delivers to consumers if any                               **" )
+	print( "***********************************************************************************************" ) 
 	
 	#channel.queue_declare(queue='hello')
 
