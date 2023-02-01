@@ -66,8 +66,11 @@ def basic_msg_publisher(connection, topic, channel):
 	# Another application or insytance consumes messages at the same time.
 	print( "Sending Message to Create Group-Queue" )
 	channel.basic_publish(
+		# the exchange to publish to
 		topic, 
+		# the routing key to bind on
 		'test',
+		# the body
         'queue:group',
 		pika.BasicProperties(
 			content_type='text/plain',
