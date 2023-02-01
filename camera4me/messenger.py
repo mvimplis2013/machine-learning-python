@@ -120,7 +120,7 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 	if action == "subscribe":
 		basic_msg_consumer( topic, channel )
 	elif action == "publish":
-		basic_msg_publish( topic, channel )
+		basic_msg_publisher( topic, channel )
 	else:
 		print("Hello")
 
