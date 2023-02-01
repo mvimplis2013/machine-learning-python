@@ -98,9 +98,15 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 	# You Publish messages to an Exchange.
 	# You Consume messages from a Queue.
 	channel.exchange_declare(
-		exchange=topic, # The routing-key 
-		exchange_type=ExchangeType.direct, # Delivers messages to queues based on routing key
-		Passive 
+		# The routing-key
+		exchange=topic, 
+		# Delivers messages to queues based on routing key
+		exchange_type=ExchangeType.direct,
+		Passive=False,
+		# Survive after broker-restart
+		durable=False,
+		# Is deleted when last queue is unbound
+		auto_delete=False
 		)
 
 	if action == "subscribe":
