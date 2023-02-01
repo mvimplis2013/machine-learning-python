@@ -43,7 +43,7 @@ def call_mq_server( host, password ):
 
 	return
 
-def basic_msg_publisher(topic, channel):
+def basic_msg_publisher(connection, topic, channel):
 	"""
 	Basic Message Publisher
 	"""
@@ -151,7 +151,7 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 	if action == "subscribe":
 		basic_msg_consumer( topic, channel )
 	elif action == "publish":
-		basic_msg_publisher( topic, channel )
+		basic_msg_publisher( connection, topic, channel )
 	else:
 		print("Hello")
 
