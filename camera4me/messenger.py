@@ -64,7 +64,35 @@ def basic_msg_publisher(topic, channel):
 
 	# The application that publishes (produces) messages.
 	# Another application or insytance consumes messages at the same time.
-	channel.basic_publish(exchange=topic, routing_key='test', body=b'Test Message')
+	print( "Sending Message to Create Group-Queue" )
+	channel.basic_publish(
+		topic, 
+		'test',
+        'queue:group',
+		pika.BasicProperties(
+			content_type='text/plain',
+			delivery_mode=DeliveryMode.Transient)
+		)
+
+	connection.sleep(5)
+
+    print( "Sending Text Message to Queue:Group" )
+	channel.basic_publish(
+		topic,
+		"group---key",
+		"Message to group---key"
+		pika.BasicProperties(
+            content_type='text/plain',
+			delivery_mode=DeliveryMode.Transient))
+	
+	connection.sleep(5)
+
+	print("Sending Text Message")
+	channel.basic_publish(
+		topic,
+		'standard_key',
+		'Message to STANDARD key')
+	
 	connection.close()
 
 	print("Succesfully Published a Basic Message !")
