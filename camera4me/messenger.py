@@ -47,6 +47,10 @@ def basic_msg_publisher(topic, channel):
 	"""
 	Basic Message Publisher
 	"""
+	print( "RabbitMQ is a message broker ... It accepts messages from publishers, routes them and ..." )
+	print( "  [x] IF THERE WERE QUEUES to route to ==> stores them for consumption" )
+	print( "  [x] Otherwise ==> Immediately delivers to consumers if any" ) 
+	
 	#channel.queue_declare(queue='hello')
 
 	#def callback( ch, method, properties, body ):
@@ -56,7 +60,9 @@ def basic_msg_publisher(topic, channel):
 
 	#print( f"Waiting for Messages" )
 
-	channel.basic_publish(exchange='test', routing_key='test', body=b'Test Message')
+	# The application that publishes (produces) messages.
+	# Another application or insytance consumes messages at the same time.
+	channel.basic_publish(exchange=topic, routing_key='test', body=b'Test Message')
 	connection.close()
 
 	print("Succesfully Published a Basic Message !")
@@ -98,7 +104,7 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 	# You Publish messages to an Exchange.
 	# You Consume messages from a Queue.
 	channel.exchange_declare(
-		# The routing-key
+		# Exchange name
 		exchange=topic, 
 		# Delivers messages to queues based on routing key
 		exchange_type=ExchangeType.direct,
