@@ -71,7 +71,8 @@ def basic_msg_publisher(topic, channel):
         'queue:group',
 		pika.BasicProperties(
 			content_type='text/plain',
-			delivery_mode=DeliveryMode.Transient)
+			delivery_mode=DeliveryMode.Transient
+			)
 		)
 
 	connection.sleep(5)
@@ -80,10 +81,12 @@ def basic_msg_publisher(topic, channel):
 	channel.basic_publish(
 		topic,
 		"group---key",
-		"Message to group---key"
+		"Message to group---key",
 		pika.BasicProperties(
             content_type='text/plain',
-			delivery_mode=DeliveryMode.Transient))
+			delivery_mode=DeliveryMode.Transient
+			)
+		)
 	
 	connection.sleep(5)
 
@@ -92,7 +95,7 @@ def basic_msg_publisher(topic, channel):
 		topic,
 		'standard_key',
 		'Message to STANDARD key')
-	
+
 	connection.close()
 
 	print("Succesfully Published a Basic Message !")
