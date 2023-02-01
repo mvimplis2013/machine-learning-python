@@ -102,7 +102,7 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 		exchange=topic, 
 		# Delivers messages to queues based on routing key
 		exchange_type=ExchangeType.direct,
-		Passive=False,
+		passive=False,
 		# Survive after broker-restart
 		durable=False,
 		# Is deleted when last queue is unbound
