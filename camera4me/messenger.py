@@ -86,10 +86,22 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 
 	print( f"Connection String '{action}' ... {conn_params} && {credentials}" )
 
+	# The TCP-Connection between the application and the broker
 	connection = pika.BlockingConnection(conn_params)
 	
+    # Lighweight connections that share a single TCP connection
 	channel = connection.channel()
-	channel.exchange_declare(exchange=topic, exchange_type=ExchangeType.direct)
+	
+	# A logical receiver that will route messages into a queue.
+	# There are 4 different types of exchanges: Direct, Fanout, Topic and Headers.
+	# You link into an exchange using a Binding (defined by a routing-key).
+	# You Publish messages to an Exchange.
+	# You Consume messages from a Queue.
+	channel.exchange_declare(
+		exchange=topic, # The routing-key 
+		exchange_type=ExchangeType.direct, # Delivers messages to queues based on routing key
+		Passive 
+		)
 
 	if action == "subscribe":
 		basic_msg_consumer( topic, channel )
