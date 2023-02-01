@@ -77,7 +77,7 @@ def basic_msg_publisher(topic, channel):
 
 	connection.sleep(5)
 
-    print( "Sending Text Message to Queue:Group" )
+	print( "Sending Text Message to Queue:Group" )
 	channel.basic_publish(
 		topic,
 		"group---key",
