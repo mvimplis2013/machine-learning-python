@@ -41,4 +41,36 @@ def main():
 
 	pika.BlockingConnection(parameters)
 
+	channel = connection.channel()
+
+	channel.exchange_declare(
+		exchange='test_exchange',
+		exchange_type=ExchangeType.direct,
+		passive=False,
+		durable=False,
+		auto_delete=False)
+
+	channel.queue_declare(
+		queue='standard',
+		auto_delete=True)
+
+	channel.queue_bind(
+		queue='standard',
+		exchange='test_exchange',
+		routing_key='standard_key')
+
+	channel.basic_qos(prefetch_count=1)
+
+	on_message_callback = functools.partial(
+		on_message, userdata='on_message_userdata')
+
+	channel.basic_consume('standard', on_message_callback)
+
+	try:
+		channel.start_consuming()
+	except KeyboardInterrupt:
+		channel.stop_consuming()
+
+	connection.close()
+	
 	return
