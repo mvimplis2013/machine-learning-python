@@ -13,7 +13,9 @@ LOGGER = logging.getLogger(__name__)
 
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
-
+def on_message(chan, method_frame, header_frame, body, userdata=None):
+	chan.basic_ack(delivery_tag=method_frame.delivery_tag)
+	
 def main():
 	"""Main Method"""
 
