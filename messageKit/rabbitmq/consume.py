@@ -30,6 +30,6 @@ def main():
 
 	args = parser.parse_args()
 
-	LOGGER.info("Delivery properties: %s", args.user)
-	
+	LOGGER.info("Delivery properties: %s / %s", args.user, args.password)
+
 	return
