@@ -33,6 +33,8 @@ def main():
 
 	args = parser.parse_args()
 
-	LOGGER.info("Delivery properties: %s / %s", args.user, args.password)
+	#LOGGER.info("Delivery properties: %s / %s", args.user, args.password)
+
+	pika.PlainCredentials( args.user, args.password )
 
 	return
