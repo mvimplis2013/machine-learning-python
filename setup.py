@@ -14,7 +14,8 @@ setup(
         "file-watchdog=camera4me.space_protector:run_watchdog",
         "polite-messenger=camera4me.messenger:__main_mq_client__",
         "influxdb-caller=camera4me.influxdb_main:__influx_main__",
-        "system-monitoring=datadrill.central_platform:platform_22"
+        "system-monitoring=datadrill.central_platform:platform_22",
+        "rabbitmq-consumer=messageKit.rabbitmq.consume:main"
       ]
     }
 )
