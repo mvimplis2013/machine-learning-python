@@ -39,4 +39,6 @@ def main():
 
 	parameters = pika.ConnectionParameters( args.host, args.port )
 
+	pika.BlockingConnection(parameters)
+	
 	return
