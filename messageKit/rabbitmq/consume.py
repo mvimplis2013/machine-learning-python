@@ -28,8 +28,8 @@ def main():
 	parser.add_argument( '-p', '--password', required=True, type=str, help='Password for RabbitMQ Connection' )
 	
 	# Location
-	parser.add_argument( '-s', '--server', required=True, type=str, help='RabbitMQ Server IP-Address')
-	parser.add_argument( '-p', '--port', required=False, type=int, help='RabbitMQ Server AMQP-Port', default=5672 )
+	parser.add_argument( '--server', required=True, type=str, help='RabbitMQ Server IP-Address')
+	parser.add_argument( '--port', required=False, type=int, help='RabbitMQ Server AMQP-Port', default=5672 )
 
 	args = parser.parse_args()
 
