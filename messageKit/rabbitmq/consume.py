@@ -37,7 +37,7 @@ def main():
 
 	credentials = pika.PlainCredentials( args.user, args.password )
 
-	parameters = pika.ConnectionParameters( args.host, args.port, credentials )
+	parameters = pika.ConnectionParameters( host=args.host, port=args.port, credentials=credentials )
 
 	pika.BlockingConnection(parameters)
 
