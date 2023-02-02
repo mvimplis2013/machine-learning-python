@@ -28,13 +28,15 @@ def main():
 	parser.add_argument( '-p', '--password', required=True, type=str, help='Password for RabbitMQ Connection' )
 	
 	# Location
-	parser.add_argument( '--server', required=True, type=str, help='RabbitMQ Server IP-Address')
+	parser.add_argument( '--host', required=True, type=str, help='RabbitMQ Server IP-Address')
 	parser.add_argument( '--port', required=False, type=int, help='RabbitMQ Server AMQP-Port', default=5672 )
 
 	args = parser.parse_args()
 
 	#LOGGER.info("Delivery properties: %s / %s", args.user, args.password)
 
-	pika.PlainCredentials( args.user, args.password )
+	credentials = pika.PlainCredentials( args.user, args.password )
+
+	parameters = pika.ConnectionParameters( args.host, args.port )
 
 	return
