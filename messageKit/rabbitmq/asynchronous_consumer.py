@@ -25,7 +25,7 @@ class ReconnectingExampleConsumer(object):
 		"""
 
 		return pika.SelectConnection()
-		
+
 	def run(self):
 		"""
 		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block.
@@ -55,7 +55,8 @@ def asynchronous_consumer_main():
 	LOGGER.info(amqp_url)
 	#print( args.user )
 	
-	consumer = ReconnectingExampleConsumer()
+	example_consumer = ReconnectingExampleConsumer()
+	example_consumer.run()
 
 # ******  ENTRYPOINT ******
 if __name__ == '__main__':
