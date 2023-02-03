@@ -16,6 +16,24 @@ class ReconnectingExampleConsumer(object):
 
 		return
 
+	def connect(self):
+		"""
+		This method connects to RabbitMQ, returning the connection handle.
+		When the connection is established, the on_connection_open method will be invoked by pika.
+
+		:rtype: pika.SelectConnection
+		"""
+
+		return pika.SelectConnection()
+		
+	def run(self):
+		"""
+		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block.
+		"""
+		self.connection = self.connect()
+		self._connection.ioloop.start()
+
+
 def asynchronous_consumer_main():
 	print("! Inside main() !")
 
