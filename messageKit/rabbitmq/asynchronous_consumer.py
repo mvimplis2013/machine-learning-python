@@ -38,7 +38,8 @@ if __name__ == '__main__':
 	parser.add_argument( '--port', required=False, type=int, help='RabbitMQ Server AMQP-Port', default=5672 )
 
 	args = parser.parse_args()
-	
-	amqp_url = 'amqp://guest:guest@localhost:5672/%2F'
+
+	amqp_url = f'amqp://{args.user}:{args.password}@{args.host}:{args.port}/%2F'
+	print(amqp_url)
 
 	asynchronous_consumer_main()
