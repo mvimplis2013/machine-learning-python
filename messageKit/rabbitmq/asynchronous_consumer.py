@@ -34,8 +34,9 @@ def asynchronous_consumer_main():
 	args = parser.parse_args()
 
 	amqp_url = f'amqp://{args.user}:{args.password}@{args.host}:{args.port}/%2F'
-	#print(amqp_url)
-	print( args.user )
+	LOGGER.info(amqp_url)
+	#print( args.user )
+	
 	consumer = ReconnectingExampleConsumer()
 
 # ******  ENTRYPOINT ******
