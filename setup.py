@@ -15,7 +15,8 @@ setup(
         "polite-messenger=camera4me.messenger:__main_mq_client__",
         "influxdb-caller=camera4me.influxdb_main:__influx_main__",
         "system-monitoring=datadrill.central_platform:platform_22",
-        "rabbitmq-consumer=messageKit.rabbitmq.consume:main"
+        "rabbitmq-consumer=messageKit.rabbitmq.consume:main",
+        "async-consumer-rabmq=messageKit.rabbitmq.asynchronous_consumer"
       ]
     }
 )
