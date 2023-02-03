@@ -19,7 +19,7 @@ class ReconnectingExampleConsumer(object):
 def asynchronous_consumer_main():
 	print("! Inside main() !")
 
-    logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
+	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
 
 	parser = argparse.ArgumentParser( description='Arguments for Asynchronous RabbitMQ Basic Message Consumer' )
 
