@@ -39,7 +39,8 @@ if __name__ == '__main__':
 
 	args = parser.parse_args()
 
-	amqp_url = f'amqp://{args.user}:{args.password}@{args.host}:{args.port}/%2F'
-	print(amqp_url)
+	#amqp_url = f'amqp://{args.user}:{args.password}@{args.host}:{args.port}/%2F'
+	#print(amqp_url)
+	print( args.user )
 
 	asynchronous_consumer_main()
