@@ -16,7 +16,7 @@ setup(
         "influxdb-caller=camera4me.influxdb_main:__influx_main__",
         "system-monitoring=datadrill.central_platform:platform_22",
         "rabbitmq-consumer=messageKit.rabbitmq.consume:main",
-        "async-consumer-rabmq=messageKit.rabbitmq.asynchronous_consumer:main"
+        "async-consumer-rabmq=messageKit.rabbitmq.asynchronous_consumer:asynchronous_consumer_main"
       ]
     }
 )
