@@ -1,9 +1,10 @@
 class ExampleConsumer(object):
-	def __init__():
+	def __init__(self):
 		return
 
 class ReconnectingExampleConsumer(object):
-	def __init__():
+	def __init__(self):
+		print("This is a consumer that will try to reconnect if nested connection is lost")
 
 		self._consumer = ExampleConsumer()
 
