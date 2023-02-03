@@ -19,13 +19,7 @@ class ReconnectingExampleConsumer(object):
 def asynchronous_consumer_main():
 	print("! Inside main() !")
 
-	consumer = ReconnectingExampleConsumer()
-
-# ******  ENTRYPOINT ******
-if __name__ == '__main__':
-	print("Inside __MAIN__")
-
-	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
+    logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
 
 	parser = argparse.ArgumentParser( description='Arguments for Asynchronous RabbitMQ Basic Message Consumer' )
 
@@ -39,8 +33,13 @@ if __name__ == '__main__':
 
 	args = parser.parse_args()
 
-	#amqp_url = f'amqp://{args.user}:{args.password}@{args.host}:{args.port}/%2F'
+	amqp_url = f'amqp://{args.user}:{args.password}@{args.host}:{args.port}/%2F'
 	#print(amqp_url)
 	print( args.user )
+	consumer = ReconnectingExampleConsumer()
+
+# ******  ENTRYPOINT ******
+if __name__ == '__main__':
+	print("Inside __MAIN__")
 
 	asynchronous_consumer_main()
