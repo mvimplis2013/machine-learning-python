@@ -60,6 +60,7 @@ class ExampleConsumer(object):
 		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block and 
 		allow the SelectedConnection to operate.
 		"""		
+		LOGGER.debug(f"Try to Connect to RabbitMQ and then Start the IOLoop to Block Code Execution ... {self._url}")
 
 class ReconnectingExampleConsumer(object):
 	def __init__(self, amqp_url):
