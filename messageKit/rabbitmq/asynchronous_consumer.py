@@ -23,15 +23,15 @@ class ExampleConsumer(object):
 		
 		:param str amqp_url: The AMQP URL to connect with RabbitMQ
 		"""
-        self.should_reconnect = False
-        self.was_consuming = False 
+		self.should_reconnect = False
+		self.was_consuming = False 
 
-        self._connection = None
-        self._channel = None
+		self._connection = None
+		self._channel = None
 
-        self._closing = False
-        self._consumer_tag = None
-        self._consuming = False 
+		self._closing = False
+		self._consumer_tag = None
+		self._consuming = False 
 		self._url = amqp_url
 
 		# In Production, experiment with higher prefetch values for higher consumer throughput
@@ -45,6 +45,7 @@ class ExampleConsumer(object):
 		When the connection is established, the on_connection_open method will be invoked by pika.
 
 		rtype: pika.SelectConnection
+		"""
 
 		LOGGER.info("Connection to %s", self._url)
 
