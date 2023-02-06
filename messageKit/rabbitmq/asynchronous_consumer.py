@@ -76,14 +76,16 @@ class ReconnectingExampleConsumer(object):
 	def _maybe_reconnect(self):
 	"""
 	"""
-	if self._consumer.should_reconnect:
-		self._consumer.stop()
-		reconnect_delay = self._get_reconnect_delay()
+		if self._consumer.should_reconnect:
+			self._consumer.stop()
+			reconnect_delay = self._get_reconnect_delay()
 
-		LOGGER.info("Reconnecting after %d seconds", reconnect_delay)
-		time.sleep(reconnect_delay)
+			LOGGER.info("Reconnecting after %d seconds", reconnect_delay)
+			time.sleep(reconnect_delay)
 
-		self._consumer = ExampleConsumer(self._amqp_url)
+			self._consumer = ExampleConsumer(self._amqp_url)
+
+		return
 
 	def connect(self):
 		"""
