@@ -59,8 +59,7 @@ class ExampleConsumer(object):
 		"""
 		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block and 
 		allow the SelectedConnection to operate.
-		"""
-		
+		"""		
 
 class ReconnectingExampleConsumer(object):
 	def __init__(self, amqp_url):
@@ -73,6 +72,18 @@ class ReconnectingExampleConsumer(object):
 		self._consumer = ExampleConsumer(self._amqp_url)
 
 		return
+
+	def _maybe_reconnect(self):
+	"""
+	"""
+	if self._consumer.should_reconnect:
+		self._consumer.stop()
+		reconnect_delay = self._get_reconnect_delay()
+
+		LOGGER.info("Reconnecting after %d seconds", reconnect_delay)
+		time.sleep(reconnect_delay)
+
+		self._consumer = ExampleConsumer(self._amqp_url)
 
 	def connect(self):
 		"""
