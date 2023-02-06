@@ -82,7 +82,7 @@ class ReconnectingExampleConsumer(object):
 			try:
 				self._consumer.run()
 			except KeyboardInterrupt:
-				self._consumer.stop()4
+				self._consumer.stop()
 				break
 
 			self._maybe_reconnect()
