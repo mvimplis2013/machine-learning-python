@@ -59,6 +59,8 @@ class ReconnectingExampleConsumer(object):
 	def __init__(self, amqp_url):
 		print("This is a consumer that will try to reconnect if nested connection is lost")
 
+		self._reconnect_delay = 0 
+
 		self._amqp_url = amqp_url
 
 		self._consumer = ExampleConsumer(self._amqp_url)
@@ -76,12 +78,14 @@ class ReconnectingExampleConsumer(object):
 		return pika.SelectConnection()
 
 	def run(self):
-		"""
-		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block.
-		"""
-		self.connection = self.connect()
-		self._connection.ioloop.start()
+		while True:
+			try:
+				self._consumer.run()
+			except KeyboardInterrupt:
+				self._consumer.stop()4
+				break
 
+			self._maybe_reconnect()
 
 def asynchronous_consumer_main():
 	print("! Inside main() !")
