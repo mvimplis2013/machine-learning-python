@@ -74,9 +74,9 @@ class ReconnectingExampleConsumer(object):
 		return
 
 	def _maybe_reconnect(self):
-	"""
-	Try to reconnect after XX seconds.
-	"""
+		"""
+		Try to reconnect after XX seconds.
+		"""
 		if self._consumer.should_reconnect:
 			self._consumer.stop()
 			reconnect_delay = self._get_reconnect_delay()
