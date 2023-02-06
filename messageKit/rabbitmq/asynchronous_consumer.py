@@ -62,7 +62,7 @@ class ExampleConsumer(object):
 		"""		
 		# LOGGER.debug(f"Try to Connect to RabbitMQ and then Start the IOLoop to Block Code Execution ... {self._url}")
 
-		self._connection = connect()
+		self._connection = self.connect()
 		self._connection.ioloop.start()
 
 class ReconnectingExampleConsumer(object):
