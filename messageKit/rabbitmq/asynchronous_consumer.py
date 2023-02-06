@@ -53,6 +53,8 @@ class ExampleConsumer(object):
 		LOGGER.info("Connection to %s", self._url)
 
 		return pika.SelectConnection(
+			parameters = pika.URLParameters(self._url)
+
 		)
 
 	def run(self):
