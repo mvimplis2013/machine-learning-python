@@ -55,6 +55,13 @@ class ExampleConsumer(object):
 		return pika.SelectConnection(
 		)
 
+	def run(self):
+		"""
+		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block and 
+		allow the SelectedConnection to operate.
+		"""
+		
+
 class ReconnectingExampleConsumer(object):
 	def __init__(self, amqp_url):
 		print("This is a consumer that will try to reconnect if nested connection is lost")
