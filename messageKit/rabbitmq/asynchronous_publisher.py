@@ -6,5 +6,5 @@ LOGGER = logging.getLogger(__name__)
 def main():
 	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
 
-	logging.INFO("Ready to Start the ASYNCHRONOUS_PUBLISHER to RabbitMQ !")
+	LOGGER.info("Ready to Start the ASYNCHRONOUS_PUBLISHER to RabbitMQ !")
 
