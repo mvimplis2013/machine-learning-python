@@ -31,6 +31,9 @@ class ExamplePublisher(object):
 		self._channel = None 
 		self._url = amqp_url
 
+		self._stopping = False
+		self._url = amqp_url
+
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
