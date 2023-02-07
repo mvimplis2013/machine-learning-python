@@ -1,6 +1,8 @@
 import logging
 import argparse
 
+import time
+
 import pika
 from pika.exchange_type import ExchangeType
 
