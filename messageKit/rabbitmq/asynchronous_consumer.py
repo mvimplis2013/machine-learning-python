@@ -179,7 +179,7 @@ class ExampleConsumer(object):
 		self.stop() 
 
 		return
-		
+
 	def run(self):
 		"""
 		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block and 
@@ -189,6 +189,26 @@ class ExampleConsumer(object):
 
 		self._connection = self.connect()
 		self._connection.ioloop.start()
+
+	def stop(self):
+		"""
+		Cleanly shutdown the connection to RabbitMQ by stopping the consumer with RabbitMQ.
+		When RabbitMQ confirms the cancellation, on_cancelok will be invoked by pika, 
+		which will then close the channel and connection.
+		This method is invoked when CTRL-C is pressed raising a KeyboardInterrupt Exception.
+		"""
+		if not self._closing:
+			self._closing = True 
+			LOGGER.info("Stopping")
+			if self._consuming:
+				self.stop_consuming()
+				self._connection.ioloop.start()
+			else:
+				self._connection.stop()
+
+			LOGGER.info("Stopped !")
+
+		return
 
 class ReconnectingExampleConsumer(object):
 	def __init__(self, amqp_url):
