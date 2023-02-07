@@ -149,9 +149,37 @@ class ExampleConsumer(object):
 	def on_connection_open_error(self):
 		return
 
-	def on_connection_closed(self):
+	def on_connection_closed(self, _unused_connection, reason):
+		"""
+		This method is invokedby pika when the connection to RabbitMQ is closed unexpectedly.
+		Since it is unexpected, we will try to reconnect to RabbitMQ.
+
+		:param pika.connection.Connection connection: The closed connection obj
+		:param Exception reason: exception representing reason for loss of connection
+		"""
+
+		self._channel = None 
+
+		if self._closing:
+			self._connection.ioloop.stop()
+		else:
+			LOGGER.warning("Connection is closed, reconnect is necessary: %s", reason)
+
+			self.reconnect()
+
 		return
 
+	def reconnect(self):
+		"""
+		Will be invoked if the connection is lost. Indicates that a reconnection is necessary and stops the ioloop
+		"""
+
+		self.should_reconnect = True 
+
+		self.stop() 
+
+		return
+		
 	def run(self):
 		"""
 		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block and 
