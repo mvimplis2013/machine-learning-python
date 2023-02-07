@@ -21,13 +21,13 @@ class ExamplePublisher(object):
 	ROUTING_KEY = 'example.text'
 
 	def __init__(self, amqp_url):
-	"""
-	Setup the example-publisher object, passing in the URL we will use to connect to RabbitMQ
-	""" 
-	self._connection = None
-	self._channel = None 
-
-	self._url = amqp_url
+		"""
+		Setup the example-publisher object, passing in the URL we will use to connect to RabbitMQ
+		""" 
+	
+		self._connection = None
+		self._channel = None 
+		self._url = amqp_url
 
 def main():
 	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
