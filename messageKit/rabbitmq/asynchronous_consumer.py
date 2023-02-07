@@ -59,7 +59,91 @@ class ExampleConsumer(object):
 			on_close_callback=self.on_connection_closed,
 		)
 
-	def on_connection_open(self):
+	def on_connection_open(self, _unused_connection):
+		"""
+		This method is called by pika if the connection to RabbitMQ
+		has been established.
+
+		:param pika.SelectConnection _unused_connection: The connection
+		"""
+
+		LOGGER.info("Connection is opened")
+
+		self.open_channel()
+
+		return
+
+	def open_channel(self):
+		"""
+		Open a new channel with RabbitMQ by issuing the Channel.Open command.
+		When RabbitMQ responds that the channel is open, the on_channel_open callback will be invoked by pika.
+		"""
+
+		LOGGER.info("Creating a New Channel")
+
+		self._connection.channel(on_open_callback=self.on_channel_open)
+
+		return
+
+	def on_channel_open(self, channel):
+		"""
+		This method is invoked by pika when the channel has been opened.
+		The channel object is passedin so we can make use of it.
+
+		Since the channel is now open, we will declare the exchange to use.
+
+		:param pika.channel.Channel channel: The channel object
+		"""
+
+		LOGGER.info('Channel is Open !')
+
+		self._channel = channel
+
+		self.add_on_channel_close_callback()
+		self.setup_exchange(self.EXCHANGE)
+
+		return
+
+	def add_on_channel_close_callback(self):
+		"""
+		This method tells pika to call the on_channel_closed method if 
+		RabbitMQ unexpectedly closes the channel.
+
+		:param pika.channel.Channel channel: The channel object
+		"""
+		LOGGER.info("Adding channel close callback")
+
+		self._channel.add_close_callback(self.on_channel_closed)
+
+		return
+
+	def on_channel_closed(self, channel, reason):
+		"""
+		Invoked by pika when RabbitMQ unexpectedly closes the channel.
+		Channels are usually closed if you attempt to do something that 
+		violates the protocol, such as re-declare an exchange or queue with 
+		different parameters. In this case we will close the connection to 
+		shutdown the object.
+
+		:param pika.channel.Channel channel: The closed channel
+		:param Exception reason: Why the channel was closed
+		"""
+		LOGGER.warning("Channel %i was closed: %s", channel, reason)
+
+		self.close_connection()
+
+		return
+
+	def close_connection(self):
+		self._consuming = False
+
+		if self._connection.is_closing or self._connection.is_closed:
+			LOGGER.info("Connection is closing or already closed")
+		else:
+			LOGGER.info("Closing Connection")
+
+			self._connection.close()
+
 		return
 
 	def on_connection_open_error(self):
@@ -67,7 +151,7 @@ class ExampleConsumer(object):
 
 	def on_connection_closed(self):
 		return
-		
+
 	def run(self):
 		"""
 		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block and 
