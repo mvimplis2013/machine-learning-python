@@ -239,15 +239,15 @@ class ReconnectingExampleConsumer(object):
 
 	def _get_reconnect_delay(self):
 		if self._consumer.was_consuming:
-			self.reconnect_delay = 0
+			self._reconnect_delay = 0
 		else:
-			self.reconnect_delay += 1
+			self._reconnect_delay += 1
 
 		if self._reconnect_delay > 30:
 			self._reconnect_delay = 30
 
 		return self._reconnect_delay
-		
+
 	def connect(self):
 		"""
 		This method connects to RabbitMQ, returning the connection handle.
