@@ -59,6 +59,15 @@ class ExampleConsumer(object):
 			on_close_callback=self.on_connection_closed,
 		)
 
+	def on_connection_open(self):
+		return
+
+	def on_connection_open_error(self):
+		return
+
+	def on_connection_closed(self):
+		return
+		
 	def run(self):
 		"""
 		Run the ExampleConsumer by connecting to RabbitMQ and then starting the IOLoop to block and 
