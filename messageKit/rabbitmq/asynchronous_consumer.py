@@ -99,7 +99,7 @@ class ExampleConsumer(object):
 
 		self._channel = channel
 
-		self.add_on_channel_close_callback()
+		self.a dd_on_channel_close_callback()
 		self.setup_exchange(self.EXCHANGE)
 
 		return
@@ -113,7 +113,7 @@ class ExampleConsumer(object):
 		"""
 		LOGGER.info("Adding channel close callback")
 
-		self._channel.add_close_callback(self.on_channel_closed)
+		self._channel.add_on_close_callback(self.on_channel_closed)
 
 		return
 
