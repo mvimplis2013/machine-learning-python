@@ -99,7 +99,7 @@ class ExampleConsumer(object):
 
 		self._channel = channel
 
-		self.a dd_on_channel_close_callback()
+		self.add_on_channel_close_callback()
 		self.setup_exchange(self.EXCHANGE)
 
 		return
