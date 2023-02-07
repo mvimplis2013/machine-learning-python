@@ -45,6 +45,37 @@ class ExamplePublisher(object):
 			self._nacked = 0
 			self._message_number = 0
 
+			try:
+				self._connection = self.connect()
+				self._connection.ioloop.start()
+			except KeyboardInterrupt:
+				self.stop()
+
+				if (self._connection is not None and not self._connection.is_closed):
+					self._connection.ioloop.start()
+
+		LOGGER.info('Stopped !')
+
+	def stop(self):
+		"""
+		Stop the example by closing the channel and connection. 
+		"""
+
+		LOGGER.info("Stopping ...")
+
+		self._stopping = True
+
+		self.close_channel()
+		self.close_connection()
+
+	def close_channel(self):
+		if self._channel is not None:
+			self._channel.close()
+
+	def close_connection(self):
+		if self._connection is not None:
+			self._connection.close()
+
 def main():
 	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
 
