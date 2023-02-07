@@ -204,7 +204,7 @@ class ExampleConsumer(object):
 				self.stop_consuming()
 				self._connection.ioloop.start()
 			else:
-				self._connection.stop()
+				self._connection.ioloop.stop()
 
 			LOGGER.info("Stopped !")
 
