@@ -31,6 +31,17 @@ class ExamplePublisher(object):
 		self._channel = None 
 		self._url = amqp_url
 
+	def run(self):
+		"""
+		Run the example code by connecting and then starting the IOLoop.
+		"""
+		while not self._stopping:
+			self._connection = None
+			self._deliveries = {}
+			self._acked = 0
+			self._nacked = 0
+			self._message_number = 0
+
 def main():
 	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
 
