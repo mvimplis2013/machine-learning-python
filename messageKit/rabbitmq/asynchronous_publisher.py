@@ -90,8 +90,41 @@ class ExamplePublisher(object):
 
 		self._channel = channel
 
+		self.add_on_channel_close_callback()
+
+		self.setup_exchange(self.EXCHANGE)
+
 		return
+
+	def add_on_channel_close_callback(self):
+		"""
+		This method tells pika to call the on_channel_closed method if RabbitMQ unexpectedly closes the channel.
+		"""
+		LOGGER.info("Adding channel close callback ...")
+
+		self._channel.add_on_close_callback(self.on_channel_closed)
+
+	def on_channel_closed(self, channel, reason):
+		"""
+		Invoked by pika when RabbitMQ unexpectedly closes the channel.
+		Channels are usually closed if you attempt to do something that violates the protocol.
+
+		In this case, we will close the connection to shutdown the object.
 		
+		:param pika.channel.Channel: The closed channel object
+		:param Exception reason: reason for loosing connection
+		"""
+		self._channel = None
+
+		if self._stopping:
+			self._connection.ioloop.stop()
+		else:
+			LOGGER.warning(f"Connection is closed, reopening in 5 seconds: {reason}")
+
+			self._connection.ioloop.call_later(5, self._connection.ioloop.stop)
+
+		return
+
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
