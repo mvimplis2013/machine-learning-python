@@ -46,7 +46,9 @@ class ExamplePublisher(object):
 
 		return pika.SelectConnection(
 			pika.URLParameters(self._url),
-			on_open_callback=self.on_connection_open
+			on_open_callback=self.on_connection_open,
+			on_open_error_callback=self.on_connection_open_error,
+			on_close_callback=self.on_connection_closed
 			)
 
 	def on_connection_open(self, _unused_connection):
@@ -61,6 +63,38 @@ class ExamplePublisher(object):
 		self.open_channel()
 
 		return
+
+	def on_connection_open_error(self, _unused_connection, err):
+		"""
+		This method is called by pika if the connection to RabbitMQ cannot be established.
+
+		:param pika.SelectConnection _unused_connection: The connection
+		:param Exception err: The error
+		"""
+
+		LOGGER.error("Connection open failed, reopening in 5 seconds: %s", err)
+
+		self._connection.ioloop.call_later(5, self.ioloop.stop)
+
+		return
+
+	def on_connection_closed(self, _unused_connection, reason):
+		"""
+		This method is invoked by pika when the connection to RabbitMQ is closed unexpectedly.
+		We will try to reconnect.
+		"""
+
+		self._channel = None
+
+		if self._stopping:
+			self._connection.ioloop.stop()
+		else:
+			LOGGER.warning("Connection is closed, reopening in 5 seconds: %s", reason)
+
+			self._connection.ioloop.call_later(5, self._connection.ioloop.stop)
+
+		return
+
 
 	def open_channel(self):
 		"""
