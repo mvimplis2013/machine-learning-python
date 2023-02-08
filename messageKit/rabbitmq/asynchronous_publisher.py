@@ -34,6 +34,16 @@ class ExamplePublisher(object):
 		self._stopping = False
 		self._url = amqp_url
 
+	def connect(self):
+		"""
+		This method connects to RabbitMQ and returns the connection handle.
+		When the connection is established, the on_connection_open method will be invoked by pika.
+
+		:rtype: pika.SelectConnection 
+		"""
+
+		return
+		
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
