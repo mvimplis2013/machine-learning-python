@@ -40,7 +40,7 @@ class ExamplePublisher(object):
 		This method connects to RabbitMQ and returns the connection handle.
 		When the connection is established, the on_connection_open method will be invoked by pika.
 
-		:rtype: pika.SelectConnection 
+		:rtype pika.SelectConnection 
 		"""
 		LOGGER.info(f"Connecting to {self._url}")
 
@@ -54,7 +54,7 @@ class ExamplePublisher(object):
 		This method is called by pika once the connection to RabbitMQ has been established.
 		It passes the handle to the connection object in case we need it. 
 
-		:param: pika.SelectConnection _unused_connection: The connection
+		:param pika.SelectConnection _unused_connection: The connection
 		"""
 		LOGGER.info("Connection Opened !")
 
@@ -62,6 +62,23 @@ class ExamplePublisher(object):
 
 		return
 
+	def open_channel(self):
+		"""
+		This method will open a new channel with RabbitMQ by issuing the open() RPC command.
+		When RabbitMQ confirms that the channel is open, the on_channel_open() method will be invoked.
+		
+		Since the channel is now open, we will declare the EXCHANGE to use.
+
+		:param pika.channel.Channel channel: The channel object
+
+		"""
+
+		LOGGER.info("Creating a New Channe ...")
+
+		self._connection.channel(on_open_callback=self.on_channel_open)
+
+		return
+		
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
