@@ -69,12 +69,24 @@ class ExamplePublisher(object):
 		self.close_connection()
 
 	def close_channel(self):
+		"""
+		Invoke this method to close the channel with RabbitMQ.
+		"""
 		if self._channel is not None:
+			LOGGER.info("Closing the Channel !")
 			self._channel.close()
 
+		return
+
 	def close_connection(self):
+		"""
+		This method closes the connection to RabbitMQ.
+		"""
 		if self._connection is not None:
+			LOGGER.info("Closing Connection !")
 			self._connection.close()
+
+		return
 
 def main():
 	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
