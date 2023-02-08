@@ -45,8 +45,22 @@ class ExamplePublisher(object):
 		LOGGER.info(f"Connecting to {self._url}")
 
 		return pika.SelectConnection(
-			pika.URLParameters(self._url)
+			pika.URLParameters(self._url),
+			on_open_callback=self.on_connection_open
 			)
+
+	def on_connection_open(self, _unused_connection):
+		"""
+		This method is called by pika once the connection to RabbitMQ has been established.
+		It passes the handle to the connection object in case we need it. 
+
+		:param: pika.SelectConnection _unused_connection: The connection
+		"""
+		LOGGER.info("Connection Opened !")
+
+		self.open_channel()
+
+		return
 
 	def run(self):
 		"""
