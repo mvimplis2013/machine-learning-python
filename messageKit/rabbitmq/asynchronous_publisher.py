@@ -41,9 +41,12 @@ class ExamplePublisher(object):
 
 		:rtype: pika.SelectConnection 
 		"""
+		LOGGER.info(f"Connecting to {self._url}")
 
-		return
-		
+		return pika.SelectConnection(
+			pika.URLParameters(self._url)
+			)
+
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
