@@ -122,7 +122,7 @@ def main():
 	LOGGER.info("Ready to Start the ASYNCHRONOUS_PUBLISHER to RabbitMQ !")
 
 	example = ExamplePublisher(
-		"amqp://tandem:tandem123@10.244.84.66:5672/%2F?connection_attempts=3&heartbeat=3600"
+		"amqp://tandem:tandem123@10.244.84.166:5672/%2F?connection_attempts=3&heartbeat=3600"
 		)
 
 	example.run()
