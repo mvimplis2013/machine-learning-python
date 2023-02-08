@@ -78,6 +78,19 @@ class ExamplePublisher(object):
 		self._connection.channel(on_open_callback=self.on_channel_open)
 
 		return
+
+	def on_channel_open(self, channel):
+		"""
+		This method is invoked by pika when the channel has been opened.
+		The channel object is passed in so we can make use of it.
+
+		:param pika.channel.Channel: The channel object
+		"""
+		LOGGER.info("Channel is Opened !")
+
+		self._channel = channel
+
+		return
 		
 	def run(self):
 		"""
