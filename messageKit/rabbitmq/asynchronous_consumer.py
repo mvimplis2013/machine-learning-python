@@ -245,7 +245,20 @@ class ExampleConsumer(object):
 		self.start_consuming()
 
 		return
-		
+
+	def start_consuming(self):
+		LOGGER.info("Issuing consumer")
+
+		self._consumer_tag = self._channel.basic_consume(
+			self.QUEUE, self.on_message)
+
+		return
+
+	def on_message(self, _unused_channel, basic_deliver, properties, body):
+		LOGGER.info(f"Received Message #{basic_deliver.delivery_tag} from {properties.app_id} : {body}")
+
+		return
+
 	def reconnect(self):
 		"""
 		Will be invoked if the connection is lost. Indicates that a reconnection is necessary and stops the ioloop
