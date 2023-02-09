@@ -311,8 +311,36 @@ class ExamplePublisher(object):
 		return 
 
 	def publish_message(self):
+		"""
+		If the class is not stopping, publish a message to RabbitMQ, 
+		appending a list of deliveries with the message number that was sent.
+
+		This list will be used to check for delivery confirmations in the on_delivery_confirmations method.
+
+		Once the message has been sent, schedule another message to be sent.
+		The main reason that I put scheduling in was just so you can get a good idea of 
+		how the process is flowing by slowing down and speeding up the delivery intervals 
+		by changing the PUBLISH_INTERVAL constant in the class.  
+		"""
+		if self._channel is None or not self._channel.is_open:
+			return
+
+		hdrs = {u'φ': u'υ', u'ρ': u'λ'}
+
+		properties = pika.BasicProperties(app_id="example-publisher", 
+			content_type="application/json", headers=hdrs)
+
+		self._message_number += 1
+
+		self.deliveries[self._message_number] = capture_frames
+
+		LOGGER.info(
+			"Published Message # %i", self._message_number)
+
+		self.schedule_next_message()
+
 		return 
-		
+
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
