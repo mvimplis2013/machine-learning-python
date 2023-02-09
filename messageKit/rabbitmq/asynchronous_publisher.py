@@ -256,7 +256,7 @@ class ExamplePublisher(object):
 
 		self._channel.confirm_delivery(self.on_delivery_confirmation)
     
-    def on_delivery_confirmation(self, method_frame):
+	def on_delivery_confirmation(self, method_frame):
     	"""
     	Invoked by pika when RabbitMQ responds to a Basic.Publish RPC command ==>
     	  Passing in either a Basic.Ack or Basic.Nack frame
@@ -277,7 +277,7 @@ class ExamplePublisher(object):
     		self._acked += 1
 
     	return
-    	
+
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
