@@ -213,8 +213,16 @@ class ExampleConsumer(object):
 	def on_queue_declareok(self, _unused_frame, userdata):
 		queue_name = userdata
 
-		LOGGER.info(f"Binding {self.EXCHANGE} to {queue_name} with {self.ROUTING_LEY}")
+		LOGGER.info(f"Binding {self.EXCHANGE} to {queue_name} with {self.ROUTING_KEY}")
 
+		cb = functools.partial(self.on_bindok, userdata=queue_name)
+
+		self._channel.queue_bind(
+			queue_name,
+			self.EXCHANGE,
+			routing_key=self.ROUTING_KEY,
+			callback=cb)
+		
 		return
 
 	def reconnect(self):
