@@ -191,7 +191,30 @@ class ExampleConsumer(object):
 			exchange=exchange_name,
 			exchange_type=self.EXCHANGE_TYPE,
 			callback=cb)
-		
+
+		return
+
+	def on_exchange_declareok(self, _unused_frame, userdata):
+		LOGGER.info(f"Exchange declared: {userdata}")
+
+		self.setup_queue(self.QUEUE)
+
+		return
+
+	def setup_queue(self, queue_name):
+		LOGGER.info(f"Declaring Queue: {queue_name}")
+
+		cb = functools.partial(self.on_queue_declareok, userdata=queue_name)
+
+		self._channel.queue_declare(queue=queue_name, callback=cb)
+
+		return
+
+	def on_queue_declareok(self, _unused_frame, userdata):
+		queue_name = userdata
+
+		LOGGER.info(f"Binding {self.EXCHANGE} to {queue_name} with {self.ROUTING_LEY}")
+
 		return
 
 	def reconnect(self):
