@@ -3,6 +3,8 @@ import logging
 import pika
 from pika.exchange_type import ExchangeType
 
+import functools
+
 LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
 LOGGER = logging.getLogger(__name__)
 
@@ -138,6 +140,8 @@ class ExamplePublisher(object):
 
 		self._channel.add_on_close_callback(self.on_channel_closed)
 
+		return
+
 	def on_channel_closed(self, channel, reason):
 		"""
 		Invoked by pika when RabbitMQ unexpectedly closes the channel.
@@ -159,6 +163,99 @@ class ExamplePublisher(object):
 
 		return
 
+	def setup_exchange(self, exchange_name):
+		"""
+		Setup the exchange on RabbitMQ by invoking the ExchangeDeclare command.
+		When it is COMPLETE, the ON_EXCHANGE_DECLAREOK method will be invoked by pika.
+		
+		:param str|unicode exchange_name: The nane of the exchange to declare
+		"""
+
+		LOGGER.info("Declaring exchange %s", exchange_name)
+
+		# Using functools.partial is NOT required
+		# It is demonstrating how arbitrary data can be passed to the callback when it is called.
+		cb = functools.partial(self.on_exchange_declareok, userdata=exchange_name)
+
+		self._channel.exchange_declare(exchange=exchange_name,
+			exchange_type=self.EXCHANGE_TYPE, callback=cb)
+
+		return
+
+	def on_exchange_declareok(self, _unused_frame, userdata):
+		"""
+		Invoked by pika when RabbitMQ has finished the Exchange.Declare RPC command.
+
+		:param pika.Frame.Method unused_frame: Exchange.DelareOK response frame
+		:param str|unicode userdata: Extra user data (exchange name)
+		"""
+		LOGGER.info("Exchange declare %s", userdata)
+
+		self.setup_queue(self.QUEUE)
+
+		return
+
+	def setup_queue(self, queue_name):
+		"""
+		Setup the queue on RabbitMQ by invoking the Queue.Declare rpc-command.
+		"""
+		LOGGER.info("Declaring queue %s", queue_name)
+
+		self._channel.queue_declare(queue=queue_name, callback=self.on_queue_declareok) 
+
+	def on_queue_declareok(self, _unused_frame):
+		"""
+		Method invoked by pika when the Queue.Declare rpc-method is completed. 
+		In this method we will bind the queue and exchange together with the routing-key by issuing the Queue.Bind
+
+		When this command is complete, the on_bindok method will be invoked by pika.
+
+		:param pika.frame.Method method_frame
+		"""
+
+		LOGGER.info('Binding %s to %s with %s', self.EXCHANGE, self.QUEUE, self.ROUTING_KEY)
+
+		self._channel.queue_bind(self.QUEUE, self.EXCHANGE, routing_key=self.ROUTING_KEY,
+			callback=self.on_bindok)
+
+		return
+
+	def on_bindok(self, _unused_frame):
+		"""
+		This method is invoked by pika when it recieves the Queue.BindON response from RabbitMQ.
+
+		Since we are now setup and bound, it is time to start publishing.
+		"""
+		LOGGER.info("Queue is bound !")
+
+		self.start_publishing()
+
+	def start_publishing(self):
+		"""
+		This method will enable delivery confirmations and schedule the first message to be sent to RabbitMQ
+		"""
+		LOGGER.info("Issuing Consumer related RPC commands")
+
+		self.enable_delivery_confirmations()
+
+		self.schedule_next_message()
+
+		return
+
+	def enable_delivery_confirmation(self):
+		"""
+		Send the Confirm.Select rpc-method to RabbitMQ to enable delivery confirmations on the channel.
+		The only way to turn this off is to close the channel and create a new one.
+
+		When the message is confirmed from RabbitMQ, the on_delivery_confirmation method will be invoked 
+		passing in a Basic.Ack or Basic.Nack method from RabbitMQ that will indicate which messages it is 
+		confirming or rejecting.
+		"""
+
+		LOGGER.info("Issuing Confirm.Select RPC command")
+
+		self._channel.confirm_delivery(self.on_delivery_confirmation)
+    
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
