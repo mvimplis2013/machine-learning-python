@@ -242,7 +242,7 @@ class ExamplePublisher(object):
 
 		return
 
-	def enable_delivery_confirmation(self):
+	def enable_delivery_confirmations(self):
 		"""
 		Send the Confirm.Select rpc-method to RabbitMQ to enable delivery confirmations on the channel.
 		The only way to turn this off is to close the channel and create a new one.
