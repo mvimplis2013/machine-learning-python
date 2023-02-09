@@ -332,7 +332,7 @@ class ExamplePublisher(object):
 
 		self._message_number += 1
 
-		self.deliveries[self._message_number] = capture_frames
+		self.deliveries[self._message_number] = True 
 
 		LOGGER.info(
 			"Published Message # %i", self._message_number)
