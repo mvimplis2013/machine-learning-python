@@ -258,7 +258,7 @@ class ExampleConsumer(object):
 		LOGGER.info(f"Received Message #{basic_deliver.delivery_tag} from {properties.app_id} : {body}")
 
 		return
-_
+		
 	def reconnect(self):
 		"""
 		Will be invoked if the connection is lost. Indicates that a reconnection is necessary and stops the ioloop
