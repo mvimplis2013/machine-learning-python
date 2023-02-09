@@ -230,6 +230,8 @@ class ExampleConsumer(object):
 
 		self.set_qos()
 
+		return
+
 	def set_qos(self):
 
 		return
