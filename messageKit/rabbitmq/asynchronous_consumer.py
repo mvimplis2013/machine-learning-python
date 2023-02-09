@@ -1,3 +1,5 @@
+import functools
+
 import logging
 import argparse
 
@@ -182,6 +184,14 @@ class ExampleConsumer(object):
 		"""
 		LOGGER.info(f"Declaring Exchange: {exchange_name}")
 
+		cb = functools.partial(
+			self.on_exchange_declareok, userdata=exchange_name)
+
+		self._channel.exchange_declare(
+			exchange=exchange_name,
+			exchange_type=self.EXCHANGE_TYPE,
+			callback=cb)
+		
 		return
 
 	def reconnect(self):
