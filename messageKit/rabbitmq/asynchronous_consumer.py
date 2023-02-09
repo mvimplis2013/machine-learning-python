@@ -240,7 +240,7 @@ class ExampleConsumer(object):
 		return
 
 	def on_basic_qos_ok(self, _unused_frame):
-		LOGGER.info(f"QOS set to: {self._prefetcg_count}")
+		LOGGER.info(f"QOS set to: {self._prefetch_count}")
 
 		self.start_consuming()
 
@@ -258,7 +258,7 @@ class ExampleConsumer(object):
 		LOGGER.info(f"Received Message #{basic_deliver.delivery_tag} from {properties.app_id} : {body}")
 
 		return
-
+_
 	def reconnect(self):
 		"""
 		Will be invoked if the connection is lost. Indicates that a reconnection is necessary and stops the ioloop
