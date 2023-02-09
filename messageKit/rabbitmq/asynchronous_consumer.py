@@ -222,7 +222,16 @@ class ExampleConsumer(object):
 			self.EXCHANGE,
 			routing_key=self.ROUTING_KEY,
 			callback=cb)
-		
+
+		return
+
+	def on_bindok(self, _unused_frame, userdata):
+		LOGGER.info(f"Queue Bound: {userdata}")
+
+		self.set_qos()
+
+	def set_qos(self):
+
 		return
 
 	def reconnect(self):
