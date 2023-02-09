@@ -234,6 +234,9 @@ class ExampleConsumer(object):
 
 	def set_qos(self):
 
+		self._channel.basic_qos(
+			prefetch_count=self._prefetch_count, callback=self.on_basic_qos_ok)
+		
 		return
 
 	def reconnect(self):
