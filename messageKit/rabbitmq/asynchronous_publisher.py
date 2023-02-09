@@ -272,11 +272,47 @@ class ExamplePublisher(object):
 		ack_multiple = method_frame.method.multiple
 		delivery_tag = method_frame.method.delivery_tag
 
+		LOGGER.info("Received %s for delivery tag: %d (multiple: %s)", confirmation_type, delivery_tag, ack_multiple)
 		if confirmation_type == 'ack':
 			self._acked += 1
+		elif confirmation_type == 'nack':
+			self._nacked += 1
+
+		del delf._deliveries[delivery_tag]
+
+
+		if ack_multiple:
+			for tmp_tag in list(self._deliveries.keys()):
+				if tmp_tag <= delivery_tag:
+					self._acked += 1
+					del self._deliveries[tmp_tag]
+
+		"""
+		NOTE: at some point you would check self._deliveries for stale entries and decide to attempt re-delivery
+		"""
+
+		LOGGER.info(
+			"Published %i messages/ %i have yet to be confirmed/ %i were acked and %i were nacked",
+			len(self._deliveries), self._acked, self._nacked
+			)
 
 		return
 
+	def schedule_next_message(self):
+		"""
+		If we are not closing our connection to RabbitMQ, schedule another message to be delivered 
+		in PUBLISH_INTERVAL seconds.
+		"""
+
+		LOGGER.info("Scheduling Next Message for %0.1f seconds.", self.PUBLISH_INTERVAL)
+
+		self._connection.ioloop.call_later(self.PUBLISH_INTERVAL, self.publish_message)
+
+		return 
+
+	def publish_message(self):
+		return 
+		
 	def run(self):
 		"""
 		Run the example code by connecting and then starting the IOLoop.
