@@ -257,26 +257,25 @@ class ExamplePublisher(object):
 		self._channel.confirm_delivery(self.on_delivery_confirmation)
     
 	def on_delivery_confirmation(self, method_frame):
-    	"""
-    	Invoked by pika when RabbitMQ responds to a Basic.Publish RPC command ==>
-    	  Passing in either a Basic.Ack or Basic.Nack frame
-    	    With the delivery tag of the message that was published.
+		"""
+		Invoked by pika when RabbitMQ responds to a Basic.Publish RPC command ==>
+		Passing in either a Basic.Ack or Basic.Nack frame With the delivery tag of the message that was published.
 
-    	The delivery tag is an integer counter indicating the message number that was sent on the channel via Basic.
+		The delivery tag is an integer counter indicating the message number that was sent on the channel via Basic.
 
-    	Here we are just doing house keeping to keep track of stats and remove message numbers from the list of pending.
+		Here we are just doing house keeping to keep track of stats and remove message numbers from the list of pending.
 
-    	:param pika.frame.Method  method_frame: Basic.Ack or Basic.Nack frame
-    	"""  
+		:param pika.frame.Method  method_frame: Basic.Ack or Basic.Nack frame
+		"""  
 
-    	confirmation_type = method_frame.method.NAME.split('.')[1].lower()
-    	ack_multiple = method_frame.method.multiple
-    	delivery_tag = method_frame.method.delivery_tag
+		confirmation_type = method_frame.method.NAME.split('.')[1].lower()
+		ack_multiple = method_frame.method.multiple
+		delivery_tag = method_frame.method.delivery_tag
 
-    	if confirmation_type == 'ack':
-    		self._acked += 1
+		if confirmation_type == 'ack':
+			self._acked += 1
 
-    	return
+		return
 
 	def run(self):
 		"""
