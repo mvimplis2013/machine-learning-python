@@ -236,9 +236,16 @@ class ExampleConsumer(object):
 
 		self._channel.basic_qos(
 			prefetch_count=self._prefetch_count, callback=self.on_basic_qos_ok)
-		
+
 		return
 
+	def on_basic_qos_ok(self, _unused_frame):
+		LOGGER.info(f"QOS set to: {self._prefetcg_count}")
+
+		self.start_consuming()
+
+		return
+		
 	def reconnect(self):
 		"""
 		Will be invoked if the connection is lost. Indicates that a reconnection is necessary and stops the ioloop
