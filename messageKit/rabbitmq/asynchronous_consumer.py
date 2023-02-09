@@ -61,6 +61,8 @@ class ExampleConsumer(object):
 			on_close_callback=self.on_connection_closed
 		)
 
+		return
+
 	def on_connection_open(self, _unused_connection):
 		"""
 		This method is called by pika if the connection to RabbitMQ
@@ -168,6 +170,17 @@ class ExampleConsumer(object):
 			LOGGER.warning("Connection is closed, reconnect is necessary: %s", reason)
 
 			self.reconnect()
+
+		return
+
+	def setup_exchange(self, exchange_name):
+		"""
+		Setup the exchange on RabbitMQ by invoking the Exchange.Declare RPC command.
+		When it is complete, the on_exchange_declareok method will be invoked by pika.
+
+		:param str|unicode exchange_name: The name of EXCHANGE to declare
+		"""
+		LOGGER.info(f"Declaring Exchange: {exchange_name}")
 
 		return
 
