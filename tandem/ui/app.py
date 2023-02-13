@@ -60,7 +60,7 @@ def taskstatus(task_id):
 		}
 
     return jsonify(response)
-    
-if __name__ == "__main__":
+
+def main():
 	app.run(debug=True)
 
