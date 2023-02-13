@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name="capture_frames",
     version="0.0.1",
-    packages=["camera4me", "datadrill", "messageKit", "messageKit.rabbitmq"],
+    packages=["camera4me", "datadrill", "messageKit", "messageKit.rabbitmq", "tandem"],
     install_requires=["pika>=1.2.0", "influxdb>=5.3.1", "influxdb-client>=1.27.0", "redis==4.3.4", "prometheus-client>=0.14.1"],
     data_files=[("cfg", ["config/camera.cfg"])],
     entry_points={
