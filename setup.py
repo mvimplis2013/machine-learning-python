@@ -7,7 +7,7 @@ setup(
     version="0.0.1",
     packages=["camera4me", "datadrill", "messageKit", "messageKit.rabbitmq", "tandem", "tandem.ui"],
     install_requires=["pika>=1.2.0", "influxdb>=5.3.1", "influxdb-client>=1.27.0", "redis==4.3.4", "prometheus-client>=0.14.1",
-      "Flask:2.2.2"],
+      "Flask==2.2.2"],
     data_files=[("cfg", ["config/camera.cfg"])],
     entry_points={
       "console_scripts": [
