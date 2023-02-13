@@ -17,7 +17,8 @@ setup(
         "system-monitoring=datadrill.central_platform:platform_22",
         "rabbitmq-consumer=messageKit.rabbitmq.consume:main",
         "async-consumer-rabmq=messageKit.rabbitmq.asynchronous_consumer:asynchronous_consumer_main",
-        "async-publisher-rabmq=messageKit.rabbitmq.asynchronous_publisher:main"
+        "async-publisher-rabmq=messageKit.rabbitmq.asynchronous_publisher:main",
+        "flask-application=tandem.ui.app.py:main"
       ]
     }
 )
