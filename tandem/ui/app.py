@@ -59,7 +59,7 @@ def taskstatus(task_id):
 		'status': str(task.info)
 		}
 
-    return jsonify(response)
+	return jsonify(response)
 
 def main():
 	app.run(debug=True)
