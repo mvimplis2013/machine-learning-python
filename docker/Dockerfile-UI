@@ -1,3 +1,7 @@
 FROM python:buster
 
 RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
+
+WORKDIR machine-learning-python
+
+RUN python setup.py install
