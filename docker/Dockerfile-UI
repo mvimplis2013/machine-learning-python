@@ -12,4 +12,4 @@ RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
 WORKDIR machine-learning-python
 
-ENTRYTPOINT FLASK_APP=tandem/ui/app.py flask --debug run --host=0.0.0.0 
+ENTRYPOINT FLASK_APP=tandem/ui/app.py flask --debug run --host=0.0.0.0 
