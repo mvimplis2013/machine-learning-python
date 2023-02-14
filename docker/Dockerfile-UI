@@ -1,7 +1,15 @@
-FROM python:buster
+FROM ubuntu:18.04
+
+RUN apt-get update -y 
+
+RUN apt-get install python -y 
+
+RUN apt-get install --upgrade pip -y 
+
+RUN python -m pip install flask 
 
 RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
 WORKDIR machine-learning-python
 
-#RUN pyhon setup.py install
+ENTRYTPOINT FLASK_APP=tandem/ui/app.py flask --debug run --host=0.0.0.0 
