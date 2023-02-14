@@ -4,7 +4,9 @@ RUN apt-get update -y
 
 RUN apt-get install python3-dev -y 
 
-RUN python -m pip install flask 
+RUN python3 -m pip install --upgrade pip 
+
+RUN python3 -m pip install flask 
 
 RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
