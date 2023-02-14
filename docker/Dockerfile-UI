@@ -14,8 +14,8 @@ RUN python3 -m pip install --upgrade pip
 
 RUN python3 -m pip install flask 
 
-RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
+#RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
-WORKDIR machine-learning-python
+#WORKDIR machine-learning-python
 
-ENTRYPOINT FLASK_APP=tandem/ui/app.py flask --debug run --host=0.0.0.0 
+#ENTRYPOINT FLASK_APP=tandem/ui/app.py flask --debug run --host=0.0.0.0 
