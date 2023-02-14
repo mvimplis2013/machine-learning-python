@@ -2,9 +2,7 @@ FROM ubuntu:18.04
 
 RUN apt-get update -y 
 
-RUN apt-get install python -y 
-
-RUN apt-get install --upgrade pip -y 
+RUN apt-get install python3-dev -y 
 
 RUN python -m pip install flask 
 
