@@ -1,7 +1,11 @@
 import click
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__) 
+
+@app.route("/watchlist")
+def watchlist():
+	return render_template("watchlist.html")
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -16,7 +20,7 @@ def say_hello():
 @app.route("/greet", defaults={"name": "Pete"})
 def greet(name):
 	return "<h1>Hello, %s !</h1>" %name 
-	
+
 @app.cli.command()
 def main_flask():
 	click.echo("Hello, Miltos!")
