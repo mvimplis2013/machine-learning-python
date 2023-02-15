@@ -8,5 +8,13 @@
 	<a href="{{ url_for('index') }}">&larr; Return</a>
 
 	<h2>{{ user.username }}</h2>
+
+	{% if user.bio %}
+		<i>{{ user.bio }}</i>
+	{% else %}
+		<i>This user has not provided a bio.</i>
+	{% endif %}
+
+	{# Below is the movie list #}
 </body>
 </html>
