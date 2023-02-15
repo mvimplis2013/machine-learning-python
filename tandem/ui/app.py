@@ -3,9 +3,14 @@ from flask import Flask, render_template
 
 app = Flask(__name__) 
 
+user = {
+	'username': 'Grey Li',
+	'bio': 'From Other Country'
+}
+
 @app.route("/watchlist")
 def watchlist():
-	return render_template("watchlist.html")
+	return render_template("watchlist.html", user=user)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
