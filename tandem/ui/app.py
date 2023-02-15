@@ -8,9 +8,14 @@ user = {
 	'bio': 'From Other Country'
 }
 
+movies = [
+	{'name': 'My Neighbor Totoro', 'year': '1988'},
+	{'name': 'Three Colours Trilogy', 'year': '1993'},
+]
+
 @app.route("/watchlist")
 def watchlist():
-	return render_template("watchlist.html", user=user)
+	return render_template("watchlist.html", user=user, movies=movies)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
