@@ -17,6 +17,10 @@ movies = [
 def watchlist():
 	return render_template("watchlist.html", user=user, movies=movies)
 
+@app.route("/watchlist2")
+def watchlist_with_static():
+	return render_template('watchlist_with_static.html', user=user, movies=movies) 
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
 	return "<h1>Hello, world !</h1>"
