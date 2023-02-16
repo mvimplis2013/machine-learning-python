@@ -35,6 +35,11 @@ def say_hello():
 def greet(name):
 	return "<h1>Hello, %s !</h1>" %name 
 
+# Video.js - HTML5 Video Player
+@app.route("/load-media")
+def load_media():
+	return render_template("load-media.html")
+	
 @app.cli.command()
 def main_flask():
 	click.echo("Hello, Miltos!")
