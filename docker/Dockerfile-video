@@ -10,6 +10,8 @@ RUN apt-get install python3-pip -y
 
 RUN apt-get install git -y
 
+RUN apt-get install urllib3==1.27
+
 RUN python3 -m pip install --upgrade pip 
 
 #RUN python3 -m pip install flask 
