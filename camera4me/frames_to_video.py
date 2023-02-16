@@ -25,11 +25,9 @@ for i in range(len(img_array)):
 
 out.release()
 
-###
-Check whether directory exists
-###
 def check_if_directory_exists( p ):
     #os.path.exists()
     return Path().is_dir()
 
 def video_main():
+    return
