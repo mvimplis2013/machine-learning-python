@@ -19,6 +19,7 @@ setup(
         "rabbitmq-consumer=messageKit.rabbitmq.consume:main",
         "async-consumer-rabmq=messageKit.rabbitmq.asynchronous_consumer:asynchronous_consumer_main",
         "async-publisher-rabmq=messageKit.rabbitmq.asynchronous_publisher:main",
+        "video-creator=camera4me.frames_to_video:video_main"
       ]
     }
 )
