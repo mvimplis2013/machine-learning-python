@@ -6,7 +6,7 @@ setup(
     name="video_converter",
     version="0.0.1",
     packages=["camera4me"],
-    install_requires=["opencv-python"],
+    install_requires=[],
     data_files=[],
     entry_points={
       "console_scripts": [
