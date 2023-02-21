@@ -5,6 +5,12 @@ import cv2 as cv
 import numpy as np
 import glob
 
+import logging
+LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
+logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
+
+LOGGER = logging.getLogger( __name__ )
+
 FRAMES_FOLDER = "/data/frames/"
 VIDEO_FOLDER = "/data/video/"
 
@@ -30,6 +36,6 @@ def check_if_directory_exists( p ):
     return Path().is_dir()
 
 def video_main():
-    print( "Power Moves" )
-    
+    LOGGER.info( "Power Moves" )
+
     return
