@@ -28,4 +28,4 @@ WORKDIR machine-learning-python
 
 CMD python3 setup-video.py install
 
-ENTRYPOINT video-creator 
+RUN video-creator 
