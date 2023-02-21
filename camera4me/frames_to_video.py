@@ -38,7 +38,7 @@ def check_if_directory_exists( p ):
 def video_main():
     LOGGER.info( "Video-Maker: Turn Image Sequence into Video" )
 
-    LOGGER.debug( check_if_directory_exists( FRAMES_FOLDER ) )
-    LOGGER.debug( check_if_directory_exists( VIDEO_FOLDER ) )
+    LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
+    LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
 
     return
