@@ -22,8 +22,10 @@ RUN python3 -m pip install --upgrade MarkupSafe==2.0.1
 
 RUN python3 -m pip install opencv-python 
 
+RUN python3 -m pip install MarkupSafe
+
 RUN git clone https://github.com/mvimplis2013/machine-learning-python.git
 
 WORKDIR machine-learning-python
 
-CMD python3 setup-video.py install
+RUN python3 setup-video.py install
