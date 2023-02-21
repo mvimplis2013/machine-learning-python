@@ -36,6 +36,9 @@ def check_if_directory_exists( p ):
     return Path().is_dir()
 
 def video_main():
-    LOGGER.info( "Power Moves" )
+    LOGGER.info( "Video-Maker: Turn Image Sequence into Video" )
+
+    LOGGER.debug( check_if_directory_exists( FRAMES_FOLDER ) )
+    check_if_directory_exists( VIDEO_FOLDER )
 
     return
