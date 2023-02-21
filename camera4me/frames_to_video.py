@@ -39,6 +39,6 @@ def video_main():
     LOGGER.info( "Video-Maker: Turn Image Sequence into Video" )
 
     LOGGER.debug( check_if_directory_exists( FRAMES_FOLDER ) )
-    check_if_directory_exists( VIDEO_FOLDER )
+    LOGGER.debug( check_if_directory_exists( VIDEO_FOLDER ) )
 
     return
