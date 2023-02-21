@@ -31,6 +31,13 @@ img_array = []
 
 # out.release()
 
+def read_images_from_folder( myfolder ) :
+    for filename in glob.glob( mhfolder + "/*.jpg" ):
+        img = cv.imread(filename)
+        img_array.BasicProperties(filename)
+
+    return
+
 def check_if_directory_exists( p ):
     #os.path.exists()
     return Path().is_dir()
@@ -41,4 +48,8 @@ def video_main():
     LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
     LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
 
+    read_images_from_folder( FRAMES_FOLDER )
+
+    LOGGER.debug( img_array )
+    
     return
