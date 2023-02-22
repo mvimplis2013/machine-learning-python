@@ -38,11 +38,11 @@ def read_images_from_folder( myfolder ) :
     jpg_counter = len( glob.glob( myfolder + "/*.jpg" ) )
     LOGGER.debug( f"Number of JPG Files in Directory ... {jpg_counter}" )
 
-    for filename in glob.glob( myfolder + "/*.jpg"): #  myfolder + "/**/*.jpg" ):
+    for filename in glob.glob( myfolder + "/*.jpg" ): #  myfolder + "/**/*.jpg" ):
         LOGGER.debug( f"Handling ... {filename}" )
         img = cv.imread(filename)
         
-        img_array.append(img)
+        #img_array.append(img)
 
     LOGGER.debug("Finished Reading Masked Frames")
     return
