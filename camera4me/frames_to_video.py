@@ -39,9 +39,9 @@ def read_images_from_folder( myfolder ) :
     LOGGER.debug( f"Number of JPG Files in Directory ... {jpg_counter}" )
 
     for filename in glob.glob( myfolder + "/**/*.jpg" ):
-        LOGGER.debug( f"Handling " )
+        LOGGER.debug( f"Handling ... {filename}" )
         img = cv.imread(filename)
-        img_array.BasicProperties(filename)
+        #img_array.BasicProperties(filename)
 
     return
 
