@@ -33,10 +33,10 @@ img_array = []
 
 def read_images_from_folder( myfolder ) :
     all_counter = len( glob.glob( myfolder ) )
-    LOGGER.debug( "Number of Files in a Directory ... f{all_counter}")
+    LOGGER.debug( f"Number of Files in Directory ... {all_counter}" )
 
     jpg_counter = len( glob.glob( myfolder + "/*.jpg" ) )
-    LOGGER.debug( "Number of JPG Files in a Directory ... f{jpg_counter}" )
+    LOGGER.debug( f"Number of JPG Files in Directory ... f{jpg_counter}" )
 
     for filename in glob.glob( myfolder + "/*.jpg" ):
         LOGGER.debug( f"Read" )
