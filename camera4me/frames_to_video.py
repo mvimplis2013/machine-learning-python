@@ -11,7 +11,7 @@ logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
 
 LOGGER = logging.getLogger( __name__ )
 
-FRAMES_FOLDER = "/data/frames/masked"
+FRAMES_FOLDER = "/data/frames/masked/"
 VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 
 img_array = []
@@ -38,7 +38,7 @@ def read_images_from_folder( myfolder ) :
     jpg_counter = len( glob.glob( myfolder + "/*.jpg" ) )
     LOGGER.debug( f"Number of JPG Files in Directory ... {jpg_counter}" )
 
-    for filename in glob.glob( myfolder + "/**/*.jpg" ):
+    for filename in glob.glob( myfolder + "/*.jpg"): #  myfolder + "/**/*.jpg" ):
         LOGGER.debug( f"Handling ... {filename}" )
         img = cv.imread(filename)
         
