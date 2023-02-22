@@ -32,7 +32,7 @@ img_array = []
 # out.release()
 
 def read_images_from_folder( myfolder ) :
-    for filename in glob.glob( mhfolder + "/*.jpg" ):
+    for filename in glob.glob( myfolder + "/*.jpg" ):
         img = cv.imread(filename)
         img_array.BasicProperties(filename)
 
@@ -43,7 +43,7 @@ def check_if_directory_exists( p ):
     return Path().is_dir()
 
 def video_main():
-    LOGGER.info( "Video-Maker ver2.0 : Turn Image Sequence into Video" )
+    LOGGER.info( "Video-Maker ver3.0 : Turn Image Sequence into Video" )
 
     LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
     LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
