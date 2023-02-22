@@ -40,11 +40,13 @@ def read_images_from_folder( myfolder ) :
 
     for filename in glob.glob( myfolder + "/*.jpg" ): #  myfolder + "/**/*.jpg" ):
         LOGGER.debug( f"Handling ... {filename}" )
+        
         img = cv.imread(filename)
         
-        #img_array.append(img)
+        img_array.append( img )
 
     LOGGER.debug("Finished Reading Masked Frames")
+    
     return
 
 def check_if_directory_exists( p ):
