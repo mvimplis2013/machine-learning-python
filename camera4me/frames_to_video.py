@@ -14,7 +14,7 @@ LOGGER = logging.getLogger( __name__ )
 FRAMES_FOLDER = "/data/frames/masked/"
 VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 
-img_array = []
+VIDEO_FILE_NAME = "parking-space-masked.avi"
 
 # for filename in glob.glob('C:/users/vibm/Downloads/rainy/2021-10-14-09_55_51/*.jpg'):
 #     img = cv.imread(filename)
@@ -38,6 +38,7 @@ def read_images_from_folder( myfolder ) :
     jpg_counter = len( glob.glob( myfolder + "/*.jpg" ) )
     LOGGER.debug( f"Number of JPG Files in Directory ... {jpg_counter}" )
 
+    img_array = []
     for filename in glob.glob( myfolder + "/*.jpg" ): #  myfolder + "/**/*.jpg" ):
         LOGGER.debug( f"Handling ... {filename}" )
         
@@ -47,7 +48,15 @@ def read_images_from_folder( myfolder ) :
 
     LOGGER.debug("Finished Reading Masked Frames")
     
-    return
+    return img_array
+
+def convert_images_to_video( images_all, name, size ):
+    out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'DIVX'), 15, size)
+
+    for img in images_all:
+        out.write(img)
+
+    out.release()
 
 def check_if_directory_exists( p ):
     #os.path.exists()
@@ -59,7 +68,13 @@ def video_main():
     LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
     LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
 
-    read_images_from_folder( FRAMES_FOLDER )
+    img_array = read_images_from_folder( FRAMES_FOLDER )
+
+    img = img_array[0]
+    [height, width, layers] = img.shape
+    size = (width, height)
+
+    convert_images_to_video( VIDEO_FILE_NAME, size )
 
     LOGGER.debug( img_array )
 
