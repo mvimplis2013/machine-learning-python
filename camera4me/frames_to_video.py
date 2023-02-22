@@ -61,6 +61,6 @@ def video_main():
 
     read_images_from_folder( FRAMES_FOLDER )
 
-    #LOGGER.debug( img_array )
+    LOGGER.debug( img_array )
 
     return
