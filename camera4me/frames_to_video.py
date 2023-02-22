@@ -55,10 +55,12 @@ def convert_images_to_video( images_all, name, size ):
 
     LOGGER.debug("Filling Video")
 
-    counter = 0
+    counter = 1
     for img in images_all:
-        LOGGER.debug(f"Wrote {counter+=1}")
+        LOGGER.debug(f"Wrote {counter}")
         out.write(img)
+
+        counter = counter + 1
 
     LOGGER.debug("Finished Filling")
     out.release()
