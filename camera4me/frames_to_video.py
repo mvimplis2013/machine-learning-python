@@ -14,7 +14,7 @@ LOGGER = logging.getLogger( __name__ )
 FRAMES_FOLDER = "/data/frames/masked/"
 VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 
-VIDEO_FILE_NAME = "parking-space-masked.avi"
+VIDEO_FILE_NAME = "/parking-space-masked.avi"
 
 # for filename in glob.glob('C:/users/vibm/Downloads/rainy/2021-10-14-09_55_51/*.jpg'):
 #     img = cv.imread(filename)
@@ -53,9 +53,14 @@ def read_images_from_folder( myfolder ) :
 def convert_images_to_video( images_all, name, size ):
     out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'DIVX'), 15, size)
 
+    LOGGER.debug("Filling Video")
+
+    counter = 0
     for img in images_all:
+        LOGGER.debug(f"Wrote {counter+=1}")
         out.write(img)
 
+    LOGGER.debug("Finished Filling")
     out.release()
 
 def check_if_directory_exists( p ):
@@ -74,7 +79,7 @@ def video_main():
     [height, width, layers] = img.shape
     size = (width, height)
 
-    convert_images_to_video( img_array, VIDEO_FILE_NAME, size )
+    convert_images_to_video( img_array, VIDEO_FOLDER + VIDEO_FILE_NAME, size )
 
     LOGGER.debug( img_array )
 
