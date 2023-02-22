@@ -11,8 +11,8 @@ logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
 
 LOGGER = logging.getLogger( __name__ )
 
-FRAMES_FOLDER = "/data/frames/"
-VIDEO_FOLDER = "/data/frames/"        # Store video on same folder with frames
+FRAMES_FOLDER = "/data/frames/masked"
+VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 
 img_array = []
 
@@ -41,8 +41,10 @@ def read_images_from_folder( myfolder ) :
     for filename in glob.glob( myfolder + "/**/*.jpg" ):
         LOGGER.debug( f"Handling ... {filename}" )
         img = cv.imread(filename)
-        #img_array.BasicProperties(filename)
+        
+        img_array.append(img)
 
+    LOGGER.debug("Finished Reading Masked Frames")
     return
 
 def check_if_directory_exists( p ):
