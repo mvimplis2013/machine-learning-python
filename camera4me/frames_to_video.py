@@ -12,7 +12,7 @@ logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
 LOGGER = logging.getLogger( __name__ )
 
 FRAMES_FOLDER = "/data/frames/"
-VIDEO_FOLDER = "/data/video/"
+VIDEO_FOLDER = "/data/frames/"        # Store video on same folder with frames
 
 img_array = []
 
