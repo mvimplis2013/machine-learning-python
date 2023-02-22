@@ -32,7 +32,14 @@ img_array = []
 # out.release()
 
 def read_images_from_folder( myfolder ) :
+    all_counter = size( glob.glob( myfolder ) )
+    LOGGER.debug( "Number of Files in a Directory ... f{all_counter}")
+
+    jpg_counter = glob.glob( myfolder + "/*.jpg" )
+    LOGGER.debug( "Number of JPG Files in a Directory ... f{jpg_counter}" )
+
     for filename in glob.glob( myfolder + "/*.jpg" ):
+        LOGGER.debug( f"Read" )
         img = cv.imread(filename)
         img_array.BasicProperties(filename)
 
