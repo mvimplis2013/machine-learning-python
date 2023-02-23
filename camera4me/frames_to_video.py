@@ -73,7 +73,7 @@ def convert_avi_to_mp4(avi_file_path, ouput_mp4_name):
     try:
         res = os.popen(f"ffmpeg -i {avi_file_path}")
     except Exception as ex:
-        LOGGER.error(F"-->{ex}")
+        LOGGER.error(f"-->{ex}")
 
     return
        
