@@ -74,7 +74,7 @@ def check_if_directory_exists( p ):
 
 def convert_avi_to_mp4(avi_file_path, ouput_mp4_name):
     try:
-        res = os.popen(f"ffmpeg -i {avi_file_path} -ac 2 -b")
+        res = os.popen( FFMPEG_COMMAND )
     except Exception as ex:
         LOGGER.error(f"-->{ex}")
 
