@@ -93,7 +93,7 @@ def video_main():
 
     LOGGER.debug( img_array )
     
-    convert_avi_to_mp4('avi_file', 'mp4_file')
+    convert_avi_to_mp4("avi_file", "mp4_file")
     
     return
 
