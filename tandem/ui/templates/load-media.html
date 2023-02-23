@@ -37,7 +37,7 @@
 			poster: 'https://vjs.zencdn.net/v/oceans.png',
 			src: [{
 				//src: 'https://vjs.zencdn.net/v/oceans.mp4',
-				src: {{ url_for('static', filename="downloads/parking_space_masked.mp4", code=301) }},
+				src: "{{ url_for('static', filename='parking_space_masked.mp4', code=301) }}",
 				type: 'video/mp4'
 			}]
 		});
