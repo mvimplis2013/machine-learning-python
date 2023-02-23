@@ -69,6 +69,14 @@ def check_if_directory_exists( p ):
     #os.path.exists()
     return Path().is_dir()
 
+def convert_avi_to_mp4(avi_file_path, ouput_mp4_name):
+    try:
+        res = os.popen(f"ffmpeg -i {avi_file_path}")
+    except Exception as ex:
+        LOGGER.error(F"-->{ex}")
+
+    return
+       
 def video_main():
     LOGGER.info( "Video-Maker ver3.0 : Turn Image Sequence into Video" )
 
@@ -84,5 +92,8 @@ def video_main():
     convert_images_to_video( img_array, VIDEO_FOLDER + VIDEO_FILE_NAME, size )
 
     LOGGER.debug( img_array )
-
+    
+    convert_avi_to_mp4('avi_file', 'mp4_file')
+    
     return
+
