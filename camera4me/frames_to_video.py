@@ -14,7 +14,10 @@ LOGGER = logging.getLogger( __name__ )
 FRAMES_FOLDER = "/data/frames/masked/"
 VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 
+# VIDEO CONVERSION
 VIDEO_FILE_NAME = "/parking-space-masked.avi"
+MP4_NAME = "/parking-space-masked.mp4"
+FFMPEG_COMMAND = f"ffmpeg -i {VIDEO_FILE_NAME} -ac 2 -b:v 2000k -c:a aac -c:v libx264 -b:a 160k -vprofile high -bf 0 -strict experimental -f mp4 {MP4_NAME}"
 
 # for filename in glob.glob('C:/users/vibm/Downloads/rainy/2021-10-14-09_55_51/*.jpg'):
 #     img = cv.imread(filename)
@@ -71,7 +74,7 @@ def check_if_directory_exists( p ):
 
 def convert_avi_to_mp4(avi_file_path, ouput_mp4_name):
     try:
-        res = os.popen(f"ffmpeg -i {avi_file_path}")
+        res = os.popen(f"ffmpeg -i {avi_file_path} -ac 2 -b")
     except Exception as ex:
         LOGGER.error(f"-->{ex}")
 
