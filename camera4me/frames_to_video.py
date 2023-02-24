@@ -17,7 +17,7 @@ VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 # VIDEO CONVERSION
 VIDEO_FILE_NAME = "parking-space-masked.avi"
 MP4_NAME = "parking-space-masked.mp4"
-FFMPEG_COMMAND = f"ffmpeg -i {VIDEO_FOLDER+VIDEO_FILE_NAME} -c:v libx264 -preset slow -crf 19 -c:a copy {VIDEO_FOLDER+MP4_NAME}"
+FFMPEG_COMMAND = f"ffmpeg -y -i {VIDEO_FOLDER+VIDEO_FILE_NAME} -c:v libx264 -preset slow -crf 19 -c:a copy {VIDEO_FOLDER+MP4_NAME}"
 
 # for filename in glob.glob('C:/users/vibm/Downloads/rainy/2021-10-14-09_55_51/*.jpg'):
 #     img = cv.imread(filename)
