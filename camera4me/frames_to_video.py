@@ -19,6 +19,8 @@ VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 # VIDEO CONVERSION
 VIDEO_FILE_NAME = "parking-space-masked.avi"
 MP4_NAME = "parking-space-masked.mp4"
+WEBM_NAME = "parking-space-masked.webm"
+
 FFMPEG_COMMAND = f"ffmpeg -y -i {VIDEO_FOLDER+VIDEO_FILE_NAME} -c:v libx264 -preset slow -crf 19 -c:a copy {VIDEO_FOLDER+MP4_NAME}"
 FFMPEG_COMMAND_SIMPLE = "ffmpeg -y -i /data/frames/parking-space-masked.avi /data/frames/parking-space-masked.mp4"
 
@@ -58,7 +60,8 @@ def read_images_from_folder( myfolder ) :
 
 def convert_images_to_video( images_all, name, size ):
     #out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'DIVX'), 15, size)
-    out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'mp4v'), 20.0, size)
+    #out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'mp4v'), 20.0, size)
+    out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'vp80'), 10, size)
 
     LOGGER.debug("Filling Video")
 
@@ -98,7 +101,8 @@ def video_main():
     size = (width, height)
 
     #convert_images_to_video( img_array, VIDEO_FOLDER + VIDEO_FILE_NAME, size )
-    convert_images_to_video( img_array, VIDEO_FOLDER + MP4_NAME, size )
+    #convert_images_to_video( img_array, VIDEO_FOLDER + MP4_NAME, size )
+    convert_images_to_video( img_array, VIDEO_FOLDER + WEBM_NAME, size)
 
     LOGGER.debug( img_array )
     
