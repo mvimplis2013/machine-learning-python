@@ -57,7 +57,8 @@ def read_images_from_folder( myfolder ) :
     return img_array
 
 def convert_images_to_video( images_all, name, size ):
-    out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'DIVX'), 15, size)
+    #out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'DIVX'), 15, size)
+    out = cv.VideoWriter( name, cv.VideoWriter_fourcc(*'mp4v'), 20.0, size)
 
     LOGGER.debug("Filling Video")
 
@@ -100,7 +101,7 @@ def video_main():
 
     LOGGER.debug( img_array )
     
-    convert_avi_to_mp4("avi_file", "mp4_file")
+    #convert_avi_to_mp4("avi_file", "mp4_file")
     
     return
 
