@@ -97,7 +97,8 @@ def video_main():
     [height, width, layers] = img.shape
     size = (width, height)
 
-    convert_images_to_video( img_array, VIDEO_FOLDER + VIDEO_FILE_NAME, size )
+    #convert_images_to_video( img_array, VIDEO_FOLDER + VIDEO_FILE_NAME, size )
+    convert_images_to_video( img_array, VIDEO_FOLDER + MP4_NAME, size )
 
     LOGGER.debug( img_array )
     
