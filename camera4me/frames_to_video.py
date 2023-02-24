@@ -5,6 +5,8 @@ import cv2 as cv
 import numpy as np
 import glob
 
+import subprocess
+
 import logging
 LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
 logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
@@ -18,7 +20,7 @@ VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 VIDEO_FILE_NAME = "parking-space-masked.avi"
 MP4_NAME = "parking-space-masked.mp4"
 FFMPEG_COMMAND = f"ffmpeg -y -i {VIDEO_FOLDER+VIDEO_FILE_NAME} -c:v libx264 -preset slow -crf 19 -c:a copy {VIDEO_FOLDER+MP4_NAME}"
-FFMPEG_COMMAND_SIMPLE = f"ffmpeg -y -i {VIDEO_FOLDER+VIDEO_FILE_NAME} {VIDEO_FOLDER+MP4_NAME}"
+FFMPEG_COMMAND_SIMPLE = "ffmpeg -y -i /data/video/frames/parking-space-masked.avi /data/video/frames/parking-space-masked.mp4"
 
 # for filename in glob.glob('C:/users/vibm/Downloads/rainy/2021-10-14-09_55_51/*.jpg'):
 #     img = cv.imread(filename)
