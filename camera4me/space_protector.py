@@ -8,6 +8,12 @@ import subprocess
 import http.server
 from prometheus_client import start_http_server
 
+import logging
+LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
+logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
+
+LOGGER = logging.getLogger( __name__ )
+
 class ServerHandler(http.server.BaseHTTPRequestHandler):
   def do_GET(self):
     self.send_response(200)
@@ -52,14 +58,14 @@ def inside_date_folder(folder):
 	# Check existing folders 
 	if isdir(folder) & (tdelta.total_seconds() > DELETE_EMPTY_FOLDERS_AFTER_SECS) & (len(files) == 0):
 		# Empty + Old Directory
-		print(f"Ready to Remove an Empty Folder ... {folder}")
+		LOGGER.debug(f"Ready to Remove an Empty Folder ... {folder}")
 		rmdir(folder)
 
 		return
 
 	if (now.minute % 10 == 0) & (now.second < 10):
 		# Every 10 minutes
-		print(f"Number of Frames inside Folder .... {now.strftime('%Y-%m-%d %H:%M:%S')} : {folder} --> {len(files)}")
+		LOGGER.debug(f"Number of Frames inside Folder .... {now.strftime('%Y-%m-%d %H:%M:%S')} : {folder} --> {len(files)}")
 
 	for f in files:
 		#print(f"Current Frame .... {f} / isFile = {isfile(f)}")
@@ -84,13 +90,13 @@ def inside_date_folder(folder):
 			#	print(f"Frame Creation Time .... {f} --> {hours}-(hrs) , {minutes}-(mins)")
 
 			if older_than_days(days):
-				print(f"Ready to Delete Frame More than Day(s) Old .... {f} / {days}-(days)")
+				LOGGER.debug(f"Ready to Delete Frame More than Day(s) Old .... {f} / {days}-(days)")
 				remove(f)
 			elif older_than_hours(hours):
-				print(f"Ready to Delete Frame More than Hours(s) Old .... {f} / {hours}-(hrs)")
+				LOGGER.debug(f"Ready to Delete Frame More than Hours(s) Old .... {f} / {hours}-(hrs)")
 				remove(f)
 			elif older_than_minutes(minutes):
-				print(f"Ready to Delete Frame More than Minute(s) Old ... {f} / {minutes}-(mins)")
+				LOGGER.debug(f"Ready to Delete Frame More than Minute(s) Old ... {f} / {minutes}-(mins)")
 				remove(f)
 			
 def count_frames(folder):
@@ -98,10 +104,10 @@ def count_frames(folder):
 		chdir(folder)
 		files_dirs = listdir(".")
 	except OSError as x:
-		print(f"Cannot change into FRAMES folder ... {x}")
+		LOGGER.debug(f"Cannot change into FRAMES folder ... {x}")
 		exit(1)
 
-	print(f"Folders inside Frames = {files_dirs}")
+	LOGGER.debug(f"Folders inside Frames = {files_dirs}")
 	
 	for f in files_dirs:
 		if isdir(f):
@@ -114,7 +120,7 @@ def run_watchdog():
 	print('HTTP Server available on port 9091')
 	server.serve_forever()
 	
-	print(f"Ready to start hard-disk watchdogs")
+	LOGGER.debug(f"Ready to start hard-disk watchdog")
 
 	#subprocess.call([ "polite-messenger", "-n", "vibm-mq" ])
 
