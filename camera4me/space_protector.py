@@ -114,11 +114,11 @@ def count_frames(folder):
 			inside_date_folder(f)
 
 def run_watchdog():
-	start_http_server(9090)
-	server = http.server.HTTPServer(('', 9091), ServerHandler)
-	print('Prometheus Metrics Available on Port 9090 / metrics')
-	print('HTTP Server available on port 9091')
-	server.serve_forever()
+	#start_http_server(9090)
+	#server = http.server.HTTPServer(('', 9091), ServerHandler)
+	#print('Prometheus Metrics Available on Port 9090 / metrics')
+	#print('HTTP Server available on port 9091')
+	#server.serve_forever()
 	
 	LOGGER.debug(f"Ready to start hard-disk watchdog")
 
