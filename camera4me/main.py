@@ -15,6 +15,12 @@ MONITORING_DURATION_MINS = 10
 # Wait SECs for Next Snapshot
 SLEEP_BETWEEN_SNAPSHOTS = 6
 
+import logging
+LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
+logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
+
+LOGGER = logging.getLogger( __name__ )
+
 # Read the Camera Video Output
 def open_rtsp_stream(ip, username, password):
     # Make folder to store frames
@@ -113,7 +119,12 @@ def main_grab():
     OUTPUT_DIR = "/dt2/"
 
     camera_all = ["10.124.144.118", "admin", "!ntrAcom"]
-    open_rtsp_stream(camera_all[0], camera_all[1], camera_all[2])
+    try:
+        LOGGER.debug("Ready to start Frame-Grabbing from Live Camera Link")
+
+        open_rtsp_stream(camera_all[0], camera_all[1], camera_all[2])
+    except Exception as ex:
+        LOGGER.error( ex )
 
     # Upload frames ito Google Drive
     #main_google_drive_client()
