@@ -35,7 +35,15 @@ def open_rtsp_stream(ip, username, password):
 
     # Grab first frame
     vcap = cv2.VideoCapture("rtsp://" + username + ":" + password + "@" + ip)
+    
+    # Check Success
+    if not vcap.isOpened():
+        raise Exception("Could Not Open Video Device")
+
     ret, frame = vcap.read()
+
+    if not ret:
+        raise Exception("Cannot Receive Frame (Stream End ?)")
 
     current_dt = datetime.now()
     previous_dt = datetime.now()
