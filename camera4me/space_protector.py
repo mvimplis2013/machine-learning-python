@@ -70,7 +70,8 @@ def inside_date_folder(folder):
 	for f in files:
 		#print(f"Current Frame .... {f} / isFile = {isfile(f)}")
 
-		if f.startswith( "frame_" ) & f.endswith( ".jpg" ):
+		##if f.startswith( "frame_" ) & f.endswith( ".jpg" ):
+		if f.find("frame_") >= 0 and f.endswith(".jpg"):
 			# A video-snapshot
 			f = folder + '/' + f
 			#print(f"Current Frame Path Name .... {f}")
