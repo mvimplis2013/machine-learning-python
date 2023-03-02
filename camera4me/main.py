@@ -39,14 +39,14 @@ def open_rtsp_stream(ip, username, password):
     # Check Success
     if not vcap.isOpened():
         #raise Exception("Could Not Open Video Device")
-        LOGGER.error(f"!!! Could Not Open Video Device ... {"rtsp://" + username + ":" + password + "@" + ip} !!!")
+        LOGGER.error(f"!!! Could Not Open Video Device ... {'rtsp://' + username + ':' + password + '@' + ip} !!!")
         return
 
     ret, frame = vcap.read()
 
     if not ret:
         #raise Exception("Cannot Receive Frame (Stream End ?)")
-        LOGGER.error(f"*** Cannot Receive Frame (Stream End ?) ... {"rtsp://" + username + ":" + password + "@" + ip} ***")
+        LOGGER.error(f"*** Cannot Receive Frame (Stream End ?) ... {'rtsp://' + username + ':' + password + '@' + ip} ***")
         return
 
     current_dt = datetime.now()
