@@ -31,4 +31,4 @@ WORKDIR machine-learning-python
 
 RUN python3 setup-video.py install
 
-CMD ["video-creator --use_folder='pipis'"]
+CMD ["video-creator", "--use_folder='pipis'"]
