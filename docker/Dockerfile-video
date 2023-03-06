@@ -31,5 +31,5 @@ WORKDIR machine-learning-python
 
 RUN python3 setup-video.py install
 
-#ENTRYPOINT ["video-creator"]
+ENTRYPOINT ["video-creator", "--frames_folder", "space"]
 #CMD ["--frames_folder", "space"]
