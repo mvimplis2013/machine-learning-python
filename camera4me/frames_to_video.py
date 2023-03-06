@@ -98,7 +98,7 @@ def video_main():
 
     parser = argparse.ArgumentParser( description='Arguments for Video-Maker Tool' )
 
-    parser.add_argument( --use-folder', required=False, type=str, help='Read Frames from Folder' )
+    parser.add_argument( '--use-folder', required=False, type=str, help='Read Frames from Folder' )
     #parser.add_argument( '-p', '--password', required=True, type=str, help='Password for RabbitMQ Connection' )
     
     # Location
