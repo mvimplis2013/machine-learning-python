@@ -1,6 +1,8 @@
 import os 
 from pathlib import Path
 
+import argparse
+
 import cv2 as cv
 import numpy as np
 import glob
@@ -89,7 +91,22 @@ def convert_avi_to_mp4(avi_file_path, ouput_mp4_name):
     return
        
 def video_main():
-    LOGGER.info( "Video-Maker ver3.0 : Turn Image Sequence into Video" )
+    """ Main """    
+    LOGGER.info( "*********************************************************" )
+    LOGGER.info( "** Video-Maker ver3.0 : Turn Image Sequence into Video **" )
+    LOGGER.info( "*********************************************************" )
+
+    parser = argparse.ArgumentParser( description='Arguments for Video-Maker Tool' )
+
+    parser.add_argument( '-u', '--user', required=True, type=str, help='Username for RabbitMQ Connection', default='tandem' )
+    parser.add_argument( '-p', '--password', required=True, type=str, help='Password for RabbitMQ Connection' )
+    
+    # Location
+    parser.add_argument( '--host', required=True, type=str, help='RabbitMQ Server IP-Address')
+    parser.add_argument( '--port', required=False, type=int, help='RabbitMQ Server AMQP-Port', default=5672 )
+
+    args = parser.parse_args()
+
 
     LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
     LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
@@ -109,4 +126,3 @@ def video_main():
     #convert_avi_to_mp4("avi_file", "mp4_file")
     
     return
-
