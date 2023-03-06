@@ -98,8 +98,8 @@ def video_main():
 
     parser = argparse.ArgumentParser( description='Arguments for Video-Maker Tool' )
 
-    parser.add_argument( '--use_folder', required=False, type=str, help='Read Frames from Folder', default=None )
-    #parser.add_argument( '-p', '--password', required=True, type=str, help='Password for RabbitMQ Connection' )
+    parser.add_argument( '--frames_folder', required=False, type=str, help='Read Frames from Folder', default=None )
+    parser.add_argument( '--video_folder', required=False, type=str, help='Save Video into Folder', default=None )
     
     # Location
     #parser.add_argument( '--host', required=True, type=str, help='RabbitMQ Server IP-Address')
@@ -107,19 +107,27 @@ def video_main():
 
     args = parser.parse_args()
 
-    if args.use_folder is None:
-        LOGGER.debug("No Input Folder with Frames Specified !")
-    else:
-        LOGGER.debug(f"Input Folder with Frames Specified ... {args.use_folder}")
-        
+    if args.frames_folder is None:
+        LOGGER.debug("No Frames-Folder is Specified ... using Default !")
 
+        # ==> Use Default Folders
+        LOGGER.debug( f"Is +Default+ Frames Folder OK : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
+        #LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
+
+        #img_array = read_images_from_folder( FRAMES_FOLDER )
+    else:
+        LOGGER.debug(f"Frames-Folder is User-Specified ... {args.frames_folder}")
+
+        # ==> User-specified Folder
+        LOGGER.debug( f"Is +User Specified+ Frames-Folder OK : {args.frames_folder} --> {check_if_directory_exists(args.frames_folder)}" )
+        #LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
+
+        #img_array = read_images_from_folder( FRAMES_FOLDER )
+
+        
     return
 
-    LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
-    LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
-
-    img_array = read_images_from_folder( FRAMES_FOLDER )
-
+    
     img = img_array[0]
     [height, width, layers] = img.shape
     size = (width, height)
