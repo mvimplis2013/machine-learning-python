@@ -109,7 +109,10 @@ def video_main():
 
     if args.use_folder is None:
         LOGGER.debug("No Input Folder with Frames Specified !")
+    else:
+        LOGGER.debug(f"Input Folder with Frames Specified ... {args.use_folder}")
         
+
     return
 
     LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
