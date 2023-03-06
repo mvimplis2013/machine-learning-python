@@ -98,7 +98,7 @@ def video_main():
 
     parser = argparse.ArgumentParser( description='Arguments for Video-Maker Tool' )
 
-    parser.add_argument( '--use-folder', required=False, type=str, help='Read Frames from Folder' )
+    parser.add_argument( '--use_folder', required=False, type=str, help='Read Frames from Folder', default=None )
     #parser.add_argument( '-p', '--password', required=True, type=str, help='Password for RabbitMQ Connection' )
     
     # Location
@@ -106,6 +106,11 @@ def video_main():
     #parser.add_argument( '--port', required=False, type=int, help='RabbitMQ Server AMQP-Port', default=5672 )
 
     args = parser.parse_args()
+
+    if args.use_folder is None:
+        LOGGER.debug("No Input Folder with Frames Specified !")
+        
+    return
 
     LOGGER.debug( f"Check Folder Exists : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
     LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
