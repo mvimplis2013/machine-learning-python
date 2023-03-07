@@ -79,7 +79,7 @@ def convert_images_to_video( images_all, name, size ):
 
 def check_if_directory_exists( p ):
     #os.path.exists()
-    return Path().is_dir()
+    return Path(p).is_dir()
 
 def convert_avi_to_mp4(avi_file_path, ouput_mp4_name):
     try:
@@ -123,7 +123,6 @@ def video_main():
         #LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
 
         #img_array = read_images_from_folder( FRAMES_FOLDER )
-
         
     return
 
