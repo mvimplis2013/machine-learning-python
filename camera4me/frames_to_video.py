@@ -15,8 +15,8 @@ logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
 
 LOGGER = logging.getLogger( __name__ )
 
-FRAMES_FOLDER = "/data/frames/"
-VIDEO_FOLDER = "/data/frames/masked/"        # Store video on parent-folder
+FRAMES_FOLDER = "/data/video/"
+VIDEO_FOLDER = "/data/video/masked/"        # Store video on parent-folder
 
 # VIDEO CONVERSION
 VIDEO_FILE_NAME = "parking-space-masked.avi"
