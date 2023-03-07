@@ -77,6 +77,7 @@ def convert_images_to_video( images_all, name, size ):
     LOGGER.debug("Finished Filling")
     out.release()
 
+""" *** CHECK_IF_DIRECTORY_EXISTS *** """
 def check_if_directory_exists( p_in ):
     #os.path.exists()
     p = Path(p_in)
@@ -84,8 +85,8 @@ def check_if_directory_exists( p_in ):
     #print("Out")
     if p.is_dir():
         print("In")
-        #[LOGGER.debug(f"Folder ... {x}") for x in p.iterdir() if x.is_dir()]
-        #[LOGGER.debug(f"File   ... {x}") for x in p.iterdir() if x.is_file()]
+        [LOGGER.debug(f"Folder ... {x}") for x in p.iterdir() if x.is_dir()]
+        [LOGGER.debug(f"File   ... {x}") for x in p.iterdir() if x.is_file()]
 
     return p.is_dir()
 
