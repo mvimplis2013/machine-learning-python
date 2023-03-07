@@ -84,7 +84,8 @@ def check_if_directory_exists( p_in ):
     #print("Out")
     if p.is_dir():
         #print("In")
-        [LOGGER.debug(x) for x in p.iterdir() if x.is_dir()]
+        [LOGGER.debug(f"Folder ... {x}") for x in p.iterdir() if x.is_dir()]
+        [LOGGER.debug(f"File   ... {x}") for x in p.iterdir() if x.is_file()]
 
     return p.is_dir()
 
