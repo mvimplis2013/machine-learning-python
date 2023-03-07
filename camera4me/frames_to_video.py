@@ -15,7 +15,7 @@ logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
 
 LOGGER = logging.getLogger( __name__ )
 
-FRAMES_FOLDER = "/data/video/frames/masked/"
+FRAMES_FOLDER = "/data/"
 VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
 
 # VIDEO CONVERSION
@@ -77,9 +77,13 @@ def convert_images_to_video( images_all, name, size ):
     LOGGER.debug("Finished Filling")
     out.release()
 
-def check_if_directory_exists( p ):
+def check_if_directory_exists( p_in ):
     #os.path.exists()
-    return Path(p).is_dir()
+    p = Path(p_in)
+
+    [x for x in p.iterdir() if x.is_dir()]
+
+    return p.is_dir()
 
 def convert_avi_to_mp4(avi_file_path, ouput_mp4_name):
     try:
