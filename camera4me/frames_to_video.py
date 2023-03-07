@@ -83,9 +83,9 @@ def check_if_directory_exists( p_in ):
 
     #print("Out")
     if p.is_dir():
-        #print("In")
-        [LOGGER.debug(f"Folder ... {x}") for x in p.iterdir() if x.is_dir()]
-        [LOGGER.debug(f"File   ... {x}") for x in p.iterdir() if x.is_file()]
+        print("In")
+        #[LOGGER.debug(f"Folder ... {x}") for x in p.iterdir() if x.is_dir()]
+        #[LOGGER.debug(f"File   ... {x}") for x in p.iterdir() if x.is_file()]
 
     return p.is_dir()
 
@@ -122,7 +122,7 @@ def video_main():
         LOGGER.debug( f"Is +Default+ Frames Folder OK : {FRAMES_FOLDER} --> {check_if_directory_exists( FRAMES_FOLDER )}" )
         #LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
 
-        #img_array = read_images_from_folder( FRAMES_FOLDER )
+        img_array = read_images_from_folder( FRAMES_FOLDER )
     else:
         LOGGER.debug(f"Frames-Folder is User-Specified ... {args.frames_folder}")
 
@@ -130,7 +130,7 @@ def video_main():
         LOGGER.debug( f"Is +User Specified+ Frames-Folder OK : {args.frames_folder} --> {check_if_directory_exists(args.frames_folder)}" )
         #LOGGER.debug( f"Check Folder Exists : {VIDEO_FOLDER}  --> {check_if_directory_exists( VIDEO_FOLDER )}" )
 
-        #img_array = read_images_from_folder( FRAMES_FOLDER )
+        img_array = read_images_from_folder( args.frames_folder )
         
     return
 
