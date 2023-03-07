@@ -81,7 +81,8 @@ def check_if_directory_exists( p_in ):
     #os.path.exists()
     p = Path(p_in)
 
-    [x for x in p.iterdir() if x.is_dir()]
+    if p.is_dir():
+        [x for x in p.iterdir() if x.is_dir()]
 
     return p.is_dir()
 
