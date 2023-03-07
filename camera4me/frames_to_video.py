@@ -16,7 +16,7 @@ logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
 LOGGER = logging.getLogger( __name__ )
 
 FRAMES_FOLDER = "/data/frames/"
-VIDEO_FOLDER = "/data/frames/"        # Store video on parent-folder
+VIDEO_FOLDER = "/data/frames/masked/"        # Store video on parent-folder
 
 # VIDEO CONVERSION
 VIDEO_FILE_NAME = "parking-space-masked.avi"
@@ -132,6 +132,13 @@ def video_main():
 
         img_array = read_images_from_folder( args.frames_folder )
         
+    if args.video_folder is None:
+        # Use Default Video Folder
+        LOGGER.debug(f"No Video-Folder is Specified ... using Default !")
+
+        # Check whether folder exists
+        LOGGER.debug(f"Is +Default+ Video Folder OK : {VIDEO_FOLDER} --> {check_if_directory_exists( VIDEO_FOLDER )}" )
+
     return
 
     
