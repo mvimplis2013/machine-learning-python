@@ -1,4 +1,7 @@
 #c:\Users\vibm\ML\Tandem\machine-learning-python
+# git add .
+# git commit -m ""
+# git push origin master
 
 import os 
 from pathlib import Path
