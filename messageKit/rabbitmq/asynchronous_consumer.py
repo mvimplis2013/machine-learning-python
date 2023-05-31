@@ -378,8 +378,10 @@ def asynchronous_consumer_main():
 	amqp_url = f'amqp://{args.user}:{args.password}@{args.host}:{args.port}/%2F'
 	LOGGER.info(amqp_url)
 	
-	print( f"Message Queue User = ${args.user}" )
-	print( f"Message Queue Password = ${args.password}")
+	print( f"Message Queue User = {args.user}" )
+	print( f"Message Queue Password = {args.password}" )
+	print( f"Messsage Queue IP = {args.host}" )
+	print( f"Message Queue Port = {args.port}" )
 	
 	#example_consumer = ReconnectingExampleConsumer(amqp_url)
 	#example_consumer.run()
