@@ -379,8 +379,8 @@ def asynchronous_consumer_main():
 	LOGGER.info(amqp_url)
 	#print( args.user )
 	
-	example_consumer = ReconnectingExampleConsumer(amqp_url)
-	example_consumer.run()
+	#example_consumer = ReconnectingExampleConsumer(amqp_url)
+	#example_consumer.run()
 
 # ******  ENTRYPOINT ******
 if __name__ == '__main__':
