@@ -359,7 +359,7 @@ class ReconnectingExampleConsumer(object):
 			self._maybe_reconnect()
 
 def asynchronous_consumer_main():
-	print("! Inside main() !")
+	print("! Inside Messaging-Operator of Microservices World -- MAIN() !")
 
 	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
 
