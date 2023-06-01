@@ -396,7 +396,7 @@ class ExamplePublisher(object):
 		return
 
 def main():
-	logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT)
+	logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
 	LOGGER.info("Ready to Start the ASYNCHRONOUS_PUBLISHER to RabbitMQ !")
 
