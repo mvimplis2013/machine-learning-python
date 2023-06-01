@@ -109,7 +109,7 @@ class ExamplePublisher(object):
 
 		"""
 
-		LOGGER.info("Creating a New Channe ...")
+		LOGGER.info("Creating a New Channel ...")
 
 		self._connection.channel(on_open_callback=self.on_channel_open)
 
@@ -401,7 +401,7 @@ def main():
 	LOGGER.info("Ready to Start the ASYNCHRONOUS_PUBLISHER to RabbitMQ !")
 
 	example = ExamplePublisher(
-		"amqp://tandem:tandem123@10.244.84.166:5672/%2F?connection_attempts=3&heartbeat=3600"
+		"amqp://tandem:tandem123@10.104.236.228:5672/%2F?connection_attempts=3&heartbeat=3600"
 		)
 
 	example.run()
