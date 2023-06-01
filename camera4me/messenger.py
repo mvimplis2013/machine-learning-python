@@ -10,9 +10,10 @@ import redis
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
+LOGGER = logging.getLogger(__name__)
 
 def call_mq_server( host, password ):
-	print(f"Ready to Start Sending Messages with RabbitMQ")
+	LOGGER.info(f"Ready to Start Sending Messages with RabbitMQ")
 
 	try:
 		#conn_params = pika.ConnectionParameters('amqp://www-data:rabbit_pwd@rabbit1/web_messages')
