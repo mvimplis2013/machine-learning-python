@@ -382,9 +382,9 @@ def asynchronous_consumer_main():
 	print( f"Message Queue Password = {args.password}" )
 	print( f"Messsage Queue IP = {args.host}" )
 	print( f"Message Queue Port = {args.port}" )
-	
-	#example_consumer = ReconnectingExampleConsumer(amqp_url)
-	#example_consumer.run()
+
+	example_consumer = ReconnectingExampleConsumer(amqp_url)
+	example_consumer.run()
 
 # ******  ENTRYPOINT ******
 if __name__ == '__main__':
