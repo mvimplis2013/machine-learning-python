@@ -9,6 +9,7 @@ import pika
 from pika.exchange_type import ExchangeType
 
 LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 LOGGER = logging.getLogger(__name__)
 
 class ExampleConsumer(object):
@@ -359,9 +360,7 @@ class ReconnectingExampleConsumer(object):
 			self._maybe_reconnect()
 
 def asynchronous_consumer_main():
-	print("! Inside Messaging-Operator of Microservices World -- MAIN() !")
-
-	logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+	LOGGER.info("! Inside Messaging-Operator of Microservices World -- MAIN() !")
 
 	parser = argparse.ArgumentParser( description='Arguments for Asynchronous RabbitMQ Basic Message Consumer' )
 
