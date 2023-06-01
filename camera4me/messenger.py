@@ -9,7 +9,9 @@ import redis
 
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
+logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+#logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
 
 def call_mq_server( host, password ):
@@ -184,7 +186,7 @@ def call_redis_to_communicate( host, port, username, password ):
 
 
 def __main_mq_client__():
-	LOGGER.debug(f"Ready to Handle a Message !!!")
+	LOGGER.debug(f"Ready to Handle Message !!!")
 
 	parser = argparse.ArgumentParser( description='Handle Messages Between MicroServices' )
 
