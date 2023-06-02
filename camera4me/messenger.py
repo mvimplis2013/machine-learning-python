@@ -118,11 +118,10 @@ def basic_msg_consumer(topic, channel):
 
 	LOGGER.info(f"Ready to start consuming messages on Topic ... {topic}")
 
-    connection = pika.BlockingConnection(
-    	pika.ConnectionParameters(host='localhost'))
+	connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 
-    main_channel = connection.channel()
-    
+	main_channel = connection.channel()
+
 	return
 
 def call_rabbit_broker( action, host, port, username, password, topic="parking-slots" ):
