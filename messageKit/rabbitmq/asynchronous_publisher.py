@@ -404,5 +404,5 @@ def main():
 		"amqp://tandem:tandem123@10.104.236.228:5672/%2F?connection_attempts=3&heartbeat=3600"
 		)
 
-	#example.run()
+	example.run()
 
