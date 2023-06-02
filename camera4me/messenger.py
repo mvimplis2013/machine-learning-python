@@ -50,11 +50,11 @@ def basic_msg_publisher(connection, topic, channel):
 	"""
 	Basic Message Publisher
 	"""
-	LOGGER.info( "************************************************************************************" )
-	LOGGER.info( "** RabbitMQ is Message-Broker ... Accepts messages from publishers && routes them **" )
-	LOGGER.info( "**  [x] IF THERE WERE QUEUES to route to ==> stores them for later consumption    **" )
-	LOGGER.info( "**  [x] Otherwise ==> Immediately delivers to consumers if any                    **" )
-	LOGGER.info( "************************************************************************************" ) 
+	LOGGER.info( "****************************************************************************" )
+	LOGGER.info( " RabbitMQ Message-Broker ... Accepts messages from publishers && routes them" )
+	LOGGER.info( "  [x] IF THERE WERE QUEUES to route to ==> stores them for later consumption" )
+	LOGGER.info( "  [x] Otherwise ==> Immediately delivers to consumers if any                " )
+	LOGGER.info( "****************************************************************************" ) 
 	
 	#channel.queue_declare(queue='hello')
 
