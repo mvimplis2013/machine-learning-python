@@ -71,11 +71,11 @@ def basic_msg_publisher(connection, topic, channel):
 
 	channel.basic_publish(
 		# the exchange to publish to
-		topic, 
+		exchange=topic, 
 		# the routing key to bind on
-		'test',
+		routing_key='test',
 		# the body
-        'queue:group',
+        body='queue:group',
 		pika.BasicProperties(
 			content_type='text/plain',
 			delivery_mode=DeliveryMode.Transient
@@ -111,17 +111,20 @@ def basic_msg_publisher(connection, topic, channel):
 
 	return
 
-def basic_msg_consumer(topic, channel):
+def basic_msg_consumer(connection, topic, channel):
 	"""
 	Basic Message Consumer
 	"""
 
 	LOGGER.info(f"Ready to start consuming messages on Topic ... {topic}")
 
-	connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+	#connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 
-	main_channel = connection.channel()
+	#main_channel = connection.channel()
 
+	consumer_channel = connection.channel() 
+
+	bind_channel = connection.channel()
 	return
 
 def call_rabbit_broker( action, host, port, username, password, topic="parking-slots" ):
@@ -160,7 +163,7 @@ def call_rabbit_broker( action, host, port, username, password, topic="parking-s
 		)
 
 	if action == "subscribe":
-		basic_msg_consumer( topic, channel )
+		basic_msg_consumer( connection, topic, channel )
 	elif action == "publish":
 		basic_msg_publisher( connection, topic, channel )
 	else:
