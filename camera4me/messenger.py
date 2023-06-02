@@ -67,7 +67,8 @@ def basic_msg_publisher(connection, topic, channel):
 
 	# The application that publishes (produces) messages.
 	# Another application or insytance consumes messages at the same time.
-	print( "Sending Message to Create Group-Queue" )
+	LOGGER.info( f"Sending Message to Create Group-Queue, Topic = {topic} !" )
+	
 	channel.basic_publish(
 		# the exchange to publish to
 		topic, 
