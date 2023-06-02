@@ -9,7 +9,7 @@ import redis
 
 import logging
 
-LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -10s %(funcName) -15s %(lineno) -5d: %(message)s')
+LOG_FORMAT = ('%(levelname) -5s %(asctime)s %(name) -10s %(funcName) -15s %(lineno) -5d: %(message)s')
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 #logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
@@ -50,11 +50,11 @@ def basic_msg_publisher(connection, topic, channel):
 	"""
 	Basic Message Publisher
 	"""
-	LOGGER.info( "***********************************************************************************************" )
+	LOGGER.info( "****************************************************************************************" )
 	LOGGER.info( "** RabbitMQ is a message broker ... It accepts messages from publishers, routes them and ... **" )
 	LOGGER.info( "**  [x] IF THERE WERE QUEUES to route to ==> stores them for consumption                     **" )
 	LOGGER.info( "**  [x] Otherwise ==> Immediately delivers to consumers if any                               **" )
-	LOGGER.info( "***********************************************************************************************" ) 
+	LOGGER.info( "****************************************************************************************" ) 
 	
 	#channel.queue_declare(queue='hello')
 
