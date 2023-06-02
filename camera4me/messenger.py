@@ -50,8 +50,8 @@ def basic_msg_publisher(connection, topic, channel):
 	"""
 	Basic Message Publisher
 	"""
-	print( "***********************************************************************************************" )
-	print( "** RabbitMQ is a message broker ... It accepts messages from publishers, routes them and ... **" )
+	LOGGER.debug( "***********************************************************************************************" )
+	LOGGER.debug( "** RabbitMQ is a message broker ... It accepts messages from publishers, routes them and ... **" )
 	print( "**  [x] IF THERE WERE QUEUES to route to ==> stores them for consumption                     **" )
 	print( "**  [x] Otherwise ==> Immediately delivers to consumers if any                               **" )
 	print( "***********************************************************************************************" ) 
