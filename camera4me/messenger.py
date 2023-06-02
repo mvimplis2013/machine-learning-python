@@ -76,7 +76,7 @@ def basic_msg_publisher(connection, topic, channel):
 		routing_key='test',
 		# the body
         body='queue:group',
-		pika.BasicProperties(
+		properties=pika.BasicProperties(
 			content_type='text/plain',
 			delivery_mode=DeliveryMode.Transient
 			)
