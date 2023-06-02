@@ -68,7 +68,7 @@ def basic_msg_publisher(connection, topic, channel):
 	# The application that publishes (produces) messages.
 	# Another application or insytance consumes messages at the same time.
 	LOGGER.info( f"Sending Message to Create Group-Queue, Topic = {topic} !" )
-	
+
 	channel.basic_publish(
 		# the exchange to publish to
 		topic, 
@@ -116,8 +116,13 @@ def basic_msg_consumer(topic, channel):
 	Basic Message Consumer
 	"""
 
-	print(f"Ready to start consuming messages on Topic ... {topic}")
+	LOGGER.info(f"Ready to start consuming messages on Topic ... {topic}")
 
+    connection = pika.BlockingConnection(
+    	pika.ConnectionParameters(host='localhost'))
+
+    main_channel = connection.channel()
+    
 	return
 
 def call_rabbit_broker( action, host, port, username, password, topic="parking-slots" ):
