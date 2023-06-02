@@ -184,9 +184,8 @@ def call_redis_to_communicate( host, port, username, password ):
 
 	return
 
-
 def __main_mq_client__():
-	LOGGER.debug( "!!! Ready to Handle Message !!!" )
+	LOGGER.info( "!!! Ready to Handle Message !!!" )
 
 	#parser = argparse.ArgumentParser( description='Handle Messages Between MicroServices' )
 
