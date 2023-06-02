@@ -9,7 +9,7 @@ import redis
 
 import logging
 
-LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
+LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -10s %(funcName) -15s %(lineno) -5d: %(message)s')
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 #logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
