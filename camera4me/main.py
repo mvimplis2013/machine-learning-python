@@ -10,8 +10,8 @@ import cv2
 import os, sys
 #from google_client_upload_frames import main_google_drive_client
 
-MONITORING_DURATION_MINS = 10
-
+MONITORING_DURATION_MINS = 600
+ 
 # Wait SECs for Next Snapshot
 SLEEP_BETWEEN_SNAPSHOTS = 6
 
