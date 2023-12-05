@@ -14,7 +14,7 @@ import os, sys
 MONITORING_DURATION_MINS = 600
  
 # Wait SECs for Next Snapshot
-SLEEP_BETWEEN_SNAPSHOTS = 6
+SLEEP_BETWEEN_SNAPSHOTS = 60
 
 import logging
 LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
