@@ -24,12 +24,16 @@ LOGGER = logging.getLogger( __name__ )
 
 # Read the Camera Video Output
 def open_rtsp_stream(ip, username, password):
+    global MONITORING_DURATION_MINS
+    global SLEEP_BETWEEN_SNAPSHOTS
+
     # Make folder to store frames
     # Date_Minute
     my_datetime = datetime.today().strftime('%Y-%m-%d-%H_%M_%S')
     
     # !!!!!!! Where to store frames !!!!!!
     new_path = f'%svideo/frames/%s' % (OUTPUT_DIR , my_datetime)
+    LOGGER.debug( f"Store Frames in ... {new_path}" )
 
     if not os.path.exists(new_path):
         os.makedirs(new_path)
@@ -44,6 +48,7 @@ def open_rtsp_stream(ip, username, password):
         return
 
     ret, frame = vcap.read()
+    sleep( SLEEP_BETWEEN_SNAPSHOTS )
 
     if not ret:
         #raise Exception("Cannot Receive Frame (Stream End ?)")
@@ -51,49 +56,52 @@ def open_rtsp_stream(ip, username, password):
         return
 
     current_dt = datetime.now()
-    previous_dt = datetime.now()
+    #previous_dt = datetime.now()
     start_time = current_dt.timestamp()
-    global MONITORING_DURATION_MINS
+    
     monitoring_minutes = (MONITORING_DURATION_MINS * 60)
-    LOGGER.debug(f"Ready to Start Capturing for Time-Period (in Seconds) = {monitoring_minutes} ... START = {ctime()}")
+    LOGGER.debug(f"Ready to Start Capturing for Time-Period (in Secs) = {monitoring_minutes} ... START = {ctime()}")
 
-    counter = 0
+    #counter = 0
     while ret:
         # Start frames capturing at ...
         time_passed = datetime.now().timestamp() - start_time
 
         if time_passed > monitoring_minutes:
+            LOGGER.debug( f"Finished Monitoring ... END = {ctime()}" )
             break
 
         #cv2.imshow('VIDEO', frame)
 
         # Between Frames Secs
-        previous_dt = current_dt
-        current_dt = datetime.now()
+        #previous_dt = current_dt
+        #current_dt = datetime.now()
 
-        current_dt_secs = current_dt.timestamp()
-        previous_dt_secs = previous_dt.timestamp()
-        elapsed_secs = current_dt_secs - previous_dt_secs
+        #current_dt_secs = current_dt.timestamp()
+        #previous_dt_secs = previous_dt.timestamp()
+        #elapsed_secs = current_dt_secs - previous_dt_secs
 
         #cv2.imwrite( f"{new_path}/frame_%d_%f.jpg" % (counter, elapsed_secs), frame)
 
         try:
+            LOGGER.debug( f"Ready to Capture New Frame ... {ctime()}" )
+            ret, frame = vcap.read()
+
             str_today = datetime.today().strftime( "%Y-%m-%d_%H-%M-%S" )
             #LOGGER.debug( f"Everything Happens Today ... {str_today}" )
 
             #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, elapsed_secs), frame)
             #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, str_today), frame )
             cv2.imwrite( f"{new_path}/frame_%s.jpg" % (str_today), frame )
+
         except Exception as e:
             print( e )
 
-        counter += 1
+        #counter += 1
 
         # Wait for few seconds ... Next Frame-Capture
         sleep( SLEEP_BETWEEN_SNAPSHOTS )
-        LOGGER.debug( f"Ready to Capture New Frame ... {ctime()}" )
-        ret, frame = vcap.read()
-
+        
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
