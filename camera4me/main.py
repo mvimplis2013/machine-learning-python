@@ -47,13 +47,13 @@ def open_rtsp_stream(ip, username, password):
         LOGGER.error(f"!!! Could Not Open Video Device ... {'rtsp://' + username + ':' + password + '@' + ip} !!!")
         return
 
-    ret, frame = vcap.read()
-    sleep( SLEEP_BETWEEN_SNAPSHOTS )
+    #ret, frame = vcap.read()
+    #sleep( SLEEP_BETWEEN_SNAPSHOTS )
 
-    if not ret:
+    #if not ret:
         #raise Exception("Cannot Receive Frame (Stream End ?)")
-        LOGGER.error(f"*** Cannot Receive Frame (Stream End ?) ... {'rtsp://' + username + ':' + password + '@' + ip} ***")
-        return
+    #    LOGGER.error(f"*** Cannot Receive Frame (Stream End ?) ... {'rtsp://' + username + ':' + password + '@' + ip} ***")
+    #    return
 
     current_dt = datetime.now()
     #previous_dt = datetime.now()
@@ -83,19 +83,24 @@ def open_rtsp_stream(ip, username, password):
 
         #cv2.imwrite( f"{new_path}/frame_%d_%f.jpg" % (counter, elapsed_secs), frame)
 
-        try:
-            LOGGER.debug( f"Ready to Capture New Frame ... {ctime()}" )
-            ret, frame = vcap.read()
+        #try:
+        LOGGER.debug( f"Ready to Capture New Frame ... {ctime()}" )
+        ret, frame = vcap.read()
 
-            str_today = datetime.today().strftime( "%Y-%m-%d_%H-%M-%S" )
-            #LOGGER.debug( f"Everything Happens Today ... {str_today}" )
+        if not ret:
+            #raise Exception("Cannot Receive Frame (Stream End ?)")
+            LOGGER.error(f"*** Cannot Receive Frame (Stream End ?) ... {'rtsp://' + username + ':' + password + '@' + ip} ***")
+            break
 
-            #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, elapsed_secs), frame)
-            #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, str_today), frame )
-            cv2.imwrite( f"{new_path}/frame_%s.jpg" % (str_today), frame )
+        str_today = datetime.today().strftime( "%Y-%m-%d_%H-%M-%S" )
+        #LOGGER.debug( f"Everything Happens Today ... {str_today}" )
 
-        except Exception as e:
-            print( e )
+        #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, elapsed_secs), frame)
+        #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, str_today), frame )
+        cv2.imwrite( f"{new_path}/frame_%s.jpg" % (str_today), frame )
+
+        #except Exception as e:
+        #    print( e )
 
         #counter += 1
 
@@ -108,7 +113,6 @@ def open_rtsp_stream(ip, username, password):
 # Read Camera Configuration Data
 def read_config():
     config = ConfigParser()
-    config.read( os.path.join( os.path.realpath(__file__), "config/camera.cfg" ) )
     config.sections()
 
     print( f"Camera-Configuration --> {config}" )
