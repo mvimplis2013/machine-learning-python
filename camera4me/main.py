@@ -48,8 +48,7 @@ def open_rtsp_stream(ip, username, password):
         return
 
     # Restrict FIFO queue to a single image 
-
-    vcap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+    #vcap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
     #ret, frame = vcap.read()
     #sleep( SLEEP_BETWEEN_SNAPSHOTS )
@@ -109,7 +108,7 @@ def open_rtsp_stream(ip, username, password):
         #counter += 1
 
         # Wait for few seconds ... Next Frame-Capture
-        sleep( SLEEP_BETWEEN_SNAPSHOTS )
+        #sleep( SLEEP_BETWEEN_SNAPSHOTS )
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
