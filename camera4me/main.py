@@ -14,7 +14,7 @@ import os, sys
 MONITORING_DURATION_MINS = 600
  
 # Wait SECs for Next Snapshot
-SLEEP_BETWEEN_SNAPSHOTS = 60
+SLEEP_BETWEEN_SNAPSHOTS = 3
 
 import logging
 LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
@@ -46,6 +46,10 @@ def open_rtsp_stream(ip, username, password):
         #raise Exception("Could Not Open Video Device")
         LOGGER.error(f"!!! Could Not Open Video Device ... {'rtsp://' + username + ':' + password + '@' + ip} !!!")
         return
+
+    # Restrict FIFO queue to a single image 
+    
+    vcap.set(CAP_PROP_BUFFERSIZE, 1)
 
     #ret, frame = vcap.read()
     #sleep( SLEEP_BETWEEN_SNAPSHOTS )
