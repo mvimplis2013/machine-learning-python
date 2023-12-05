@@ -55,13 +55,12 @@ def open_rtsp_stream(ip, username, password):
 
     global MONITORING_DURATION_MINS
     monitoring_minutes = (MONITORING_DURATION_MINS * 60)
-    print(f"Ready to Capture Frames for Period in Minutes = {monitoring_minutes}")
+    LOGGER.debug(f"Ready to Capture Frames for Time-Period (in Seconds) = {monitoring_minutes} ... START = {start_time}")
 
     counter = 0
     while ret:
         # Start frames capturing at ...
         time_passed = datetime.now().timestamp() - start_time
-        print( f"Time Passed = %f" % time_passed)
 
         if time_passed > monitoring_minutes:
             break
