@@ -63,7 +63,7 @@ def open_rtsp_stream(ip, username, password):
     LOGGER.debug(f"Ready to Start Capturing for Time-Period (in Secs) = {monitoring_minutes} ... START = {ctime()}")
 
     #counter = 0
-    while ret:
+    while True:
         # Start frames capturing at ...
         time_passed = datetime.now().timestamp() - start_time
 
