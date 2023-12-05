@@ -48,8 +48,8 @@ def open_rtsp_stream(ip, username, password):
         return
 
     # Restrict FIFO queue to a single image 
-    
-    vcap.set(CAP_PROP_BUFFERSIZE, 1)
+
+    vcap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 
     #ret, frame = vcap.read()
     #sleep( SLEEP_BETWEEN_SNAPSHOTS )
