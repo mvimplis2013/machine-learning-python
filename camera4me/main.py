@@ -5,7 +5,8 @@
 
 from configparser import ConfigParser
 from datetime import datetime
-from time import sleep
+from time import sleep, ctime
+
 import cv2
 import os, sys
 #from google_client_upload_frames import main_google_drive_client
@@ -52,10 +53,9 @@ def open_rtsp_stream(ip, username, password):
     current_dt = datetime.now()
     previous_dt = datetime.now()
     start_time = current_dt.timestamp()
-
     global MONITORING_DURATION_MINS
     monitoring_minutes = (MONITORING_DURATION_MINS * 60)
-    LOGGER.debug(f"Ready to Capture Frames for Time-Period (in Seconds) = {monitoring_minutes} ... START = {start_time}")
+    LOGGER.debug(f"Ready to Start Capturing for Time-Period (in Seconds) = {monitoring_minutes} ... START = {ctime()}")
 
     counter = 0
     while ret:
@@ -79,7 +79,7 @@ def open_rtsp_stream(ip, username, password):
 
         try:
             str_today = datetime.today().strftime( "%Y-%m-%d_%H-%M-%S" )
-            print(f"Everything Happens Today ... {str_today}")
+            #LOGGER.debug( f"Everything Happens Today ... {str_today}" )
 
             #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, elapsed_secs), frame)
             #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, str_today), frame )
@@ -91,6 +91,7 @@ def open_rtsp_stream(ip, username, password):
 
         # Wait for few seconds ... Next Frame-Capture
         sleep( SLEEP_BETWEEN_SNAPSHOTS )
+        LOGGER.debug( f"Ready to Capture New Frame ... {ctime()}" )
         ret, frame = vcap.read()
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -123,8 +124,8 @@ def read_config():
 def main_grab():
     #camera_all = read_config()
 
-    global MONITORING_DURATION_MINS
-    MONITORING_DURATION_MINS = 5
+    #global MONITORING_DURATION_MINS
+    #MONITORING_DURATION_MINS = 5
 
     global OUTPUT_DIR
     OUTPUT_DIR = "/dt2/"
