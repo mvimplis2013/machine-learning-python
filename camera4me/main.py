@@ -16,6 +16,8 @@ MONITORING_DURATION_MINS = 600
 # Wait SECs for Next Snapshot
 SLEEP_BETWEEN_SNAPSHOTS = 3
 
+SCALE_PERCENT = 50 # % original size
+
 import logging
 LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) -35s %(lineno) -5d: %(message)s')
 logging.basicConfig( level=logging.DEBUG, format=LOG_FORMAT )
@@ -26,6 +28,7 @@ LOGGER = logging.getLogger( __name__ )
 def open_rtsp_stream(ip, username, password):
     global MONITORING_DURATION_MINS
     global SLEEP_BETWEEN_SNAPSHOTS
+    global SCALE_PERCENT
 
     # Make folder to store frames
     # Date_Minute
@@ -98,9 +101,17 @@ def open_rtsp_stream(ip, username, password):
         str_today = datetime.today().strftime( "%Y-%m-%d_%H-%M-%S" )
         #LOGGER.debug( f"Everything Happens Today ... {str_today}" )
 
+        # Downscale - Preserve Aspect Ratio
+        # ---------------------------------
+        width = int(frame.shape[1] * SCALE_PERCENT / 100)
+        height = int(frame.shape[0] * SCALE_PERCENT / 100)
+        dim = (width, height)
+
+        frame_resized = cv2.resize(frame, dim, interpolation = cv2.INTER_AREA)
+
         #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, elapsed_secs), frame)
         #cv2.imwrite( f"{new_path}/frame_%d_%s.jpg" % (counter, str_today), frame )
-        cv2.imwrite( f"{new_path}/frame_%s.jpg" % (str_today), frame )
+        cv2.imwrite( f"{new_path}/frame_%s.jpg" % (str_today), frame_resized )
 
         #except Exception as e:
         #    print( e )
