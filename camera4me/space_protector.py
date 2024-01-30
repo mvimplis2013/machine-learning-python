@@ -24,7 +24,7 @@ SLEEP_SECS = 3
 
 DAYS_OLD    = 1    # One Day
 HOURS_OLD   = 2    # Two Hours
-MINUTES_OLD = 4   # Ten Minutes
+MINUTES_OLD = 2    # Two(2) Minutes
 
 DELETE_EMPTY_FOLDERS_AFTER_SECS = 10*60  # Minutes
 
@@ -97,7 +97,7 @@ def inside_date_folder(folder):
 				LOGGER.debug(f"Ready to Delete Frame More than Hours(s) Old .... {f} / {hours}-(hrs)")
 				remove(f)
 			elif older_than_minutes(minutes):
-				LOGGER.debug(f"Ready to Delete Frame More than Minute(s) Old ... {f} / {minutes}-(mins)")
+				LOGGER.debug(f"Ready to Delete Frame More than TWO Minute(s) Old ... {f} / {minutes}-(mins)")
 				remove(f)
 			
 def count_frames(folder):
