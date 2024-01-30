@@ -24,7 +24,7 @@ SLEEP_SECS = 3
 
 DAYS_OLD    = 1    # One Day
 HOURS_OLD   = 2    # Two Hours
-MINUTES_OLD = 10   # Ten Minutes
+MINUTES_OLD = 4   # Ten Minutes
 
 DELETE_EMPTY_FOLDERS_AFTER_SECS = 10*60  # Minutes
 
